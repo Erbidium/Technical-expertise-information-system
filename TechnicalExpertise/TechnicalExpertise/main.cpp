@@ -11,12 +11,9 @@ int main()
 		cin>>choice;
 		switch(choice)
 		{
-		case 0:
-			cout<<"Exit!..."<<endl;
-			return 0;
 		case 1:
 			int typeOfUser;
-			cout<<"(0)Grant recipient (1)Expert comission (2)Fund owner (3)Admin (4)Exit: ";
+			cout<<"Grant recipient(0) Expert comission(1) Fund owner(2) Admin(3) Exit(4): ";
 			cin>>typeOfUser;
 			int ID;
 			cout<<"Enter account ID: ";
@@ -27,21 +24,35 @@ int main()
 			{
 			case 0:
 				cout<<"Choose action!"<<endl;
-				cout<<"(0)Create an application\n(1)Check the status of application\n(2)Delete the application: ";
+				cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2): ";
 				cin>>action;
 				break;
 			case 1:
 				cout<<"Choose action!"<<endl;
-				cout<<"(0)View the application\n(1)Evaluate the application(2): ";
+				cout<<"View the application(0)\nEvaluate the application(1): ";
 			case 4:
-				cout<<"Exit!..."<<endl;
-				return 0;
+				choice=0;
 			}
 			break;
 		case 2:
 			typeOfUser=-1;
-			cout<<"(0)Grant recipient (1)Expert comission (2)Fund owner (3)Exit: ";
+			cout<<"Grant recipient(0) Expert comission(1) Fund owner(2) Exit(3): ";
 			cin>>typeOfUser;
+			switch(typeOfUser)
+			{
+			case 0:
+
+			break;
+			case 1:
+			case 2:
+				int confirmation;
+				cout<<"Leave request for registration(0): ";
+				cin>>confirmation;
+				
+				break;
+			case 3:
+				choice=0;
+			}
 			break;
 		}
 	}
