@@ -36,7 +36,7 @@ int main()
 			case 1:
 				do
 				{
-					cout<<"View the application(0)\nEvaluate the application(1)\n\nLog out(2): ";
+					cout<<"View the application(0)\nEvaluate the application(1)\nLog out(2): ";
 					cin>>action;
 				}while(action!=2);
 			break;
@@ -48,7 +48,8 @@ int main()
 				}while(action!=2);
 			break;
 			case 4:
-				choice=0;
+				choice=2;
+			break;
 			}
 		break;
 		case 1:
@@ -70,11 +71,11 @@ int main()
 				}while(confirmation!=1);
 			break;
 			case 3:
-				choice=0;
+				choice=2;
 			}
 		break;
 		case 2:
-			choice=0;
+			choice=2;
 		}
-	}while(choice!=0);
+	}while(choice!=2);
 }
