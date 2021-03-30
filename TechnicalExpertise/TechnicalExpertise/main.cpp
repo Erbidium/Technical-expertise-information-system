@@ -7,13 +7,13 @@ int main()
 	int choice;
 	do
 	{
-		cout<<"Login(1) Register(2) Quit(0): ";
+		cout<<"\nLogin(1) Register(2) Quit(0): ";
 		cin>>choice;
 		switch(choice)
 		{
 		case 1:
 			int typeOfUser;
-			cout<<"Grant recipient(0) Expert comission(1) Fund owner(2) Admin(3) Exit(4): ";
+			cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Admin(3) Exit(4): ";
 			cin>>typeOfUser;
 			int ID;
 			cout<<"Enter account ID: ";
@@ -23,25 +23,36 @@ int main()
 			switch(typeOfUser)
 			{
 			case 0:
-				cout<<"Choose action!"<<endl;
-				cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2): ";
-				cin>>action;
-				break;
+				do
+				{
+					cout<<"\nChoose action!"<<endl;
+					cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nLog out(3): ";
+					cin>>action;
+				}while(action!=3);
+			break;
 			case 1:
-				cout<<"Choose action!"<<endl;
-				cout<<"View the application(0)\nEvaluate the application(1): ";
-				cin>>action;
+				do
+				{
+					cout<<"\nChoose action!"<<endl;
+					cout<<"View the application(0)\nEvaluate the application(1)\n\nLog out(2): ";
+					cin>>action;
+				}while(action!=2);
+			break;
 			case 2:
-				cout<<"Choose action!"<<endl;
-				cout<<"View the results of the examination of the application(0)\nEvaluate the application(1): ";
-				cin>>action;
+				do
+				{
+					cout<<"\nChoose action!"<<endl;
+					cout<<"View the results of the examination of the application(0)\nEvaluate the application(1)\nLog out(2): ";
+					cin>>action;
+				}while(action!=2);
+			break;
 			case 4:
 				choice=0;
 			}
-			break;
+		break;
 		case 2:
 			typeOfUser=-1;
-			cout<<"Grant recipient(0) Expert comission(1) Fund owner(2) Exit(3): ";
+			cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Exit(3): ";
 			cin>>typeOfUser;
 			switch(typeOfUser)
 			{
@@ -51,15 +62,16 @@ int main()
 			case 1:
 			case 2:
 				int confirmation;
-				cout<<"Leave request for registration(0): ";
-				cin>>confirmation;
-				
-				break;
+				do
+				{
+					cout<<"\nLeave request for registration(0) Log out(1): ";
+					cin>>confirmation;
+				}while(confirmation!=1);
+			break;
 			case 3:
 				choice=0;
 			}
-			break;
+		break;
 		}
-	}
-	while(choice!=0);
+	}while(choice!=0);
 }
