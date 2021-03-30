@@ -7,25 +7,28 @@ int main()
 	int choice;
 	do
 	{
-		cout<<"\nLogin(1) Register(2) Quit(0): ";
+		cout<<"\nLogin(0) Register(1) Quit(2): ";
 		cin>>choice;
 		switch(choice)
 		{
-		case 1:
+		case 0:
 			int typeOfUser;
-			cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Admin(3) Exit(4): ";
+			cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Admin(3) Quit(4): ";
 			cin>>typeOfUser;
 			int ID;
-			cout<<"Enter account ID: ";
-			cin>>ID;
-			cout<<"Succesfully logined!"<<endl;
+			if(typeOfUser!=4)
+			{
+				cout<<"Enter account ID: ";
+				cin>>ID;
+				cout<<"Succesfully logined!"<<endl;
+				cout<<"\nChoose action!"<<endl;
+			}
 			int action;
 			switch(typeOfUser)
 			{
 			case 0:
 				do
 				{
-					cout<<"\nChoose action!"<<endl;
 					cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nLog out(3): ";
 					cin>>action;
 				}while(action!=3);
@@ -33,7 +36,6 @@ int main()
 			case 1:
 				do
 				{
-					cout<<"\nChoose action!"<<endl;
 					cout<<"View the application(0)\nEvaluate the application(1)\n\nLog out(2): ";
 					cin>>action;
 				}while(action!=2);
@@ -41,7 +43,6 @@ int main()
 			case 2:
 				do
 				{
-					cout<<"\nChoose action!"<<endl;
 					cout<<"View the results of the examination of the application(0)\nEvaluate the application(1)\nLog out(2): ";
 					cin>>action;
 				}while(action!=2);
@@ -50,9 +51,9 @@ int main()
 				choice=0;
 			}
 		break;
-		case 2:
+		case 1:
 			typeOfUser=-1;
-			cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Exit(3): ";
+			cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Quit(3): ";
 			cin>>typeOfUser;
 			switch(typeOfUser)
 			{
@@ -72,6 +73,8 @@ int main()
 				choice=0;
 			}
 		break;
+		case 2:
+			choice=0;
 		}
 	}while(choice!=0);
 }
