@@ -1,20 +1,21 @@
-#pragma once
+﻿#pragma once
 #include <string>
 
 using namespace std;
 
-class Request
+class Profile
 {
 public:
 	string getName()const;
 	string getEmail()const;
-	string getContent()const;
+	int getType();
+	int getID();
 	void setName(const string&);
 	void setEmail(const string&);
-	void setContent(const string&);
+	void setType(int);
 private:
 	string name;
 	string email;
-	string requestContent;
+	int typefUser;
+	int profileID;
 };
-
