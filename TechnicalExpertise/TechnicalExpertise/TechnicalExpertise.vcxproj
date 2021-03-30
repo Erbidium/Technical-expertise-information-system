@@ -146,7 +146,7 @@
     <ClCompile Include="GrantManagement.cpp" />
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="Request.cpp" />
-    <ClCompile Include="TechnicalExpertise.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccountManagement.h" />
