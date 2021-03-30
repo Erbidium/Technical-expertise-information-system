@@ -139,13 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AccountManagement.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="GrantManagement.cpp" />
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="Request.cpp" />
     <ClCompile Include="TechnicalExpertise.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AccountManagement.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="GrantManagement.h" />
     <ClInclude Include="Profile.h" />
     <ClInclude Include="Request.h" />
   </ItemGroup>
