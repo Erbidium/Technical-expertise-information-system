@@ -30,6 +30,11 @@ int main()
 			case 1:
 				cout<<"Choose action!"<<endl;
 				cout<<"View the application(0)\nEvaluate the application(1): ";
+				cin>>action;
+			case 2:
+				cout<<"Choose action!"<<endl;
+				cout<<"View the results of the examination of the application(0)\nEvaluate the application(1): ";
+				cin>>action;
 			case 4:
 				choice=0;
 			}
