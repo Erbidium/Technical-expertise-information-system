@@ -1,5 +1,6 @@
 #include "SiteInterface.h"
 #include "AccountManagement.h"
+#include "ApplyTheApplication.h"
 #include <iostream>
 
 using namespace std;
@@ -13,7 +14,10 @@ void SiteInterface::showMenu()
 		cin>>choice;
 		switch(choice)
 		{
-		case 0:
+		case 0: {
+			ApplyTheApplication tempApplication;
+			tempApplication.setApplication(35879);
+		}
 		break;
 		case 1:
 			AccountManagement::registerProfile(0);
