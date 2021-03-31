@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "AccountManagement.h"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ int main()
 			{
 				cout<<"Enter account ID: ";
 				cin>>ID;
-				cout<<"Succesfully logined!"<<endl;
+				AccountManagement::enterToProfile(ID);
 				cout<<"\nChoose action!"<<endl;
 			}
 			int action;
@@ -32,6 +33,7 @@ int main()
 					cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nLog out(3): ";
 					cin>>action;
 				}while(action!=3);
+				AccountManagement::exitFromProfile(ID);
 			break;
 			case 1:
 				do
@@ -39,6 +41,7 @@ int main()
 					cout<<"View the application(0)\nEvaluate the application(1)\nLog out(2): ";
 					cin>>action;
 				}while(action!=2);
+				AccountManagement::exitFromProfile(ID);
 			break;
 			case 2:
 				do
@@ -46,6 +49,7 @@ int main()
 					cout<<"View the results of the examination of the application(0)\nEvaluate the application(1)\nLog out(2): ";
 					cin>>action;
 				}while(action!=2);
+				AccountManagement::exitFromProfile(ID);
 			break;
 			case 4:
 				choice=2;
@@ -69,6 +73,7 @@ int main()
 					cout<<"\nLeave request for registration(0) Log out(1): ";
 					cin>>confirmation;
 				}while(confirmation!=1);
+				AccountManagement::exitFromProfile(ID);
 			break;
 			case 3:
 				choice=2;

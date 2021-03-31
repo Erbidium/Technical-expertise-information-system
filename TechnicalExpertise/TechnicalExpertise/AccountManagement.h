@@ -2,8 +2,8 @@
 class AccountManagement
 {
 public:
-	void enterToProfile(int ID);
-	void exitFromProfile(int ID);
-	void deleteProfile(int ID);
+	static void enterToProfile(int ID);
+	static void exitFromProfile(int ID);
+	static void deleteProfile(int ID);
 };
 
