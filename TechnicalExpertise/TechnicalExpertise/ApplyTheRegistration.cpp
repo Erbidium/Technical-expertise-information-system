@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sys\stat.h>
+#include <direct.h>
 using namespace std;
 
 void ApplyTheRegistration::profileManager()
@@ -14,7 +15,8 @@ void ApplyTheRegistration::profileManager()
 	string filerep = "Database/Applications/"+to_string(profileData.getID());
 	if ((stat(filerep.data(), &buf))!= 0)
 	{
-		mkdir(filerep.data());
+		_mkdir(filerep.data());
+		
 	}
 	outProfile.close();
 	Accounts.close();
