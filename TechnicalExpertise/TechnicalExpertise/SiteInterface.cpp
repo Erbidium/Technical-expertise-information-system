@@ -8,6 +8,7 @@
 using namespace std;
 int logIn(string login, string password);
 void outApplication(string name);
+void createReview();
 
 void SiteInterface::showMenu()
 {
@@ -56,6 +57,8 @@ void SiteInterface::showMenu()
 					continue;
 				}
 				outApplication("Database/Applications/32794/gkgmnngg.txt");
+				createReview();
+
 				//cout << "ID: " << ID << endl;
 				//ApplyTheApplication tempApplication;
 				//tempApplication.setApplication(ID);
@@ -180,5 +183,22 @@ void outApplication(string name) {
 			getline(inFile, temp);
 			cout << temp << endl;
 		}
+	}
+	inFile.close();
+}
+void createReview() {
+	cout << "Input your rating for this application: " << endl;
+	string rating;
+	getline(cin, rating);
+	string name;
+	cout << "Input the name of application: ";
+	getline(cin, name);
+	ofstream outFile("Database/Reviews/" + name + ".txt");
+	if (!outFile) {
+		cout << "Can not open a file";
+	}
+	else {
+		outFile << "Sum up of " << name << " application: " << rating;
+		outFile.close();
 	}
 }

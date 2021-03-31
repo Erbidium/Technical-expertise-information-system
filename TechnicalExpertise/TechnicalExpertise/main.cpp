@@ -11,7 +11,7 @@ int main()
 {
 	srand(time(NULL));
 	struct stat buf;
-	string filerep[5] = {"Database","Database/Applications","Database/Profiles","Database/Requests"};
+	string filerep[5] = {"Database","Database/Applications","Database/Profiles","Database/Requests","Database/Reviews"};
 	for (int i = 0; i < 5; i++)
 	{
 		if ((stat(filerep[i].data(), &buf))!= 0)
