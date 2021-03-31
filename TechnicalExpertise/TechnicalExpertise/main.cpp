@@ -4,6 +4,7 @@
 #include <string>
 #include <sys\stat.h>
 #include  "SiteInterface.h"
+#include <direct.h>
 using namespace std;
 //namespace fs = filesystem;
 int main()
@@ -15,7 +16,7 @@ int main()
 	{
 		if ((stat(filerep[i].data(), &buf))!= 0)
 		{
-			mkdir(filerep[i].data());
+			_mkdir(filerep[i].data());
 		}
 	}
 	//fs::create_directory("Database");
