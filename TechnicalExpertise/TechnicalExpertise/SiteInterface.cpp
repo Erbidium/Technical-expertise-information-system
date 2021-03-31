@@ -15,6 +15,11 @@ void SiteInterface::showMenu()
 		switch(choice)
 		{
 		case 0: {
+			string login, password;
+			cout<<"Enter your login: ";
+			cin>>login;
+			cout<<"Enter your password: ";
+			cin>>password;
 			ApplyTheApplication tempApplication;
 			tempApplication.setApplication(35879);
 		}
@@ -22,7 +27,9 @@ void SiteInterface::showMenu()
 		case 1:
 			AccountManagement::registerProfile(0);
 		break;
-		}
+		case 2:
+		break;
+	}while(choice!=3);
 		/*switch(choice)
 		{
 		case 0:*/
@@ -95,5 +102,5 @@ void SiteInterface::showMenu()
 		case 2:
 			choice=2;
 		}*/
-	}while(choice!=2);
+	
 }
