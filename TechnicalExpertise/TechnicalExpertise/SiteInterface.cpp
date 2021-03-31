@@ -2,6 +2,7 @@
 #include "AccountManagement.h"
 #include "ApplyTheApplication.h"
 #include "ApplyTheRequest.h"
+#include "Profile.h"
 #include <fstream>
 #include <iostream>
 #include <filesystem>
@@ -11,6 +12,7 @@ using namespace std;
 int logIn(string login, string password);
 void printFileData(string name);
 void createReview();
+Profile readProfile(int ID);
 
 void SiteInterface::showMenu()
 {
@@ -82,11 +84,26 @@ void SiteInterface::showMenu()
 					cout << "Entered incorrect login or password\n";
 					continue;
 				}
-				printFileData("Database/Applications/32794/gkgmnngg.txt");
-                createReview();
-				//cout << "ID: " << ID << endl;
-				//ApplyTheApplication tempApplication;
-				//tempApplication.setApplication(ID);
+				Profile current=readProfile(ID);
+				if(current.getType()==0)
+				{
+					int action;
+					do
+					{
+						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nLog out(4): ";
+						cin>>action;
+						if(action==0)
+						{
+							ApplyTheApplication tempApplication;
+							tempApplication.setApplication(ID);
+						}
+					}while(action!=4);
+					AccountManagement::exitFromProfile(ID);//реалізувати функцію
+				}
+
+				
+				//printFileData("Database/Applications/32794/gkgmnngg.txt");
+                //createReview();
 			}
 		}
 		break;
@@ -174,6 +191,7 @@ void SiteInterface::showMenu()
 		}*/
 	
 }
+
 int logIn(string login, string password) {
 	int ID = -1;
 	ifstream inFile("Database/Accounts.txt");
@@ -210,6 +228,7 @@ void printFileData(string name) {
 	}
 	inFile.close();
 }
+
 void createReview() {
 	cout << "Input your rating for this application: " << endl;
 	string rating;
@@ -225,4 +244,17 @@ void createReview() {
 		outFile << "Sum up of " << name << " application: " << rating;
 		outFile.close();
 	}
+}
+
+Profile readProfile(int ID)
+{
+	ifstream fileProfile("Database/Profiles/"+to_string(ID)+".txt");
+	string name, email;
+	int type;
+	fileProfile>>name>>email>>type;
+	Profile currentProfile;
+	currentProfile.setEmail(email);
+	currentProfile.setName(name);
+	currentProfile.setType(type);
+	return currentProfile;
 }

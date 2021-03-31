@@ -1,0 +1,4 @@
+My age: 15
+Name of application: minecraft with rtx
+Application's data: minecraft
+Date: 31.3.2021

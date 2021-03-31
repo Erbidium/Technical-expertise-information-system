@@ -44,7 +44,7 @@ void Profile::setEmail(const string& email)
 	this->email=email;
 }
 
-void Profile::setType(int profileID)
+void Profile::setType(int type)
 {
-	this->profileID=profileID;
+	this->typefUser=type;
 }

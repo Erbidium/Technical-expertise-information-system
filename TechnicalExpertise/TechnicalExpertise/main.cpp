@@ -17,9 +17,5 @@ int main()
 			fs::create_directory(fileNames[i]);
 		}
 	}
-	//fs::create_directory("Database");
-	//fs::create_directory("Database/Applications");
-	//fs::create_directory("Database/Profiles");
-	//fs::create_directory("Database/Requests");
 	SiteInterface::showMenu();
 }
