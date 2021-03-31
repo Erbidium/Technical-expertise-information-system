@@ -12,7 +12,7 @@ namespace fs = filesystem;
 
 int logIn(string login, string password);
 void printFileData(string name);
-void createReview();
+void createReview(string path, string name);
 Profile readProfile(int ID);
 
 void SiteInterface::showMenu()
@@ -97,7 +97,7 @@ void SiteInterface::showMenu()
 							tempApplication.setApplication(ID);
 						}
 					}while(action!=4);
-					AccountManagement::exitFromProfile(ID);//реалізувати функцію
+					AccountManagement::exitFromProfile(ID);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				}
 				else if(current.getType()==1)
 				{
@@ -163,8 +163,6 @@ void SiteInterface::showMenu()
 					}while(action!=2);
 					AccountManagement::exitFromProfile(ID);
 				}
-				//printFileData("Database/Applications/32794/gkgmnngg.txt");
-                //createReview();
 			}
 		}
 		break;
@@ -289,22 +287,27 @@ void printFileData(string name) {
 	}
 	inFile.close();
 }
-
-void createReview() {
+void createReview(string path, string name) {
 	cout << "Input your rating for this application: " << endl;
 	string rating;
+	if (cin.peek() == '\n') {
+		cin.ignore();
+	}
 	getline(cin, rating);
-	string name;
-	cout << "Input the name of application: ";
-	getline(cin, name);
-	ofstream outFile("Database/Reviews/" + name + ".txt");
+	ofstream outFile(path, ios::app);
 	if (!outFile) {
-		cout << "Can not open a file";
+		cout << "Can not open a file with application to write a sum up";
 	}
 	else {
-		outFile << "Sum up of " << name << " application: " << rating;
+		outFile << "Sum up of application: " << rating;
 		outFile.close();
 	}
+	string newName = "";
+	newName = path;
+	newName.insert(path.rfind('/')+1, "[checked]");
+	cout << "newName: " << newName;
+	rename(path.data(), newName.data());
+	outFile.close();
 }
 
 Profile readProfile(int ID)

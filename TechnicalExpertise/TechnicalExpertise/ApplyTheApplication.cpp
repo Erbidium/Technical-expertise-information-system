@@ -14,8 +14,8 @@ void ApplyTheApplication::applicationsManager(int ID) {
 	string tempDate = to_string(newtime.tm_mday) + '.' + to_string(newtime.tm_mon + 1) + '.' + to_string(newtime.tm_year + 1900);
 	string tempName = applicationData.getName();
 	ofstream outFile("Database/Applications/" + to_string(ID) + "/" + tempName + ".txt");
-	outFile << "My age: " << tempAge << endl;
 	outFile << "Name of application: " << tempName << endl;
+	outFile << "My age: " << tempAge << endl;
 	outFile << "Application's data: " << applicationData.getContent() << endl;
 	outFile << "Date: " << tempDate << endl;
 	outFile.close();
