@@ -6,16 +6,22 @@ using namespace std;
 class Profile
 {
 public:
+	Profile(){}
+	Profile(string, string, string, string, int, int);
 	string getName()const;
 	string getEmail()const;
+	string getPassword()const;
+	string getLogin()const;
 	int getType();
 	int getID();
 	void setName(const string&);
 	void setEmail(const string&);
 	void setType(int);
 private:
+	int profileID;
 	string name;
 	string email;
+	string password;
+	string login;
 	int typefUser;
-	int profileID;
 };

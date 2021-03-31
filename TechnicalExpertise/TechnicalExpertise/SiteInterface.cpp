@@ -9,15 +9,23 @@ void SiteInterface::showMenu()
 	int choice;
 	do
 	{
-		cout<<"\nLogin(0) Register(1) Quit(2): ";
+		cout<<"\nLogin(0) Register(1) Leave request for registration(2) Quit(3): ";
 		cin>>choice;
 		switch(choice)
 		{
 		case 0:
-			int typeOfUser;
-			cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Admin(3) Quit(4): ";
-			cin>>typeOfUser;
-			int ID;
+		break;
+		case 1:
+			AccountManagement::registerProfile(0);
+		break;
+		}
+		/*switch(choice)
+		{
+		case 0:*/
+			//int typeOfUser;
+			//cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Admin(3) Quit(4): ";
+			//cin>>typeOfUser;
+			/*int ID;
 			if(typeOfUser!=4)
 			{
 				cout<<"Enter account ID: ";
@@ -82,6 +90,6 @@ void SiteInterface::showMenu()
 		break;
 		case 2:
 			choice=2;
-		}
+		}*/
 	}while(choice!=2);
 }
