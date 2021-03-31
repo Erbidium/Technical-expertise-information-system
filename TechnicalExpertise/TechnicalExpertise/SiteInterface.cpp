@@ -9,8 +9,7 @@
 using namespace std;
 
 int logIn(string login, string password);
-void outApplication(string name);
-void printRequest(string path);
+void printFileData(string name);
 
 void SiteInterface::showMenu()
 {
@@ -57,7 +56,7 @@ void SiteInterface::showMenu()
 							cin>>numberOfRequest;
 							if(numberOfRequest!=-1){
 								if(numberOfRequest!=1){
-									printRequest("Database/Requests/"+files[numberOfRequest]);
+									printFileData("Database/Requests/"+files[numberOfRequest]);
 								}
 							}
 						}while(numberOfRequest!=-1);
@@ -82,7 +81,7 @@ void SiteInterface::showMenu()
 					cout << "Entered incorrect login or password\n";
 					continue;
 				}
-				outApplication("Database/Applications/32794/gkgmnngg.txt");
+				printFileData("Database/Applications/32794/gkgmnngg.txt");
 				//cout << "ID: " << ID << endl;
 				//ApplyTheApplication tempApplication;
 				//tempApplication.setApplication(ID);
@@ -195,9 +194,8 @@ int logIn(string login, string password) {
 	inFile.close();
 	return ID;
 }
-void outApplication(string name) {
+void printFileData(string name) {
 	ifstream inFile(name);
-	cin.ignore();
 	if (!inFile) {
 		cout << "Can't open a file";
 	}
@@ -207,23 +205,5 @@ void outApplication(string name) {
 			getline(inFile, temp);
 			cout << temp << endl;
 		}
-	}
-}
-
-void printRequest(string path)
-{
-	ifstream request(path);
-	if(!request)
-	{
-		cout << "Can't open a file";
-	}
-	else
-	{
-		do
-		{
-			string temp;
-			getline(request, temp);
-			if(temp!="") cout<<temp<<endl;
-		}while(!request.eof());
 	}
 }

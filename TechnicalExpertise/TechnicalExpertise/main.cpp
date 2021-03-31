@@ -1,22 +1,20 @@
-﻿#include <iostream>
-#include <ctime>
+﻿#include <ctime>
 #include <filesystem>
 #include <string>
-#include <sys\stat.h>
 #include  "SiteInterface.h"
-#include <direct.h>
+
 using namespace std;
-//namespace fs = filesystem;
+namespace fs = filesystem;
+
 int main()
 {
 	srand(time(NULL));
-	struct stat buf;
-	string filerep[5] = {"Database","Database/Applications","Database/Profiles","Database/Requests"};
-	for (int i = 0; i < 5; i++)
+	string fileNames[4] = {"Database","Database/Applications","Database/Profiles","Database/Requests"};
+	for (int i = 0; i < 4; i++)
 	{
-		if ((stat(filerep[i].data(), &buf))!= 0)
+		if (fs::is_directory(fileNames[i])==false)
 		{
-			_mkdir(filerep[i].data());
+			fs::create_directory(fileNames[i]);
 		}
 	}
 	//fs::create_directory("Database");
