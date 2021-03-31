@@ -8,6 +8,7 @@
 #include <filesystem>
 
 using namespace std;
+namespace fs = filesystem;
 
 int logIn(string login, string password);
 void printFileData(string name);
@@ -90,7 +91,7 @@ void SiteInterface::showMenu()
 					int action;
 					do
 					{
-						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nLog out(4): ";
+						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nLog out(4):"<<endl;
 						cin>>action;
 						if(action==0)
 						{
@@ -100,8 +101,33 @@ void SiteInterface::showMenu()
 					}while(action!=4);
 					AccountManagement::exitFromProfile(ID);//реалізувати функцію
 				}
-
-				
+				else if(current.getType()==1)
+				{
+					int action;
+					do
+					{
+						cout<<"View the application(0)\nEvaluate the application(1)\nLog out(2):"<<endl;
+						cin>>action;
+						if(action==0)
+						{
+							vector <vector<string>> files(2);
+							int counter=0;
+							for (const auto & entry : filesystem::recursive_directory_iterator("Database/Applications"))
+							{
+								if(entry.path().extension()==".txt")
+								{
+									files[0].push_back(entry.path().filename().string());
+									files[1].push_back(entry.path().string());
+									cout<<files[0].back()<<"("<<counter<<")"<<endl;
+									cout<<files[1].back()<<"("<<counter<<")"<<endl;
+									counter++;
+								}
+								
+							}
+						}
+					}while(action!=2);
+					AccountManagement::exitFromProfile(ID);
+				}
 				//printFileData("Database/Applications/32794/gkgmnngg.txt");
                 //createReview();
 			}
