@@ -10,7 +10,7 @@ using namespace std;
 
 int logIn(string login, string password);
 void printFileData(string name);
-void createReview();
+void createReview(string path, string name);
 
 void SiteInterface::showMenu()
 {
@@ -82,11 +82,11 @@ void SiteInterface::showMenu()
 					cout << "Entered incorrect login or password\n";
 					continue;
 				}
-				printFileData("Database/Applications/32794/gkgmnngg.txt");
-                createReview();
-				//cout << "ID: " << ID << endl;
+				cout << "ID: " << ID << endl;
 				//ApplyTheApplication tempApplication;
 				//tempApplication.setApplication(ID);
+				printFileData("Database/Applications/33707/gkgmnngg.txt");
+				createReview("Database/Applications/33707/gkgmnngg.txt", "gkgmnngg.txt");
 			}
 		}
 		break;
@@ -210,19 +210,25 @@ void printFileData(string name) {
 	}
 	inFile.close();
 }
-void createReview() {
+void createReview(string path, string name) {
 	cout << "Input your rating for this application: " << endl;
 	string rating;
+	if (cin.peek() == '\n') {
+		cin.ignore();
+	}
 	getline(cin, rating);
-	string name;
-	cout << "Input the name of application: ";
-	getline(cin, name);
-	ofstream outFile("Database/Reviews/" + name + ".txt");
+	ofstream outFile(path, ios::app);
 	if (!outFile) {
-		cout << "Can not open a file";
+		cout << "Can not open a file with application to write a sum up";
 	}
 	else {
-		outFile << "Sum up of " << name << " application: " << rating;
+		outFile << "Sum up of application: " << rating;
 		outFile.close();
 	}
+	string newName = "";
+	newName = path;
+	newName.insert(path.rfind('/')+1, "[checked]");
+	cout << "newName: " << newName;
+	rename(path.data(), newName.data());
+	outFile.close();
 }
