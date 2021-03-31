@@ -21,8 +21,43 @@ void ApplyTheApplication::applicationsManager(int ID) {
 	outFile.close();
 }
 void ApplyTheApplication::applicationDataCheck(int ID) {
-	cout << "Your application has been registered\n";
-	applicationsManager(ID);
+	bool correct = true;
+	string name = applicationData.getName();
+	if (name.empty())
+	{
+		cout << endl << "Your application`s name is epmty." << endl;
+		correct = false;
+	}
+	for (int i = 0; i < name.length(); i++)
+	{
+		if (!((name[i] >= 65 && name[i] <= 90) || (name[i] >= 97 && name[i] <= 122) || name[i] == ' '))
+		{
+			cout << endl << "Your application`s name has been writen wrong or at different language." << endl;
+			correct = false;
+			i = name.length();
+		}
+	}
+	string Content = applicationData.getContent();
+	if (Content.empty())
+	{
+		cout << endl << "Your application is epmty." << endl;
+		correct = false;
+	}
+	if (correct)
+	{
+		cout << endl << "Yout application is correct!" << endl;
+		applicationsManager(ID);
+	}
+	else
+	{
+		cout << endl << "Would you like to rewrite your application(0) or leave(1)?" << endl;
+		bool leave;
+		cin >> leave;
+		if (!leave)
+		{
+			setApplication(ID);
+		}
+	}
 }
 void ApplyTheApplication::setApplication(int ID) {
 	int tempAge;
