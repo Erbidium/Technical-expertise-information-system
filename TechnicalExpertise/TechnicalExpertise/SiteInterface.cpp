@@ -2,15 +2,18 @@
 #include "AccountManagement.h"
 #include "ApplyTheApplication.h"
 #include "ApplyTheRequest.h"
+#include "Profile.h"
 #include <fstream>
 #include <iostream>
 #include <filesystem>
 
 using namespace std;
+namespace fs = filesystem;
 
 int logIn(string login, string password);
 void printFileData(string name);
 void createReview(string path, string name);
+Profile readProfile(int ID);
 
 void SiteInterface::showMenu()
 {
@@ -82,11 +85,49 @@ void SiteInterface::showMenu()
 					cout << "Entered incorrect login or password\n";
 					continue;
 				}
-				cout << "ID: " << ID << endl;
-				//ApplyTheApplication tempApplication;
-				//tempApplication.setApplication(ID);
-				printFileData("Database/Applications/33707/gkgmnngg.txt");
-				createReview("Database/Applications/33707/gkgmnngg.txt", "gkgmnngg.txt");
+				Profile current=readProfile(ID);
+				if(current.getType()==0)
+				{
+					int action;
+					do
+					{
+						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nLog out(4):"<<endl;
+						cin>>action;
+						if(action==0)
+						{
+							ApplyTheApplication tempApplication;
+							tempApplication.setApplication(ID);
+						}
+					}while(action!=4);
+					AccountManagement::exitFromProfile(ID);//���������� �������
+				}
+				else if(current.getType()==1)
+				{
+					int action;
+					do
+					{
+						cout<<"View the application(0)\nEvaluate the application(1)\nLog out(2):"<<endl;
+						cin>>action;
+						if(action==0)
+						{
+							vector <vector<string>> files(2);
+							int counter=0;
+							for (const auto & entry : filesystem::recursive_directory_iterator("Database/Applications"))
+							{
+								if((entry.path().extension()==".txt")&&(entry.path().filename().string().find("[checked]")==string::npos))
+								{
+									files[0].push_back(entry.path().filename().string());
+									files[1].push_back(entry.path().string());
+									cout<<files[0].back()<<"("<<counter<<")"<<endl;
+									//cout<<files[1].back()<<"("<<counter<<")"<<endl;
+									counter++;
+								}
+								
+							}
+						}
+					}while(action!=2);
+					AccountManagement::exitFromProfile(ID);
+				}
 			}
 		}
 		break;
@@ -174,6 +215,7 @@ void SiteInterface::showMenu()
 		}*/
 	
 }
+
 int logIn(string login, string password) {
 	int ID = -1;
 	ifstream inFile("Database/Accounts.txt");
@@ -231,4 +273,17 @@ void createReview(string path, string name) {
 	cout << "newName: " << newName;
 	rename(path.data(), newName.data());
 	outFile.close();
+}
+
+Profile readProfile(int ID)
+{
+	ifstream fileProfile("Database/Profiles/"+to_string(ID)+".txt");
+	string name, email;
+	int type;
+	fileProfile>>name>>email>>type;
+	Profile currentProfile;
+	currentProfile.setEmail(email);
+	currentProfile.setName(name);
+	currentProfile.setType(type);
+	return currentProfile;
 }
