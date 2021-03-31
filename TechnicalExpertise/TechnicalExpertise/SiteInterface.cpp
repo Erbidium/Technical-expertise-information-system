@@ -7,6 +7,7 @@
 
 using namespace std;
 int logIn(string login, string password);
+void outApplication(string name);
 
 void SiteInterface::showMenu()
 {
@@ -54,9 +55,10 @@ void SiteInterface::showMenu()
 					cout << "Entered incorrect login or password\n";
 					continue;
 				}
+				outApplication("Database/Applications/32794/gkgmnngg.txt");
 				//cout << "ID: " << ID << endl;
-				ApplyTheApplication tempApplication;
-				tempApplication.setApplication(ID);
+				//ApplyTheApplication tempApplication;
+				//tempApplication.setApplication(ID);
 			}
 		}
 		break;
@@ -165,4 +167,18 @@ int logIn(string login, string password) {
 	}
 	inFile.close();
 	return ID;
+}
+void outApplication(string name) {
+	ifstream inFile(name);
+	cin.ignore();
+	if (!inFile) {
+		cout << "Can't open a file";
+	}
+	else {
+		while (!inFile.eof()) {
+			string temp;
+			getline(inFile, temp);
+			cout << temp << endl;
+		}
+	}
 }
