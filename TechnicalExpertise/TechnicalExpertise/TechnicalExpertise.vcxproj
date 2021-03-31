@@ -147,6 +147,7 @@
     <ClCompile Include="Profile.cpp" />
     <ClCompile Include="Request.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SiteInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccountManagement.h" />
@@ -156,6 +157,7 @@
     <ClInclude Include="GrantManagement.h" />
     <ClInclude Include="Profile.h" />
     <ClInclude Include="Request.h" />
+    <ClInclude Include="SiteInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
