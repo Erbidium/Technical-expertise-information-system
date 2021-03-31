@@ -96,6 +96,48 @@ void SiteInterface::showMenu()
 							ApplyTheApplication tempApplication;
 							tempApplication.setApplication(ID);
 						}
+						else if(action==1)
+						{
+							int counter=0;
+							vector <vector<string>> applicationNames(2);
+							for (const auto & entry : filesystem::directory_iterator("Database/Applications/"+to_string(ID)))
+							{
+								if(entry.path().extension()==".txt")
+								{
+									applicationNames[0].push_back(entry.path().filename().string());
+									applicationNames[1].push_back(entry.path().string());
+									cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
+									counter++;
+								}
+							}
+							cout<<"Press any key to quit"<<endl;
+							string key;
+							cin>>key;
+						}
+						else if(action==2)
+						{
+							
+							int numberOfApplication=-1;
+							do{
+								int counter=0;
+								vector <vector<string>> applicationNames(2);
+								for (const auto & entry : filesystem::directory_iterator("Database/Applications/"+to_string(ID)))
+								{
+									if(entry.path().extension()==".txt")
+									{
+										applicationNames[0].push_back(entry.path().filename().string());
+										applicationNames[1].push_back(entry.path().string());
+										cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
+										counter++;
+									}
+								}
+								cout<<"Choose application or enter -1 to quit"<<endl;
+								cin>>numberOfApplication;
+								if(numberOfApplication!=-1){
+									remove(applicationNames[1][numberOfApplication].data());
+								}
+							}while(numberOfApplication!=-1);
+						}
 					}while(action!=4);
 					AccountManagement::exitFromProfile(ID);//���������� �������
 				}
