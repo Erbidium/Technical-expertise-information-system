@@ -59,9 +59,7 @@ void SiteInterface::showMenu()
 							cout<<"Choose request or enter -1 to quit"<<endl;
 							cin>>numberOfRequest;
 							if(numberOfRequest!=-1){
-								if(numberOfRequest!=1){
-									printFileData("Database/Requests/"+files[numberOfRequest]);
-								}
+									printFileData("Database/Requests/"+files[numberOfRequest]);		
 							}
 						}while(numberOfRequest!=-1);
 					}	
@@ -110,11 +108,48 @@ void SiteInterface::showMenu()
 						cin>>action;
 						if(action==0)
 						{
+							vector <vector<string>> applicationNames(2);
+							int counter=0;
+							for (const auto & entry : filesystem::recursive_directory_iterator("Database/Applications"))
+							{
+								if((entry.path().extension()==".txt")&&(entry.path().filename().string().find("[checked]")==string::npos)&&
+									(entry.path().filename().string().find("[paid]")==string::npos))
+								{
+									applicationNames[0].push_back(entry.path().filename().string());
+									applicationNames[1].push_back(entry.path().string());
+									cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
+									//cout<<files[1].back()<<"("<<counter<<")"<<endl;
+									counter++;
+								}
+							}
+							int numberOfApplication=-1;
+							do{
+								cout<<"Choose application or enter -1 to quit"<<endl;
+								cin>>numberOfApplication;
+								if(numberOfApplication!=-1){
+										
+								}
+							}while(numberOfApplication!=-1);
+							
+						}
+					}while(action!=2);
+					AccountManagement::exitFromProfile(ID);
+				}
+				else if(current.getType()==2)
+				{
+					int action;
+					do
+					{
+						cout<<"View the application(0)\nEvaluate the application(1)\nLog out(2):"<<endl;
+						cin>>action;
+						if(action==0)
+						{
 							vector <vector<string>> files(2);
 							int counter=0;
 							for (const auto & entry : filesystem::recursive_directory_iterator("Database/Applications"))
 							{
-								if((entry.path().extension()==".txt")&&(entry.path().filename().string().find("[checked]")==string::npos))
+								if((entry.path().extension()==".txt")&&(entry.path().filename().string().find("[checked]")==string::npos)&&
+									(entry.path().filename().string().find("[paid]")==string::npos))
 								{
 									files[0].push_back(entry.path().filename().string());
 									files[1].push_back(entry.path().string());
