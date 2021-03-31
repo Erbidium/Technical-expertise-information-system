@@ -104,7 +104,7 @@ void SiteInterface::showMenu()
 					int action;
 					do
 					{
-						cout<<"View the application(0)\nEvaluate the application(1)\nLog out(2):"<<endl;
+						cout<<"View the application and evaluate it(0) \nLog out(1):"<<endl;
 						cin>>action;
 						if(action==0)
 						{
@@ -127,12 +127,13 @@ void SiteInterface::showMenu()
 								cout<<"Choose application or enter -1 to quit"<<endl;
 								cin>>numberOfApplication;
 								if(numberOfApplication!=-1){
-										
+									printFileData(applicationNames[1][numberOfApplication]);
+									createReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
 								}
 							}while(numberOfApplication!=-1);
 							
 						}
-					}while(action!=2);
+					}while(action!=1);
 					AccountManagement::exitFromProfile(ID);
 				}
 				else if(current.getType()==2)
@@ -299,13 +300,19 @@ void createReview(string path, string name) {
 		cout << "Can not open a file with application to write a sum up";
 	}
 	else {
-		outFile << "Sum up of application: " << rating;
+		outFile << "Sum up of application: " << rating << endl;
 		outFile.close();
 	}
 	string newName = "";
+	
+	for (int i = 0; i < path.length(); i++) {
+		if (static_cast<int>(path[i]) == 92) {
+			path[i] = '/';
+		}
+	}
 	newName = path;
+	//cout << "newName: " << newName;
 	newName.insert(path.rfind('/')+1, "[checked]");
-	cout << "newName: " << newName;
 	rename(path.data(), newName.data());
 	outFile.close();
 }
