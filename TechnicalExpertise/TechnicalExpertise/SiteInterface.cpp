@@ -114,12 +114,12 @@ void SiteInterface::showMenu()
 							int counter=0;
 							for (const auto & entry : filesystem::recursive_directory_iterator("Database/Applications"))
 							{
-								if(entry.path().extension()==".txt")
+								if((entry.path().extension()==".txt")&&(entry.path().filename().string().find("[checked]")==string::npos))
 								{
 									files[0].push_back(entry.path().filename().string());
 									files[1].push_back(entry.path().string());
 									cout<<files[0].back()<<"("<<counter<<")"<<endl;
-									cout<<files[1].back()<<"("<<counter<<")"<<endl;
+									//cout<<files[1].back()<<"("<<counter<<")"<<endl;
 									counter++;
 								}
 								
