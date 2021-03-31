@@ -2,9 +2,11 @@
 #include "AccountManagement.h"
 #include "ApplyTheApplication.h"
 #include "ApplyTheRequest.h"
+#include <fstream>
 #include <iostream>
 
 using namespace std;
+int logIn(string login, string password);
 
 void SiteInterface::showMenu()
 {
@@ -21,8 +23,14 @@ void SiteInterface::showMenu()
 			cin>>login;
 			cout<<"Enter your password: ";
 			cin>>password;
+			int ID = logIn(login, password);
+			if (ID == -1) {
+				cout << " Entered incorrect login or password";
+				continue;
+			} 
+			cout << "ID: " << ID << endl;
 			ApplyTheApplication tempApplication;
-			tempApplication.setApplication(34967);
+			tempApplication.setApplication(ID);
 		}
 		break;
 		case 1:
@@ -108,4 +116,26 @@ void SiteInterface::showMenu()
 			choice=2;
 		}*/
 	
+}
+int logIn(string login, string password) {
+	int ID = -1;
+	ifstream inFile("Database/Accounts.txt");
+	if (!inFile) {
+		cout << "Can't open a file :-(";
+	}
+	else {
+		while (!inFile.eof()) {
+			string tempPassword;
+			string tempLogin;
+			int tempID;
+			inFile >> tempPassword;
+			inFile >> tempLogin;
+			inFile >> tempID;
+			if (tempPassword == password && tempLogin == login) {
+				ID = tempID;
+			}
+		}
+	}
+	inFile.close();
+	return ID;
 }
