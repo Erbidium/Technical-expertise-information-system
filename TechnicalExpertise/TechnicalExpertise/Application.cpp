@@ -45,11 +45,6 @@ void Application::setContent(const string& applicationContent)
 	this->applicationContent=applicationContent;
 }
 
-void Application::setDate(const string& applicationDate)
-{
-	this->applicationDate=applicationDate;
-}
-
 void Application::setGrantConfirm(bool grantIsConfirmed)
 {
 	this->grantIsConfirmed=grantIsConfirmed;

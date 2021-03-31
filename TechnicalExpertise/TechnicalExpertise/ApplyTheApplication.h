@@ -1,13 +1,12 @@
 #pragma once
 #include "Application.h"
 class ApplyTheApplication
-{
-public:
+{public:
+	void setApplication(int ID);
+private:
 	Application applicationData;
 	bool ApplicationConfirmation;
-private:
-	void applicationsManager();
-	void applicationDtaCheck();
-	void setApplication(Application);
+	void applicationsManager(int ID);
+	void applicationDataCheck(int ID);
 };
 
