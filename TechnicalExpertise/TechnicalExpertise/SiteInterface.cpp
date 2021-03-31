@@ -4,10 +4,13 @@
 #include "ApplyTheRequest.h"
 #include <fstream>
 #include <iostream>
+#include <filesystem>
 
 using namespace std;
+
 int logIn(string login, string password);
 void outApplication(string name);
+void printRequest(string path);
 void createReview();
 
 void SiteInterface::showMenu()
@@ -31,11 +34,35 @@ void SiteInterface::showMenu()
 				do
 				{
 					cout<<"Choose action!"<<endl;
-					cout<<"View requests(0) Register profile(1) Log out(2) Quit(3):\n"<<endl;
+					cout<<"View requests(0) Register profile(1) Log out(2) Quit(3):"<<endl;
 					cin>>action;
 					switch(action)
 					{
 					case 0:
+					{
+						cout<<"All requests:"<<endl;
+						vector <string> files;
+						int counter=0;
+						for (const auto & entry : filesystem::directory_iterator("Database/Requests"))
+						{
+							if(entry.path().extension()==".txt")
+							{
+								files.push_back(entry.path().filename().string());
+								cout<<files.back()<<"("<<counter<<")"<<endl;
+							}
+							counter++;
+						}
+						int numberOfRequest=-1;
+						do{
+							cout<<"Choose request or enter -1 to quit"<<endl;
+							cin>>numberOfRequest;
+							if(numberOfRequest!=-1){
+								if(numberOfRequest!=1){
+									printRequest("Database/Requests/"+files[numberOfRequest]);
+								}
+							}
+						}while(numberOfRequest!=-1);
+					}	
 					break;
 					case 1:
 						cout<<"Which account do you want to register?\n";
@@ -200,5 +227,23 @@ void createReview() {
 	else {
 		outFile << "Sum up of " << name << " application: " << rating;
 		outFile.close();
+	}
+}
+
+void printRequest(string path)
+{
+	ifstream request(path);
+	if(!request)
+	{
+		cout << "Can't open a file";
+	}
+	else
+	{
+		do
+		{
+			string temp;
+			getline(request, temp);
+			if(temp!="") cout<<temp<<endl;
+		}while(!request.eof());
 	}
 }
