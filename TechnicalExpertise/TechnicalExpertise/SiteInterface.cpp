@@ -22,7 +22,7 @@ void SiteInterface::showMenu()
 			cout<<"Enter your password: ";
 			cin>>password;
 			ApplyTheApplication tempApplication;
-			tempApplication.setApplication(35879);
+			tempApplication.setApplication(34967);
 		}
 		break;
 		case 1:

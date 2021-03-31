@@ -1,6 +1,1 @@
-admin admin 10000
-qwerty123 dimas25 35879
-minecraft45 valados 19722
-123987 SanchoPansa 25503
-875345 qwetyu 37221
-flwl435 newuser 18884
+qwerty123 dimas25 34967

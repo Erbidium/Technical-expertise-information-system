@@ -1,0 +1,4 @@
+My age: 15
+Name of application: fnjng
+Application's data: fnn
+Date: 31.3.2021
