@@ -21,19 +21,19 @@ void ApplyTheApplication::applicationsManager(int ID) {
 	outFile.close();
 }
 void ApplyTheApplication::applicationDataCheck(int ID) {
-	cout << "Your application has been registered " << endl;
+	cout << "Your application has been registered\n";
 	applicationsManager(ID);
 }
 void ApplyTheApplication::setApplication(int ID) {
 	int tempAge;
 	string tempData;
 	string tempName;
-	cout << endl << "Input your age: " << endl;
+	cout << endl << "Input your age:" << endl;
 	cin >> tempAge;
-	cout << endl << "Input your application's data: " << endl;
+	cout << endl << "Input your application's data:" << endl;
 	cin.ignore();
 	getline(cin, tempData);
-	cout << endl << "Input your application's name: " << endl;
+	cout << endl << "Input your application's name:" << endl;
 	getline(cin, tempName);
 	applicationData.setAge(tempAge);
 	applicationData.setContent(tempData);

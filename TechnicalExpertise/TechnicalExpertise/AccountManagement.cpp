@@ -27,15 +27,14 @@ void AccountManagement::registerProfile(int type)
 	int profileID=rand()%90000+10000;//додати перевірку, чи існує акаунт з такм id
 	ApplyTheRegistration registrationController;
 	string login, password, name, email;
-	cin.ignore();
-	cout<<"Enter your login: ";
-	getline(cin, login);
-	cout<<"Enter your password: ";
-	getline(cin, password);
-	cout<<"Enter your name: ";
-	getline(cin, name);
-	cout<<"Enter your email: ";
-	getline(cin, email);
+	cout<<"Enter your login:\n";
+	cin>>login;
+	cout<<"Enter your password:\n";
+	cin>>password;
+	cout<<"Enter your name:\n";
+	cin>>name;
+	cout<<"Enter your email:\n";
+	cin>>email;
 	Profile newProfile(name, email, login, password, profileID, type);
 	registrationController.setProfile(newProfile);
 	registrationController.profileDataCheck();
