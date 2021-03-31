@@ -23,14 +23,41 @@ void SiteInterface::showMenu()
 			cin>>login;
 			cout<<"Enter your password: ";
 			cin>>password;
-			int ID = logIn(login, password);
-			if (ID == -1) {
-				cout << " Entered incorrect login or password";
-				continue;
-			} 
-			cout << "ID: " << ID << endl;
-			ApplyTheApplication tempApplication;
-			tempApplication.setApplication(ID);
+			if((password=="admin")&&(login=="admin"))
+			{
+				int action;
+				do
+				{
+					cout<<"Choose action!"<<endl;
+					cout<<"View requests(0) Register profile(1) Log out(2) Quit(3):"<<endl;
+					cin>>action;
+					switch(action)
+					{
+					case 0:
+					break;
+					case 1:
+						cout<<"Which account do you want to register?"<<endl;
+						cout<<"Expert comission(0) Fund owner(1)"<<endl;
+						int accountType;
+						cin>>accountType;
+						AccountManagement::registerProfile(accountType+1);
+					break;
+					case 3:
+						choice=3;
+					}
+				}while(action!=2);			
+			}
+			else
+			{
+				int ID = logIn(login, password);
+				if (ID == -1) {
+					cout << " Entered incorrect login or password";
+					continue;
+				} 
+				cout << "ID: " << ID << endl;
+				ApplyTheApplication tempApplication;
+				tempApplication.setApplication(ID);
+			}
 		}
 		break;
 		case 1:

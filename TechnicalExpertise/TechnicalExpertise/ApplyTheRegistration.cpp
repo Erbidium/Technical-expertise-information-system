@@ -12,11 +12,13 @@ void ApplyTheRegistration::profileManager()
 	Accounts<<profileData.getPassword()<<" "<<profileData.getLogin()<<" "<<profileData.getID()<<"\n";
 	outProfile<<profileData.getName()<<" "<<profileData.getEmail()<<" "<<profileData.getType()<<"\n";
 	struct stat buf;
-	string filerep = "Database/Applications/"+to_string(profileData.getID());
-	if ((stat(filerep.data(), &buf))!= 0)
+	if(profileData.getType()==0)
 	{
-		_mkdir(filerep.data());
-		
+		string filerep = "Database/Applications/"+to_string(profileData.getID());
+		if ((stat(filerep.data(), &buf))!= 0)
+		{
+			_mkdir(filerep.data());
+		}
 	}
 	outProfile.close();
 	Accounts.close();
