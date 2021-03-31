@@ -1,10 +1,8 @@
 #include "ApplyTheRegistration.h"
 #include <iostream>
 #include <fstream>
-#include <filesystem>
-
+#include <sys\stat.h>
 using namespace std;
-namespace fs = filesystem;
 
 void ApplyTheRegistration::profileManager()
 {
@@ -12,7 +10,12 @@ void ApplyTheRegistration::profileManager()
 	ofstream outProfile("Database/Profiles/"+std::to_string(profileData.getID())+".txt");
 	Accounts<<profileData.getPassword()<<" "<<profileData.getLogin()<<" "<<profileData.getID()<<"\n";
 	outProfile<<profileData.getName()<<" "<<profileData.getEmail()<<" "<<profileData.getType()<<"\n";
-	fs::create_directory("Database/Applications/"+to_string(profileData.getID()));
+	struct stat buf;
+	string filerep = "Database/Applications/"+to_string(profileData.getID());
+	if ((stat(filerep.data(), &buf))!= 0)
+	{
+		mkdir(filerep.data());
+	}
 	outProfile.close();
 	Accounts.close();
 }
