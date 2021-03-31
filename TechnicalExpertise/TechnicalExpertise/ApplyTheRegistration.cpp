@@ -60,7 +60,6 @@ void ApplyTheRegistration::profileDataCheck()
 	int count2 = 0;
 	count = 0;
 	string password = profileData.getPassword();
-	cout <<endl <<"length" << password.length();
 	if (password.length() < 6)
 	{
 		cout << endl << "Your password is too short! It must have at least 6 symbols." << endl;
@@ -68,19 +67,19 @@ void ApplyTheRegistration::profileDataCheck()
 	}
 	for (int i = 0; i < password.length(); i++)
 	{
-		if (!((password[i] >= 32 && password[i] <= 126)))
-		{
-			cout << endl << "Your password has been writen at different language." << endl;
-			correct = false;
-			i = name.length();
-		}
 		if (password[i] >= 48 && password[i] <= 57)
 		{
 			count++;
 		}
-		if ((name[i] >= 65 && password[i] <= 90) || (password[i] >= 97 && password[i] <= 122))
+		if ((password[i] >= 65 && password[i] <= 90) || (password[i] >= 97 && password[i] <= 122))
 		{
 			count2++;
+		}
+		if (!((password[i] >= 32 && password[i] <= 126)))
+		{
+			cout << endl << "Your password has been writen at different language." << endl;
+			correct = false;
+			i = password.length();
 		}
 	}
 	if (count < 1)
