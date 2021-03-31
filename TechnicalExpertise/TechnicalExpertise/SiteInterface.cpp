@@ -1,6 +1,7 @@
 #include "SiteInterface.h"
 #include "AccountManagement.h"
 #include "ApplyTheApplication.h"
+#include "ApplyTheRequest.h"
 #include <iostream>
 
 using namespace std;
@@ -27,8 +28,12 @@ void SiteInterface::showMenu()
 		case 1:
 			AccountManagement::registerProfile(0);
 		break;
-		case 2:
+		case 2:{
+			ApplyTheRequest tempRequest;
+			tempRequest.setRequest();
+		}		
 		break;
+		}
 	}while(choice!=3);
 		/*switch(choice)
 		{

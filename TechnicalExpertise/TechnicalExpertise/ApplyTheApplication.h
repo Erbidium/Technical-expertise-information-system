@@ -1,7 +1,8 @@
 #pragma once
 #include "Application.h"
 class ApplyTheApplication
-{public:
+{
+public:
 	void setApplication(int ID);
 private:
 	Application applicationData;
