@@ -13,6 +13,7 @@ namespace fs = filesystem;
 
 void printFileData(string name);
 void createReview(string path, string name);
+void createOwnersReview(string path, string name);
 Profile readProfile(int ID);
 
 void SiteInterface::showMenu()
@@ -180,6 +181,10 @@ void SiteInterface::showMenu()
 								profileIsDeleted=true;
 							}
 						}
+						else if (action == 5)
+						{
+							cout << endl <<  "Your current balance is: " << fixed << setprecision(2) << GrantManagement::getMoney(ID) << endl;
+						}
 					}while(action!=6);
 					if(!profileIsDeleted)
 					{
@@ -251,7 +256,7 @@ void SiteInterface::showMenu()
 								cin>>numberOfApplication;
 								if(numberOfApplication!=-1){
 									printFileData(applicationNames[1][numberOfApplication]);
-									
+									createOwnersReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
 								}
 							}while(numberOfApplication!=-1);
 						}
@@ -316,11 +321,11 @@ void createReview(string path, string name) {
 	outFile.close();
 }
 
-void createOwnersReview(string path, string name, int ID) {
-	cout << "Input your conclusion: " << endl;
+void createOwnersReview(string path, string name) {
+	cout << "Input your conclusion (1 - yes, 0 - no): " << endl;
 	bool conclusion;
+	cin >> conclusion;
 	string s;
-	int ID;
 	if (cin.peek() == '\n') {
 		cin.ignore();
 	}
@@ -341,15 +346,15 @@ void createOwnersReview(string path, string name, int ID) {
 		}
 	}
 	newName = path;
-	ID = stoi(path.substr(23, 5));
+	int ID = stoi(path.substr(22, 5));
 	if (conclusion)
 	{
-		newName.replace(newName.rfind('['), 9, "[Payed]");
+		newName.replace(newName.rfind('['), 9, "[Paid]");
 		GrantManagement::transferMoney(ID);
 	}
 	else
 	{
-		newName.replace(newName.rfind('['), 9, "[NotPayed]");
+		newName.replace(newName.rfind('['), 9, "[NotPaid]");
 	}
 	rename(path.data(), newName.data());
 	outFile.close();
