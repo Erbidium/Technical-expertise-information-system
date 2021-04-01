@@ -37,9 +37,13 @@ void AccountManagement::exitFromProfile(int ID)
 	cout<<"You are logged out!"<<endl;
 }
 
-void AccountManagement::deleteProfile(int ID)
+void AccountManagement::deleteProfile(int ID, int type)
 {
-	fs::remove_all("Database/Applications/"+to_string(ID));
+	if(type==0)
+	{
+		fs::remove_all("Database/Applications/"+to_string(ID));
+		fs::remove("Database/ProfilesBalance/"+to_string(ID)+".txt");
+	}
 	fs::remove("Database/Profiles/"+to_string(ID)+".txt");
 	ifstream oldAccounts("Database/Accounts.txt");
 	ofstream newAccounts("Database/NewAccounts.txt");
