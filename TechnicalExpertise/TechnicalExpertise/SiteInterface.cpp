@@ -34,7 +34,7 @@ void SiteInterface::showMenu()
 				do
 				{
 					cout<<"Choose action!"<<endl;
-					cout<<"View requests(0) Register profile(1) Log out(2) Quit(3):"<<endl;
+					cout<<"View requests(0) Register profile(1) Log out(2):"<<endl;
 					cin>>action;
 					switch(action)
 					{
