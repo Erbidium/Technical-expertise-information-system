@@ -2,6 +2,7 @@
 #include "AccountManagement.h"
 #include "ApplyTheApplication.h"
 #include "ApplyTheRequest.h"
+#include "WorkWithInterface.h"
 #include "Profile.h"
 #include "GrantManagement.h"
 #include <fstream>
@@ -11,11 +12,7 @@
 using namespace std;
 namespace fs = filesystem;
 
-void printFileData(string name);
-void createReview(string path, string name);
 void createOwnersReview(string path, string name);
-Profile readProfile(int ID);
-
 void SiteInterface::showMenu()
 {
 	int choice;
@@ -92,7 +89,7 @@ void SiteInterface::showMenu()
 					bool profileIsDeleted=false;
 					do
 					{
-						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nCheck your Balance(5)\nLog out(6):"<<endl;
+						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nCheck your Balance(5)\nEdit profile(6)\nLog out(7):"<<endl;
 						cin>>action;
 						if(action==0)
 						{
@@ -177,15 +174,26 @@ void SiteInterface::showMenu()
 							if(confirmation=="0")
 							{
 								AccountManagement::deleteProfile(ID, current.getType());
-								action=5;
+								action=7;
 								profileIsDeleted=true;
 							}
 						}
 						else if (action == 5)
 						{
 							cout << endl <<  "Your current balance is: " << fixed << setprecision(2) << GrantManagement::getMoney(ID) << endl;
+							bool bank;
+							cout << endl << "Would you like to withdraw money to your bank account? (1 - yes, 0 - no): " << endl;
+							cin >> bank;
+							if (bank)
+							{
+								GrantManagement::transferToBank(ID);
+							}
 						}
-					}while(action!=6);
+						else if (action == 6)
+						{
+							AccountManagement::editProfile(ID);
+						}
+					}while(action!=7);
 					if(!profileIsDeleted)
 					{
 						AccountManagement::exitFromProfile(ID);
@@ -279,48 +287,6 @@ void SiteInterface::showMenu()
 	}while(choice!=3);	
 }
 
-void printFileData(string name) {
-	ifstream inFile(name);
-	if (!inFile) {
-		cout << "Can't open a file";
-	}
-	else {
-		while (!inFile.eof()) {
-			string temp;
-			getline(inFile, temp);
-			cout << temp << endl;
-		}
-	}
-	inFile.close();
-}
-
-void createReview(string path, string name) {
-	cout << "Input your rating for this application: " << endl;
-	string rating;
-	if (cin.peek() == '\n') {
-		cin.ignore();
-	}
-	getline(cin, rating);
-	ofstream outFile(path, ios::app);
-	if (!outFile) {
-		cout << "Can not open a file with application to write a sum up";
-	}
-	else {
-		outFile << "Sum up of application: " << rating << endl;
-		outFile.close();
-	}
-	string newName = "";
-	
-	for (int i = 0; i < path.length(); i++) {
-		if (static_cast<int>(path[i]) == 92) {
-			path[i] = '/';
-		}
-	}
-	newName = path;
-	newName.insert(path.rfind('/')+1, "[checked]");
-	rename(path.data(), newName.data());
-	outFile.close();
-}
 
 void createOwnersReview(string path, string name) {
 	cout << "Input your conclusion (1 - yes, 0 - no): " << endl;
@@ -332,10 +298,10 @@ void createOwnersReview(string path, string name) {
 	}
 	ifstream outFile;
 	if (!outFile) {
-		cout << endl <<"Can not open a file with application to write a conclution" << endl;
+		cout << endl << "Can not open a file with application to write a conclution" << endl;
 	}
 	else {
-		while (getline(outFile,s))
+		while (getline(outFile, s))
 		{
 			cout << s << endl;
 		}
@@ -359,17 +325,4 @@ void createOwnersReview(string path, string name) {
 	}
 	rename(path.data(), newName.data());
 	outFile.close();
-}
-
-Profile readProfile(int ID)
-{
-	ifstream fileProfile("Database/Profiles/"+to_string(ID)+".txt");
-	string name, email;
-	int type;
-	fileProfile>>name>>email>>type;
-	Profile currentProfile;
-	currentProfile.setEmail(email);
-	currentProfile.setName(name);
-	currentProfile.setType(type);
-	return currentProfile;
 }

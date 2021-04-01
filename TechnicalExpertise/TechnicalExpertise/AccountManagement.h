@@ -7,5 +7,6 @@ public:
 	static void exitFromProfile(int ID);
 	static void deleteProfile(int ID, int type);
 	static void registerProfile(int);
+	static void editProfile(int ID);
 };
 
