@@ -3,6 +3,7 @@
 #include "ApplyTheApplication.h"
 #include "ApplyTheRequest.h"
 #include "Profile.h"
+#include "GrantManagement.h"
 #include <fstream>
 #include <iostream>
 #include <filesystem>
@@ -89,14 +90,19 @@ void SiteInterface::showMenu()
 					int action;
 					do
 					{
-						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nLog out(4):"<<endl;
+						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nCheck your balance(4)\nLog out(5):"<<endl;
 						cin>>action;
 						if(action==0)
 						{
 							ApplyTheApplication tempApplication;
 							tempApplication.setApplication(ID);
 						}
-					}while(action!=4);
+						if (action == 4)
+						{
+							ofstream outFile("Database/Profiles/" + to_string(ID));
+							outFile >> ;
+						}
+					}while(action!=5);
 					AccountManagement::exitFromProfile(ID);//���������� �������
 				}
 				else if(current.getType()==1)
@@ -322,6 +328,45 @@ void createReview(string path, string name) {
 	newName = path;
 	//cout << "newName: " << newName;
 	newName.insert(path.rfind('/')+1, "[checked]");
+	rename(path.data(), newName.data());
+	outFile.close();
+}
+
+void createOwnersReview(string path, string name, int ID) {
+	cout << "Input your conclusion: " << endl;
+	bool conclusion;
+	string s;
+	int ID;
+	if (cin.peek() == '\n') {
+		cin.ignore();
+	}
+	ifstream outFile;
+	if (!outFile) {
+		cout << endl <<"Can not open a file with application to write a conclution" << endl;
+	}
+	else {
+		while (getline(outFile,s))
+		{
+			cout << s << endl;
+		}
+	}
+	string newName = "";
+	for (int i = 0; i < path.length(); i++) {
+		if (static_cast<int>(path[i]) == 92) {
+			path[i] = '/';
+		}
+	}
+	newName = path;
+	ID = stoi(path.substr(23, 5));
+	if (conclusion)
+	{
+		newName.replace(newName.rfind('['), 9, "[Payed]");
+		GrantManagement::transferMoney(ID);
+	}
+	else
+	{
+		newName.replace(newName.rfind('['), 9, "[NotPayed]");
+	}
 	rename(path.data(), newName.data());
 	outFile.close();
 }

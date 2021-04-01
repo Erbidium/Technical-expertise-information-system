@@ -7,7 +7,7 @@ class Profile
 {
 public:
 	Profile(){}
-	Profile(string, string, string, string, int, int);
+	Profile(string, string, string, string, int, int, float);
 	string getName()const;
 	string getEmail()const;
 	string getPassword()const;
@@ -17,6 +17,8 @@ public:
 	void setName(const string&);
 	void setEmail(const string&);
 	void setType(int);
+	void setBalance(float);
+	float getBalance();
 private:
 	int profileID;
 	string name;
@@ -24,4 +26,5 @@ private:
 	string password;
 	string login;
 	int typefUser;
+	float Balance;
 };

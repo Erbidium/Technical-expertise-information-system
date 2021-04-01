@@ -1,7 +1,7 @@
 ﻿#include "Profile.h"
 
-Profile::Profile(string name, string email, string login, string password, int ID, int type):
-name(name), email(email), profileID(ID), typefUser(type),login(login), password(password)
+Profile::Profile(string name, string email, string login, string password, int ID, int type, float balance):
+name(name), email(email), profileID(ID), typefUser(type),login(login), password(password), Balance(balance)
 {}
 
 string Profile::getName() const
@@ -47,4 +47,14 @@ void Profile::setEmail(const string& email)
 void Profile::setType(int type)
 {
 	this->typefUser=type;
+}
+
+void Profile::setBalance(float money)
+{
+	this->Balance += money;
+}
+
+float Profile::getBalance()
+{
+	return this->Balance;
 }

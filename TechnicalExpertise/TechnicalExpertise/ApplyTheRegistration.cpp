@@ -10,8 +10,10 @@ void ApplyTheRegistration::profileManager()
 {
 	ofstream Accounts("Database/Accounts.txt", ios::app);
 	ofstream outProfile("Database/Profiles/"+std::to_string(profileData.getID())+".txt");
+	ofstream outProfileBalance("Database/ProfilesBalance/" + to_string(profileData.getID()) + ".txt");
 	Accounts<<profileData.getPassword()<<" "<<profileData.getLogin()<<" "<<profileData.getID()<<"\n";
-	outProfile<<profileData.getName()<<" "<<profileData.getEmail()<<" "<<profileData.getType()<<"\n";
+	outProfile << profileData.getName() << " " << profileData.getEmail() << " " << profileData.getType() << "\n";
+	outProfileBalance << profileData.getBalance() << "\n";
 	struct stat buf;
 	if(profileData.getType()==0)
 	{
@@ -23,6 +25,7 @@ void ApplyTheRegistration::profileManager()
 	}
 	outProfile.close();
 	Accounts.close();
+	outProfileBalance.close();
 }
 
 void ApplyTheRegistration::profileDataCheck()

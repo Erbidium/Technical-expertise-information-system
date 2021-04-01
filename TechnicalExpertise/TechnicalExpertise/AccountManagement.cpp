@@ -35,7 +35,7 @@ void AccountManagement::registerProfile(int type)
 	cin>>name;
 	cout<<"Enter your email:\n";
 	cin>>email;
-	Profile newProfile(name, email, login, password, profileID, type);
+	Profile newProfile(name, email, login, password, profileID, type, 0);
 	registrationController.setProfile(newProfile);
 	registrationController.profileDataCheck();
 }

@@ -9,7 +9,7 @@ namespace fs = filesystem;
 int main()
 {
 	srand(time(NULL));
-	string fileNames[4] = {"Database","Database/Applications","Database/Profiles","Database/Requests"};
+	string fileNames[5] = { "Database","Database/Applications","Database/Profiles","Database/Requests","Database/ProfilesBalance"};
 	for (int i = 0; i < 4; i++)
 	{
 		if (fs::is_directory(fileNames[i])==false)
