@@ -2,14 +2,32 @@
 #include "ApplyTheRegistration.h"
 #include "Profile.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
-enum typesOfUsers{};
-
-void AccountManagement::enterToProfile(int ID)
+int AccountManagement::enterToProfile(string login, string password)
 {
-	cout<<"Succesfully logined!"<<endl;
+	int ID = -1;
+	ifstream inFile("Database/Accounts.txt");
+	if (!inFile) {
+		cout << "Can't open a file :-(";
+	}
+	else {
+		while (!inFile.eof()) {
+			string tempPassword;
+			string tempLogin;
+			int tempID;
+			inFile >> tempPassword;
+			inFile >> tempLogin;
+			inFile >> tempID;
+			if (tempPassword == password && tempLogin == login) {
+				ID = tempID;
+			}
+		}
+	}
+	inFile.close();
+	return ID;
 }
 
 void AccountManagement::exitFromProfile(int ID)

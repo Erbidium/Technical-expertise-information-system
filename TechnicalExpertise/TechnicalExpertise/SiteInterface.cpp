@@ -10,7 +10,6 @@
 using namespace std;
 namespace fs = filesystem;
 
-int logIn(string login, string password);
 void printFileData(string name);
 void createReview(string path, string name);
 Profile readProfile(int ID);
@@ -78,11 +77,12 @@ void SiteInterface::showMenu()
 			}
 			else
 			{
-				int ID = logIn(login, password);
+				int ID=AccountManagement::enterToProfile(login, password);
 				if (ID == -1) {
 					cout << "Entered incorrect login or password\n";
 					continue;
 				}
+				cout<<"Succesfully logined!"<<endl;
 				Profile current=readProfile(ID);
 				if(current.getType()==0)
 				{
@@ -178,7 +178,6 @@ void SiteInterface::showMenu()
 						cin>>action;
 						if(action==0)
 						{
-							
 							int numberOfApplication=-1;
 							do{
 								vector <vector<string>> applicationNames(2);
@@ -191,7 +190,6 @@ void SiteInterface::showMenu()
 										applicationNames[0].push_back(entry.path().filename().string());
 										applicationNames[1].push_back(entry.path().string());
 										cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-										//cout<<files[1].back()<<"("<<counter<<")"<<endl;
 										counter++;
 									}
 								}
@@ -226,7 +224,6 @@ void SiteInterface::showMenu()
 									applicationNames[0].push_back(entry.path().filename().string());
 									applicationNames[1].push_back(entry.path().string());
 									cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-									//cout<<files[1].back()<<"("<<counter<<")"<<endl;
 									counter++;
 								}
 								
@@ -256,104 +253,9 @@ void SiteInterface::showMenu()
 		}		
 		break;
 		}
-	}while(choice!=3);
-		/*switch(choice)
-		{
-		case 0:*/
-			//int typeOfUser;
-			//cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Admin(3) Quit(4): ";
-			//cin>>typeOfUser;
-			/*int ID;
-			if(typeOfUser!=4)
-			{
-				cout<<"Enter account ID: ";
-				cin>>ID;
-				AccountManagement::enterToProfile(ID);
-				cout<<"\nChoose action!"<<endl;
-			}
-			int action;
-			switch(typeOfUser)
-			{
-			case 0:
-				do
-				{
-					cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nLog out(3): ";
-					cin>>action;
-				}while(action!=3);
-				AccountManagement::exitFromProfile(ID);
-			break;
-			case 1:
-				do
-				{
-					cout<<"View the application(0)\nEvaluate the application(1)\nLog out(2): ";
-					cin>>action;
-				}while(action!=2);
-				AccountManagement::exitFromProfile(ID);
-			break;
-			case 2:
-				do
-				{
-					cout<<"View the results of the examination of the application(0)\nEvaluate the application(1)\nLog out(2): ";
-					cin>>action;
-				}while(action!=2);
-				AccountManagement::exitFromProfile(ID);
-			break;
-			case 4:
-				choice=2;
-			break;
-			}
-		break;
-		case 1:
-			typeOfUser=-1;
-			cout<<"\nGrant recipient(0) Expert comission(1) Fund owner(2) Quit(3): ";
-			cin>>typeOfUser;
-			switch(typeOfUser)
-			{
-			case 0:
-
-			break;
-			case 1:
-			case 2:
-				int confirmation;
-				do
-				{
-					cout<<"\nLeave request for registration(0) Log out(1): ";
-					cin>>confirmation;
-				}while(confirmation!=1);
-				AccountManagement::exitFromProfile(ID);
-			break;
-			case 3:
-				choice=2;
-			}
-		break;
-		case 2:
-			choice=2;
-		}*/
-	
+	}while(choice!=3);	
 }
 
-int logIn(string login, string password) {
-	int ID = -1;
-	ifstream inFile("Database/Accounts.txt");
-	if (!inFile) {
-		cout << "Can't open a file :-(";
-	}
-	else {
-		while (!inFile.eof()) {
-			string tempPassword;
-			string tempLogin;
-			int tempID;
-			inFile >> tempPassword;
-			inFile >> tempLogin;
-			inFile >> tempID;
-			if (tempPassword == password && tempLogin == login) {
-				ID = tempID;
-			}
-		}
-	}
-	inFile.close();
-	return ID;
-}
 void printFileData(string name) {
 	ifstream inFile(name);
 	if (!inFile) {
@@ -368,6 +270,7 @@ void printFileData(string name) {
 	}
 	inFile.close();
 }
+
 void createReview(string path, string name) {
 	cout << "Input your rating for this application: " << endl;
 	string rating;
@@ -391,7 +294,6 @@ void createReview(string path, string name) {
 		}
 	}
 	newName = path;
-	//cout << "newName: " << newName;
 	newName.insert(path.rfind('/')+1, "[checked]");
 	rename(path.data(), newName.data());
 	outFile.close();
