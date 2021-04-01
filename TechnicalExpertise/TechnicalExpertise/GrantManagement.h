@@ -6,9 +6,7 @@ using namespace std;
 class GrantManagement
 {
 public:
-	void setBill(string);
-	void transferMoney(int ID);
-private:
-	string bill;
+	static float getMoney(int ID);
+	static void transferMoney(int ID);
 };
 

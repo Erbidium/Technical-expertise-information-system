@@ -4,6 +4,7 @@
 #include "ApplyTheRequest.h"
 #include "WorkWithInterface.h"
 #include "Profile.h"
+#include "GrantManagement.h"
 #include <fstream>
 #include <iostream>
 #include <filesystem>
@@ -11,6 +12,7 @@
 using namespace std;
 namespace fs = filesystem;
 
+void createOwnersReview(string path, string name);
 void SiteInterface::showMenu()
 {
 	int choice;
@@ -87,7 +89,7 @@ void SiteInterface::showMenu()
 					bool profileIsDeleted=false;
 					do
 					{
-						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nLog out(5):"<<endl;
+						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nCheck your Balance(5)\nLog out(6):"<<endl;
 						cin>>action;
 						if(action==0)
 						{
@@ -176,7 +178,11 @@ void SiteInterface::showMenu()
 								profileIsDeleted=true;
 							}
 						}
-					}while(action!=5);
+						else if (action == 5)
+						{
+							cout << endl <<  "Your current balance is: " << fixed << setprecision(2) << GrantManagement::getMoney(ID) << endl;
+						}
+					}while(action!=6);
 					if(!profileIsDeleted)
 					{
 						AccountManagement::exitFromProfile(ID);
@@ -247,7 +253,7 @@ void SiteInterface::showMenu()
 								cin>>numberOfApplication;
 								if(numberOfApplication!=-1){
 									printFileData(applicationNames[1][numberOfApplication]);
-									
+									createOwnersReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
 								}
 							}while(numberOfApplication!=-1);
 						}
@@ -269,3 +275,42 @@ void SiteInterface::showMenu()
 	}while(choice!=3);	
 }
 
+
+void createOwnersReview(string path, string name) {
+	cout << "Input your conclusion (1 - yes, 0 - no): " << endl;
+	bool conclusion;
+	cin >> conclusion;
+	string s;
+	if (cin.peek() == '\n') {
+		cin.ignore();
+	}
+	ifstream outFile;
+	if (!outFile) {
+		cout << endl <<"Can not open a file with application to write a conclution" << endl;
+	else {
+	}
+		while (getline(outFile,s))
+		{
+			cout << s << endl;
+		}
+	}
+	string newName = "";
+	for (int i = 0; i < path.length(); i++) {
+		if (static_cast<int>(path[i]) == 92) {
+			path[i] = '/';
+		}
+	}
+	newName = path;
+	int ID = stoi(path.substr(22, 5));
+	if (conclusion)
+	{
+		newName.replace(newName.rfind('['), 9, "[Paid]");
+		GrantManagement::transferMoney(ID);
+	}
+	else
+	{
+		newName.replace(newName.rfind('['), 9, "[NotPaid]");
+	}
+	rename(path.data(), newName.data());
+	outFile.close();
+}
