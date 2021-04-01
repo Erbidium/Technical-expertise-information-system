@@ -3,7 +3,7 @@
 class ApplyTheApplication
 {
 public:
-	void setApplication(int ID);
+	void setApplication(int ID, string name = "");
 private:
 	Application applicationData;
 	bool ApplicationConfirmation;

@@ -2,14 +2,34 @@
 #include "ApplyTheRegistration.h"
 #include "Profile.h"
 #include <iostream>
+#include <fstream>
+#include <filesystem>
 
 using namespace std;
+namespace fs = filesystem;
 
-enum typesOfUsers{};
-
-void AccountManagement::enterToProfile(int ID)
+int AccountManagement::enterToProfile(string login, string password)
 {
-	cout<<"Succesfully logined!"<<endl;
+	int ID = -1;
+	ifstream inFile("Database/Accounts.txt");
+	if (!inFile) {
+		cout << "Can't open a file :-(";
+	}
+	else {
+		while (!inFile.eof()) {
+			string tempPassword;
+			string tempLogin;
+			int tempID;
+			inFile >> tempPassword;
+			inFile >> tempLogin;
+			inFile >> tempID;
+			if (tempPassword == password && tempLogin == login) {
+				ID = tempID;
+			}
+		}
+	}
+	inFile.close();
+	return ID;
 }
 
 void AccountManagement::exitFromProfile(int ID)
@@ -19,7 +39,29 @@ void AccountManagement::exitFromProfile(int ID)
 
 void AccountManagement::deleteProfile(int ID)
 {
-	cout<<"Your profile is deleted!"<<endl;
+	fs::remove_all("Database/Applications/"+to_string(ID));
+	fs::remove("Database/Profiles/"+to_string(ID)+".txt");
+	ifstream oldAccounts("Database/Accounts.txt");
+	ofstream newAccounts("Database/NewAccounts.txt");
+	if((oldAccounts.is_open())&&(newAccounts.is_open()))
+	{
+		while(!oldAccounts.eof())
+		{
+			string password, login;
+			int currentID;
+			oldAccounts>>password>>login>>currentID;
+			if(currentID!=ID)
+			{
+				newAccounts<<password<<" "<<login<<" "<<currentID<<endl;
+			}
+		}
+		oldAccounts.close();
+		newAccounts.close();
+		fs::remove("Database/Accounts.txt");
+		rename("Database/NewAccounts.txt", "Database/Accounts.txt");
+		cout<<"Your profile is deleted!"<<endl;
+	}
+	
 }
 
 void AccountManagement::registerProfile(int type)
