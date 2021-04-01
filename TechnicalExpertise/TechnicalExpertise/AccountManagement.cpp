@@ -84,14 +84,14 @@ void AccountManagement::registerProfile(int type)
 }
 
 void AccountManagement::editProfile(int ID) {
-	printFileData("Database/Profiles/" + to_string(ID));
+	Profile tempObject = readProfile(ID);
+	printFileData("Database/Profiles/" + to_string(ID) + ".txt");
 	fs::remove("Database/Profiles/" + to_string(ID) + ".txt");
-	ofstream outFile("Database/Profiles/" + to_string(ID));
+	ofstream outFile("Database/Profiles/" + to_string(ID) + ".txt");
 	string login, password, name, email;
 	cout << "Enter your name:\n";
 	cin >> name;
 	cout << "Enter your email:\n";
 	cin >> email;
-	Profile tempObject = readProfile(ID);
 	outFile << name << " " << email << " " << tempObject.getType() << "\n";
 }

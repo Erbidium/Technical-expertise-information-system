@@ -89,7 +89,7 @@ void SiteInterface::showMenu()
 					bool profileIsDeleted=false;
 					do
 					{
-						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nCheck your Balance(5)\nLog out(6):"<<endl;
+						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nCheck your Balance(5)\nEdit profile(6)\nLog out(7):"<<endl;
 						cin>>action;
 						if(action==0)
 						{
@@ -174,7 +174,7 @@ void SiteInterface::showMenu()
 							if(confirmation=="0")
 							{
 								AccountManagement::deleteProfile(ID);
-								action=5;
+								action=7;
 								profileIsDeleted=true;
 							}
 						}
@@ -182,7 +182,11 @@ void SiteInterface::showMenu()
 						{
 							cout << endl <<  "Your current balance is: " << fixed << setprecision(2) << GrantManagement::getMoney(ID) << endl;
 						}
-					}while(action!=6);
+						else if (action == 6)
+						{
+							AccountManagement::editProfile(ID);
+						}
+					}while(action!=7);
 					if(!profileIsDeleted)
 					{
 						AccountManagement::exitFromProfile(ID);
@@ -286,10 +290,10 @@ void createOwnersReview(string path, string name) {
 	}
 	ifstream outFile;
 	if (!outFile) {
-		cout << endl <<"Can not open a file with application to write a conclution" << endl;
-	else {
+		cout << endl << "Can not open a file with application to write a conclution" << endl;
 	}
-		while (getline(outFile,s))
+	else {
+		while (getline(outFile, s))
 		{
 			cout << s << endl;
 		}

@@ -1,5 +1,0 @@
-Name of application: PIGlover
-My age: 202
-Application's data: I love pigs
-Date: 1.4.2021
-Sum up of application: 111111111111111111111111111111111/0
