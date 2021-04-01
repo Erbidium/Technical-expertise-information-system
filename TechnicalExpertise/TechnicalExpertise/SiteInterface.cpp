@@ -181,6 +181,13 @@ void SiteInterface::showMenu()
 						else if (action == 5)
 						{
 							cout << endl <<  "Your current balance is: " << fixed << setprecision(2) << GrantManagement::getMoney(ID) << endl;
+							bool bank;
+							cout << endl << "Would you like to withdraw money to your bank account? (1 - yes, 0 - no): " << endl;
+							cin >> bank;
+							if (bank)
+							{
+								GrantManagement::transferToBank(ID);
+							}
 						}
 						else if (action == 6)
 						{
