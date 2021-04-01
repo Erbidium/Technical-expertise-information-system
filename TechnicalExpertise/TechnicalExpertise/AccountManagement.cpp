@@ -3,8 +3,10 @@
 #include "Profile.h"
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
 using namespace std;
+namespace fs = filesystem;
 
 int AccountManagement::enterToProfile(string login, string password)
 {
@@ -37,7 +39,29 @@ void AccountManagement::exitFromProfile(int ID)
 
 void AccountManagement::deleteProfile(int ID)
 {
-	cout<<"Your profile is deleted!"<<endl;
+	fs::remove_all("Database/Applications/"+to_string(ID));
+	fs::remove("Database/Profiles/"+to_string(ID)+".txt");
+	ifstream oldAccounts("Database/Accounts.txt");
+	ofstream newAccounts("Database/NewAccounts.txt");
+	if((oldAccounts.is_open())&&(newAccounts.is_open()))
+	{
+		while(!oldAccounts.eof())
+		{
+			string password, login;
+			int currentID;
+			oldAccounts>>password>>login>>currentID;
+			if(currentID!=ID)
+			{
+				newAccounts<<password<<" "<<login<<" "<<currentID<<endl;
+			}
+		}
+		oldAccounts.close();
+		newAccounts.close();
+		fs::remove("Database/Accounts.txt");
+		rename("Database/NewAccounts.txt", "Database/Accounts.txt");
+		cout<<"Your profile is deleted!"<<endl;
+	}
+	
 }
 
 void AccountManagement::registerProfile(int type)

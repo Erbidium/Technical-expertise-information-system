@@ -87,9 +87,10 @@ void SiteInterface::showMenu()
 				if(current.getType()==0)
 				{
 					int action;
+					bool profileIsDeleted=false;
 					do
 					{
-						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nLog out(4):"<<endl;
+						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nLog out(5):"<<endl;
 						cin>>action;
 						if(action==0)
 						{
@@ -166,8 +167,23 @@ void SiteInterface::showMenu()
 								}
 							} while (numberOfApplication != -1);
 						}
-					}while(action!=4);
-					AccountManagement::exitFromProfile(ID);//���������� �������
+						else if (action == 4)
+						{
+							cout<<"Are you sure?\nConfirm(0) No(any key)\n";
+							string confirmation;
+							cin>>confirmation;
+							if(confirmation=="0")
+							{
+								AccountManagement::deleteProfile(ID);
+								action=5;
+								profileIsDeleted=true;
+							}
+						}
+					}while(action!=5);
+					if(!profileIsDeleted)
+					{
+						AccountManagement::exitFromProfile(ID);
+					}
 				}
 				else if(current.getType()==1)
 				{
