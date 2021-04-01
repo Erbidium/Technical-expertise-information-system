@@ -138,6 +138,34 @@ void SiteInterface::showMenu()
 								}
 							}while(numberOfApplication!=-1);
 						}
+						else if (action == 3)
+						{
+							int numberOfApplication = -1;
+							do {
+								int counter = 0;
+								vector <vector<string>> applicationNames(2);
+								for (const auto& entry : filesystem::directory_iterator("Database/Applications/" + to_string(ID)))
+								{
+									if (entry.path().extension() == ".txt")
+									{
+										applicationNames[0].push_back(entry.path().filename().string());
+										applicationNames[1].push_back(entry.path().string());
+										cout << applicationNames[0].back() << "(" << counter << ")" << endl;
+										counter++;
+									}
+								}
+								cout << "Choose application or enter -1 to quit" << endl;
+								cin >> numberOfApplication;
+								if (numberOfApplication != -1) {
+									ofstream outFile(applicationNames[1][numberOfApplication], ios::trunc);
+									ApplyTheApplication tempApplication;
+									int position = applicationNames[0][numberOfApplication].find(".txt");
+									string copy = applicationNames[0][numberOfApplication];
+									copy.erase(position, 4);
+									tempApplication.setApplication(ID, copy);
+								}
+							} while (numberOfApplication != -1);
+						}
 					}while(action!=4);
 					AccountManagement::exitFromProfile(ID);//���������� �������
 				}

@@ -1,0 +1,4 @@
+Name of application: love
+My age: 17
+Application's data: I smoke ganja
+Date: 1.4.2021

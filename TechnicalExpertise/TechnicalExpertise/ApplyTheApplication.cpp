@@ -59,19 +59,20 @@ void ApplyTheApplication::applicationDataCheck(int ID) {
 		}
 	}
 }
-void ApplyTheApplication::setApplication(int ID) {
+void ApplyTheApplication::setApplication(int ID,string name) {
 	int tempAge;
 	string tempData;
-	string tempName;
 	cout << endl << "Input your age:" << endl;
 	cin >> tempAge;
 	cout << endl << "Input your application's data:" << endl;
 	cin.ignore();
 	getline(cin, tempData);
-	cout << endl << "Input your application's name:" << endl;
-	getline(cin, tempName);
+	if (name == "") {
+		cout << endl << "Input your application's name:" << endl;
+		getline(cin, name);
+	}
 	applicationData.setAge(tempAge);
 	applicationData.setContent(tempData);
-	applicationData.setName(tempName);
+	applicationData.setName(name);
 	applicationDataCheck(ID);
 }
