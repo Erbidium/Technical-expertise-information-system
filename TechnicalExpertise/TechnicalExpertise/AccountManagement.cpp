@@ -1,6 +1,7 @@
 #include "AccountManagement.h"
 #include "ApplyTheRegistration.h"
 #include "Profile.h"
+#include "WorkWithInterface.h"
 #include <iostream>
 #include <fstream>
 #include <filesystem>
@@ -80,4 +81,17 @@ void AccountManagement::registerProfile(int type)
 	Profile newProfile(name, email, login, password, profileID, type);
 	registrationController.setProfile(newProfile);
 	registrationController.profileDataCheck();
+}
+
+void AccountManagement::editProfile(int ID) {
+	printFileData("Database/Profiles/" + to_string(ID));
+	fs::remove("Database/Profiles/" + to_string(ID) + ".txt");
+	ofstream outFile("Database/Profiles/" + to_string(ID));
+	string login, password, name, email;
+	cout << "Enter your name:\n";
+	cin >> name;
+	cout << "Enter your email:\n";
+	cin >> email;
+	Profile tempObject = readProfile(ID);
+	outFile << name << " " << email << " " << tempObject.getType() << "\n";
 }
