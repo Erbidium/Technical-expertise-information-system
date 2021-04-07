@@ -34,7 +34,7 @@ void Admin::viewRequests()
 void Admin::registerProfile()
 {
 	cout<<"Which account do you want to register?\n";
-	cout<<"Expert comission(0) Fund owner(1)\n";
+	cout<<"(0)Expert comission\n(1)Fund owner\n";
 	int accountType;
 	cin>>accountType;
 	AccountManagement::registerProfile(accountType+1);

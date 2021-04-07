@@ -18,7 +18,7 @@ void SiteInterface::showMenu()
 	int choice;
 	do
 	{
-		cout<<"Login(0) Register(1) Leave request for registration(2) Quit(3):\n";
+		cout<<"(0)Login\n(1)Register\n(2)Leave request for registration\n(3)Quit:\n";
 		cin>>choice;
 		switch(choice)
 		{
@@ -35,7 +35,7 @@ void SiteInterface::showMenu()
 				do
 				{
 					cout<<"Choose action!"<<endl;
-					cout<<"View requests(0) Register profile(1) Log out(2):"<<endl;
+					cout<<"(0)View requests\n(1)Register profile\n(2)Log out:\n";
 					cin>>action;
 					switch(action)
 					{
@@ -66,7 +66,7 @@ void SiteInterface::showMenu()
 					GrantApplicant currentGrantApplicant(current);
 					do
 					{
-						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nCheck your Balance(5)\nEdit profile(6)\nLog out(7):"<<endl;
+						cout<<"(0)Create an application\n(1)Check the status of application\n(2)Delete the application\n(3)EditApplication\n(4)Delete profile\n(5)Check your Balance\n(6)Edit profile\n(7)Log out:"<<endl;
 						cin>>action;
 						if(action==0)
 							currentGrantApplicant.createApplication();
@@ -78,7 +78,7 @@ void SiteInterface::showMenu()
 							currentGrantApplicant.editApplication();
 						else if(action==4)
 						{
-							cout<<"Are you sure?\nConfirm(0) No(any key)\n";
+							cout<<"Are you sure?\n(0)Confirm\n(Any key)No\n";
 							string confirmation;
 							cin>>confirmation;
 							if(confirmation=="0")
@@ -102,7 +102,7 @@ void SiteInterface::showMenu()
 					ExpertComission currentExpertComission(current);
 					do
 					{
-						cout<<"View the application and evaluate it(0) \nLog out(1):"<<endl;
+						cout<<"(0)View the application and evaluate it\n(1)Log out:"<<endl;
 						cin>>action;
 						if(action==0)
 						{
@@ -117,7 +117,7 @@ void SiteInterface::showMenu()
 					FundOwner currentFundOwner(current);
 					do
 					{
-						cout<<"View the results of the examination of the application and accept grant(0)\nLog out(1): ";
+						cout<<"(0)View the results of the examination of the application and accept grant\n(1)Log out: ";
 						cin>>action;
 						if(action==0)
 						{
