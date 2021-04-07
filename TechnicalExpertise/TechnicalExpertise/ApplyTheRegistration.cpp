@@ -2,9 +2,10 @@
 #include "AccountManagement.h"
 #include <iostream>
 #include <fstream>
-#include <sys\stat.h>
-#include <direct.h>
+#include <filesystem>
+
 using namespace std;
+namespace fs=std::filesystem;
 
 void ApplyTheRegistration::profileManager()
 {
@@ -14,13 +15,12 @@ void ApplyTheRegistration::profileManager()
 	Accounts<<profileData.getPassword()<<" "<<profileData.getLogin()<<" "<<profileData.getID()<<"\n";
 	outProfile << profileData.getName() << " " << profileData.getEmail() << " " << profileData.getType() << "\n";
 	outProfileBalance << profileData.getBalance() << "\n";
-	struct stat buf;
 	if(profileData.getType()==0)
 	{
-		string filerep = "Database/Applications/"+to_string(profileData.getID());
-		if ((stat(filerep.data(), &buf))!= 0)
+		string path = "Database/Applications/"+to_string(profileData.getID());
+		if (fs::exists(path)==false)
 		{
-			_mkdir(filerep.data());
+			fs::create_directory(path);
 		}
 	}
 	outProfile.close();
