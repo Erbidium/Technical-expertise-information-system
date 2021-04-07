@@ -1,6 +1,7 @@
 #include "AccountManagement.h"
 #include "ApplyTheRegistration.h"
 #include "Profile.h"
+#include "View.h"
 #include "WorkWithInterface.h"
 #include <iostream>
 #include <fstream>
@@ -73,16 +74,7 @@ void AccountManagement::registerProfile(int type)
 {
 	int profileID=rand()%90000+10000;
 	ApplyTheRegistration registrationController;
-	string login, password, name, email;
-	cout<<"Enter your login:\n";
-	cin>>login;
-	cout<<"Enter your password:\n";
-	cin>>password;
-	cout<<"Enter your name:\n";
-	cin>>name;
-	cout<<"Enter your email:\n";
-	cin>>email;
-	Profile newProfile(name, email, login, password, profileID, type, 0);
+	Profile newProfile = View::createProfile(profileID, type);
 	registrationController.setProfile(newProfile);
 	registrationController.profileDataCheck();
 }
@@ -92,10 +84,7 @@ void AccountManagement::editProfile(int ID) {
 	printFileData("Database/Profiles/" + to_string(ID) + ".txt");
 	fs::remove("Database/Profiles/" + to_string(ID) + ".txt");
 	ofstream outFile("Database/Profiles/" + to_string(ID) + ".txt");
-	string login, password, name, email;
-	cout << "Enter your name:\n";
-	cin >> name;
-	cout << "Enter your email:\n";
-	cin >> email;
+	string name, email;
+	
 	outFile << name << " " << email << " " << tempObject.getType() << "\n";
 }
