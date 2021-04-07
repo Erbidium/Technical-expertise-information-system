@@ -1,22 +1,11 @@
 #include <fstream>
 #include "ApplyTheRequest.h"
+#include "View.h"
 using namespace std;
 
 void ApplyTheRequest::setRequest()
 {
-	string tempContent;
-	string tempName;
-	string tempEmail;
-	cout << endl << "Input your name: " << endl;
-	cin >> tempName;
-	cout << endl << "Input your email: " << endl;
-	cin >> tempEmail;
-	cout << endl << "Input your request: " << endl;
-	cin.ignore();
-	getline(cin, tempContent);
-	requestData.setName(tempName);
-    requestData.setEmail(tempEmail);
-	requestData.setContent(tempContent);
+	requestData = View::createRequest();
 	requestDataCheck();
 }
 
@@ -75,9 +64,7 @@ void ApplyTheRequest::requestDataCheck()
 	}
 	else
 	{
-		cout << endl << "Would you like to rewrite your request(0) or leave(1)?" << endl;
-		bool leave;
-		cin >> leave;
+		bool leave = View::checkIfYouWannaRewrite("request");
 		if(!leave)
 		{
 			setRequest();

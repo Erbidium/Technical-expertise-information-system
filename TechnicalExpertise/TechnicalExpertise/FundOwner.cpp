@@ -5,6 +5,7 @@
 #include <fstream>
 #include "GrantManagement.h"
 #include "WorkWithInterface.h"
+#include "View.h"
 
 void createOwnersReview(string path, string name);
 
@@ -24,21 +25,7 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 	int numberOfApplication=-1;
 	do{
 		vector <vector<string>> applicationNames(2);
-		int counter=0;
-		for (const auto & entry : filesystem::recursive_directory_iterator("Database/Applications"))
-		{
-			if((entry.path().extension()==".txt")&&(entry.path().filename().string().find("[checked]")!=string::npos)&&
-				(entry.path().filename().string().find("[Paid]")==string::npos)&&(entry.path().filename().string().find("[NotPaid]")==string::npos))
-			{
-				applicationNames[0].push_back(entry.path().filename().string());
-				applicationNames[1].push_back(entry.path().string());
-				cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-				counter++;
-			}
-			
-		}
-		cout<<"Choose application or enter -1 to quit"<<endl;
-		cin>>numberOfApplication;
+		View::viewApplicationsAndPickOwner(applicationNames, numberOfApplication);
 		if(numberOfApplication!=-1){
 			printFileData(applicationNames[1][numberOfApplication]);
 			createOwnersReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
@@ -49,16 +36,14 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 
 
 void createOwnersReview(string path, string name) {
-	cout << "Input your conclusion (1 - yes, 0 - no): " << endl;
-	bool conclusion;
-	cin >> conclusion;
+	bool conclusion = View::createConclusionOwner();
 	string s;
 	if (cin.peek() == '\n') {
 		cin.ignore();
 	}
 	ifstream outFile;
 	if (!outFile) {
-		cout << endl << "Can not open a file with application to write a conclution" << endl;
+		cout << endl << "Can not open a file with application to write a conclusion" << endl;
 	}
 	else {
 		while (getline(outFile, s))
