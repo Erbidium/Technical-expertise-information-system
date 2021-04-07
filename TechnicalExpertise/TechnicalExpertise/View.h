@@ -13,7 +13,7 @@ public:
 	static void inputNameEmail(std::string& name, std::string& email);
 	static int inputAccTypeForRegistration();
 	static bool checkIfYouWannaRewrite(string word);
-	static void createApplication(int& tempAge, string& tempData, string& name);
+	static void createApplication(int& tempAge, string& tempData, string& name, string& filePath);
 	static Request createRequest();
 	static int viewApplicationsAndPickComission(vector <vector<string>>& applicationNames, int& numberOfApplication);
 	static int viewApplicationsAndPickOwner(vector <vector<string>>& applicationNames, int& numberOfApplication);

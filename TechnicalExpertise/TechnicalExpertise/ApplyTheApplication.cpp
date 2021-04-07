@@ -19,6 +19,21 @@ void ApplyTheApplication::applicationsManager(int ID) {
 	outFile << "My age: " << tempAge << endl;
 	outFile << "Application's data: " << applicationData.getContent() << endl;
 	outFile << "Date: " << tempDate << endl;
+	if (applicationData.getFilePath().length()>0) {
+		ifstream inFile(applicationData.getFilePath());
+		if (!inFile) {
+			cout << "But can not open a file to add to application" << endl;
+		}
+		else {
+			outFile << endl << "Added file content: " << endl;
+			string s;
+			while (!inFile.eof()) {
+				getline(inFile, s);
+				outFile << s << endl;
+			}
+		}
+		inFile.close();
+	}
 	outFile.close();
 }
 void ApplyTheApplication::applicationDataCheck(int ID) {
@@ -46,7 +61,7 @@ void ApplyTheApplication::applicationDataCheck(int ID) {
 	}
 	if (correct)
 	{
-		cout << endl << "Yout application is correct!" << endl;
+		cout << endl << "Your application is correct!" << endl;
 		applicationsManager(ID);
 	}
 	else
@@ -61,9 +76,11 @@ void ApplyTheApplication::applicationDataCheck(int ID) {
 void ApplyTheApplication::setApplication(int ID,string name) {
 	int tempAge;
 	string tempData;
-	View::createApplication(tempAge,tempData,name);
+	string filePath;
+	View::createApplication(tempAge,tempData,name, filePath);
 	applicationData.setAge(tempAge);
 	applicationData.setContent(tempData);
 	applicationData.setName(name);
+	applicationData.setFilePath(filePath);
 	applicationDataCheck(ID);
 }

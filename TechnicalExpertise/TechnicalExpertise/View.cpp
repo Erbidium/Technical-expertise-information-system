@@ -34,7 +34,7 @@ bool View::checkIfYouWannaRewrite(string word) {
 	cin >> leave;
 	return leave;
 }
-void View::createApplication(int& tempAge, string& tempData, string& name) {
+void View::createApplication(int& tempAge, string& tempData, string& name,string& filePath) {
 	cout << endl << "Input your age:" << endl;
 	cin >> tempAge;
 	cout << endl << "Input your application's data:" << endl;
@@ -43,6 +43,16 @@ void View::createApplication(int& tempAge, string& tempData, string& name) {
 	if (name == "") {
 		cout << endl << "Input your application's name:" << endl;
 		getline(cin, name);
+	}
+	bool wannaAdd;
+	cout << "Do you want to add some files to your application? Yes(1) No(0)" << endl;
+	cin >> wannaAdd;
+	if (wannaAdd) {
+		cout << "Input the path to your file on your PC. Example: Database / Applications / " << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin, filePath);
 	}
 }
 Request View::createRequest() {

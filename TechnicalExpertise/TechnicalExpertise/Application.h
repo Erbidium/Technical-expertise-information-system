@@ -11,6 +11,7 @@ public:
 	string getContent()const;
 	string getDate()const;
 	string getReview()const;
+	string getFilePath()const;
 	bool getGrantConfirm()const;
 	void setName(const string&);
 	void setAge(const int&);
@@ -18,6 +19,7 @@ public:
 	void setDate(const string&);
 	void setGrantConfirm(bool);
 	void setReview(const string&);
+	void setFilePath(const string&);
 private:
 	string ownerName;
 	int ownerAge;
@@ -25,5 +27,6 @@ private:
 	string applicationDate;
 	bool grantIsConfirmed;
 	string comissionReview;
+	string filePath;
 };
 
