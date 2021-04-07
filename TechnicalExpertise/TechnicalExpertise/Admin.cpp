@@ -4,6 +4,7 @@
 #include <filesystem>
 #include "AccountManagement.h"
 #include "WorkWithInterface.h"
+#include "View.h"
 
 using namespace std;
 
@@ -33,10 +34,7 @@ void Admin::viewRequests()
 
 void Admin::registerProfile()
 {
-	cout<<"Which account do you want to register?\n";
-	cout<<"(0)Expert comission\n(1)Fund owner\n";
-	int accountType;
-	cin>>accountType;
+	int accountType = View::inputAccTypeForRegistration();
 	AccountManagement::registerProfile(accountType+1);
 }
 

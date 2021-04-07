@@ -1,4 +1,5 @@
 #include "ApplyTheApplication.h"
+#include "View.h"
 #include <iomanip>
 #include <iostream>
 #include <fstream>
@@ -50,9 +51,7 @@ void ApplyTheApplication::applicationDataCheck(int ID) {
 	}
 	else
 	{
-		cout << endl << "Would you like to rewrite your application(0) or leave(1)?" << endl;
-		bool leave;
-		cin >> leave;
+		bool leave = View::checkIfYouWannaRewrite("application");
 		if (!leave)
 		{
 			setApplication(ID);
@@ -62,15 +61,7 @@ void ApplyTheApplication::applicationDataCheck(int ID) {
 void ApplyTheApplication::setApplication(int ID,string name) {
 	int tempAge;
 	string tempData;
-	cout << endl << "Input your age:" << endl;
-	cin >> tempAge;
-	cout << endl << "Input your application's data:" << endl;
-	cin.ignore();
-	getline(cin, tempData);
-	if (name == "") {
-		cout << endl << "Input your application's name:" << endl;
-		getline(cin, name);
-	}
+	View::createApplication(tempAge,tempData,name);
 	applicationData.setAge(tempAge);
 	applicationData.setContent(tempData);
 	applicationData.setName(name);

@@ -1,5 +1,6 @@
 #include "ApplyTheRegistration.h"
 #include "AccountManagement.h"
+#include "View.h"
 #include <iostream>
 #include <fstream>
 #include <filesystem>
@@ -103,9 +104,7 @@ void ApplyTheRegistration::profileDataCheck()
 	}
 	else
 	{
-		cout << endl << "Would you like to rewrite your registration(0) or leave(1)?" << endl;
-		bool leave;
-		cin >> leave;
+		bool leave = View::checkIfYouWannaRewrite("registration");
 		if (!leave)
 		{
 			AccountManagement::registerProfile(0);

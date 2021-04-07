@@ -4,7 +4,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-
+#include "View.h"
 #include "GrantManagement.h"
 
 using namespace std;
@@ -30,39 +30,15 @@ void GrantApplicant::checkStatusOfApplication()
 {
 	int counter=0;
 	vector <vector<string>> applicationNames(2);
-	for (const auto & entry : filesystem::directory_iterator("Database/Applications/"+to_string(profileID)))
-	{
-		if(entry.path().extension()==".txt")
-		{
-			applicationNames[0].push_back(entry.path().filename().string());
-			applicationNames[1].push_back(entry.path().string());
-			cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-			counter++;
-		}
-	}
-	cout<<"Press any key to quit"<<endl;
-	string key;
-	cin>>key;
+	View::applicationStatusOut(counter, applicationNames, profileID);
 }
 
 void GrantApplicant::deleteApplication()
 {
 	int numberOfApplication=-1;
 	do{
-		int counter=0;
 		vector <vector<string>> applicationNames(2);
-		for (const auto & entry : filesystem::directory_iterator("Database/Applications/"+to_string(profileID)))
-		{
-			if(entry.path().extension()==".txt")
-			{
-				applicationNames[0].push_back(entry.path().filename().string());
-				applicationNames[1].push_back(entry.path().string());
-				cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-				counter++;
-			}
-		}
-		cout<<"Choose application or enter -1 to quit"<<endl;
-		cin>>numberOfApplication;
+		View::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
 		if(numberOfApplication!=-1){
 			remove(applicationNames[1][numberOfApplication].data());
 		}
@@ -73,20 +49,8 @@ void GrantApplicant::editApplication()
 {
 	int numberOfApplication = -1;
 	do {
-		int counter = 0;
 		vector <vector<string>> applicationNames(2);
-		for (const auto& entry : filesystem::directory_iterator("Database/Applications/" + to_string(profileID)))
-		{
-			if (entry.path().extension() == ".txt")
-			{
-				applicationNames[0].push_back(entry.path().filename().string());
-				applicationNames[1].push_back(entry.path().string());
-				cout << applicationNames[0].back() << "(" << counter << ")" << endl;
-				counter++;
-			}
-		}
-		cout << "Choose application or enter -1 to quit" << endl;
-		cin >> numberOfApplication;
+		View::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
 		if (numberOfApplication != -1) {
 			ofstream outFile(applicationNames[1][numberOfApplication], ios::trunc);
 			ApplyTheApplication tempApplication;
@@ -100,12 +64,5 @@ void GrantApplicant::editApplication()
 
 void GrantApplicant::checkBalance()
 {
-	cout << endl <<  "Your current balance is: " << fixed << setprecision(2) << GrantManagement::getMoney(profileID) << endl;
-	bool bank;
-	cout << endl << "Would you like to withdraw money to your bank account? (1 - yes, 0 - no): " << endl;
-	cin >> bank;
-	if (bank)
-	{
-		GrantManagement::transferToBank(profileID);
-	}
+	View::outBalance(profileID);
 }

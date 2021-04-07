@@ -1,6 +1,7 @@
 #include "GrantManagement.h"
 #include <iostream>
 #include <fstream>
+#include "View.h"
 using namespace std;
 
 float GrantManagement::getMoney(int ID)
@@ -19,8 +20,7 @@ void GrantManagement::transferMoney(int ID)
 	float sum;
 	while (stof(money) < 0)
 	{
-		cout << endl << "How much money are you transfering?" << endl;
-		cin >> money;
+		View::inputAmountOfMoney(money);
 		for (int i = 0; i < money.length(); i++)
 		{
 			if (!((money[i] >= 48 && money[i] <= 57) || money[i] == '.'))
@@ -52,8 +52,7 @@ void GrantManagement::transferToBank(int ID)
 	string card = "-1";
 	while (stof(card) <= 0)
 	{
-		cout << endl << "Enter your bank card number: " << endl;
-		cin >> card;
+		View::inputCardNumber(card);
 		if (card.length() != 16)
 		{
 			cout << endl << "Card number is too short or too long!" << endl;
@@ -71,8 +70,7 @@ void GrantManagement::transferToBank(int ID)
 	}
 	while (stof(money) < 0)
 	{
-		cout << endl << "How much money do you want to withdraw?" << endl;
-		cin >> money;
+		View::inputAmountOfMoney(money);
 		for (int i = 0; i < money.length(); i++)
 		{
 			if (!((money[i] >= 48 && money[i] <= 57) || money[i] == '.'))
@@ -89,6 +87,9 @@ void GrantManagement::transferToBank(int ID)
 		{
 			cout << endl << "You don't have that much money on your account! Please try again!" << endl;
 			money = "-1";
+		}
+		else {
+			cout << endl << "Successfully transfered!" << endl;
 		}
 	}
 	ofstream outFile2(pathToProfileBalance);

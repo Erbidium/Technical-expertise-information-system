@@ -74,7 +74,7 @@ void AccountManagement::registerProfile(int type)
 {
 	int profileID=rand()%90000+10000;
 	ApplyTheRegistration registrationController;
-	Profile newProfile = View::createProfile(profileID, type);
+	Profile newProfile = View::createProfi(profileID, type);
 	registrationController.setProfile(newProfile);
 	registrationController.profileDataCheck();
 }
@@ -85,6 +85,6 @@ void AccountManagement::editProfile(int ID) {
 	fs::remove("Database/Profiles/" + to_string(ID) + ".txt");
 	ofstream outFile("Database/Profiles/" + to_string(ID) + ".txt");
 	string name, email;
-	
+	View::inputNameEmail(name,email);
 	outFile << name << " " << email << " " << tempObject.getType() << "\n";
 }
