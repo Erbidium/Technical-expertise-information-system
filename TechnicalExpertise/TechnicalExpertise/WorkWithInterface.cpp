@@ -57,5 +57,6 @@ Profile readProfile(int ID)
 	currentProfile.setEmail(email);
 	currentProfile.setName(name);
 	currentProfile.setType(type);
+	currentProfile.setID(ID);
 	return currentProfile;
 }

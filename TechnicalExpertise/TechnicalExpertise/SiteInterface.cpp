@@ -1,18 +1,18 @@
 #include "SiteInterface.h"
 #include "AccountManagement.h"
-#include "ApplyTheApplication.h"
 #include "ApplyTheRequest.h"
 #include "WorkWithInterface.h"
 #include "Profile.h"
-#include "GrantManagement.h"
+#include "GrantApplicant.h"
+#include "Admin.h"
+#include "ExpertComission.h"
+#include "FundOwner.h"
 #include <fstream>
 #include <iostream>
 #include <filesystem>
 
 using namespace std;
-namespace fs = filesystem;
 
-void createOwnersReview(string path, string name);
 void SiteInterface::showMenu()
 {
 	int choice;
@@ -30,6 +30,7 @@ void SiteInterface::showMenu()
 			cin>>password;
 			if((password=="admin")&&(login=="admin"))
 			{
+				Admin admin;
 				int action;
 				do
 				{
@@ -39,35 +40,10 @@ void SiteInterface::showMenu()
 					switch(action)
 					{
 					case 0:
-					{
-						cout<<"All requests:"<<endl;
-						vector <string> files;
-						int counter=0;
-						for (const auto & entry : filesystem::directory_iterator("Database/Requests"))
-						{
-							if(entry.path().extension()==".txt")
-							{
-								files.push_back(entry.path().filename().string());
-								cout<<files.back()<<"("<<counter<<")"<<endl;
-							}
-							counter++;
-						}
-						int numberOfRequest=-1;
-						do{
-							cout<<"Choose request or enter -1 to quit"<<endl;
-							cin>>numberOfRequest;
-							if(numberOfRequest!=-1){
-									printFileData("Database/Requests/"+files[numberOfRequest]);		
-							}
-						}while(numberOfRequest!=-1);
-					}	
+						admin.viewRequests();
 					break;
 					case 1:
-						cout<<"Which account do you want to register?\n";
-						cout<<"Expert comission(0) Fund owner(1)\n";
-						int accountType;
-						cin>>accountType;
-						AccountManagement::registerProfile(accountType+1);
+						admin.registerProfile();
 					break;
 					case 3:
 						choice=3;
@@ -87,150 +63,50 @@ void SiteInterface::showMenu()
 				{
 					int action;
 					bool profileIsDeleted=false;
+					GrantApplicant currentGrantApplicant(current);
 					do
 					{
 						cout<<"Create an application(0)\nCheck the status of application(1)\nDelete the application(2)\nEditApplication(3)\nDelete profile(4)\nCheck your Balance(5)\nEdit profile(6)\nLog out(7):"<<endl;
 						cin>>action;
 						if(action==0)
-						{
-							ApplyTheApplication tempApplication;
-							tempApplication.setApplication(ID);
-						}
+							currentGrantApplicant.createApplication();
 						else if(action==1)
-						{
-							int counter=0;
-							vector <vector<string>> applicationNames(2);
-							for (const auto & entry : filesystem::directory_iterator("Database/Applications/"+to_string(ID)))
-							{
-								if(entry.path().extension()==".txt")
-								{
-									applicationNames[0].push_back(entry.path().filename().string());
-									applicationNames[1].push_back(entry.path().string());
-									cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-									counter++;
-								}
-							}
-							cout<<"Press any key to quit"<<endl;
-							string key;
-							cin>>key;
-						}
+							currentGrantApplicant.checkStatusOfApplication();
 						else if(action==2)
-						{
-							
-							int numberOfApplication=-1;
-							do{
-								int counter=0;
-								vector <vector<string>> applicationNames(2);
-								for (const auto & entry : filesystem::directory_iterator("Database/Applications/"+to_string(ID)))
-								{
-									if(entry.path().extension()==".txt")
-									{
-										applicationNames[0].push_back(entry.path().filename().string());
-										applicationNames[1].push_back(entry.path().string());
-										cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-										counter++;
-									}
-								}
-								cout<<"Choose application or enter -1 to quit"<<endl;
-								cin>>numberOfApplication;
-								if(numberOfApplication!=-1){
-									remove(applicationNames[1][numberOfApplication].data());
-								}
-							}while(numberOfApplication!=-1);
-						}
-						else if (action == 3)
-						{
-							int numberOfApplication = -1;
-							do {
-								int counter = 0;
-								vector <vector<string>> applicationNames(2);
-								for (const auto& entry : filesystem::directory_iterator("Database/Applications/" + to_string(ID)))
-								{
-									if (entry.path().extension() == ".txt")
-									{
-										applicationNames[0].push_back(entry.path().filename().string());
-										applicationNames[1].push_back(entry.path().string());
-										cout << applicationNames[0].back() << "(" << counter << ")" << endl;
-										counter++;
-									}
-								}
-								cout << "Choose application or enter -1 to quit" << endl;
-								cin >> numberOfApplication;
-								if (numberOfApplication != -1) {
-									ofstream outFile(applicationNames[1][numberOfApplication], ios::trunc);
-									ApplyTheApplication tempApplication;
-									int position = applicationNames[0][numberOfApplication].find(".txt");
-									string copy = applicationNames[0][numberOfApplication];
-									copy.erase(position, 4);
-									tempApplication.setApplication(ID, copy);
-								}
-							} while (numberOfApplication != -1);
-						}
-						else if (action == 4)
+							currentGrantApplicant.deleteApplication();
+						else if(action==3)
+							currentGrantApplicant.editApplication();
+						else if(action==4)
 						{
 							cout<<"Are you sure?\nConfirm(0) No(any key)\n";
 							string confirmation;
 							cin>>confirmation;
 							if(confirmation=="0")
 							{
-								AccountManagement::deleteProfile(ID, current.getType());
+								AccountManagement::deleteProfile(ID, currentGrantApplicant.getType());
 								action=7;
 								profileIsDeleted=true;
 							}
 						}
-						else if (action == 5)
-						{
-							cout << endl <<  "Your current balance is: " << fixed << setprecision(2) << GrantManagement::getMoney(ID) << endl;
-							bool bank;
-							cout << endl << "Would you like to withdraw money to your bank account? (1 - yes, 0 - no): " << endl;
-							cin >> bank;
-							if (bank)
-							{
-								GrantManagement::transferToBank(ID);
-							}
-						}
-						else if (action == 6)
-						{
+						else if(action==5)
+							currentGrantApplicant.checkBalance();
+						else if(action==6)
 							AccountManagement::editProfile(ID);
-						}
 					}while(action!=7);
 					if(!profileIsDeleted)
-					{
 						AccountManagement::exitFromProfile(ID);
-					}
 				}
 				else if(current.getType()==1)
 				{
 					int action;
+					ExpertComission currentExpertComission(current);
 					do
 					{
 						cout<<"View the application and evaluate it(0) \nLog out(1):"<<endl;
 						cin>>action;
 						if(action==0)
 						{
-							int numberOfApplication=-1;
-							do{
-								vector <vector<string>> applicationNames(2);
-								int counter=0;
-								for (const auto & entry : filesystem::recursive_directory_iterator("Database/Applications"))
-								{
-									if((entry.path().extension()==".txt")&&(entry.path().filename().string().find("[checked]")==string::npos)&&
-										(entry.path().filename().string().find("[Paid]")==string::npos)&&(entry.path().filename().string().find("[NotPaid]")==string::npos))
-									{
-										applicationNames[0].push_back(entry.path().filename().string());
-										applicationNames[1].push_back(entry.path().string());
-										cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-										counter++;
-									}
-								}
-								cout<<"Choose application or enter -1 to quit"<<endl;
-								cin>>numberOfApplication;
-								if(numberOfApplication!=-1){
-									printFileData(applicationNames[1][numberOfApplication]);
-									createReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
-								}
-							}while(numberOfApplication!=-1);
-							
+							currentExpertComission.viewApplicationAndEvaluate();	
 						}
 					}while(action!=1);
 					AccountManagement::exitFromProfile(ID);
@@ -238,36 +114,14 @@ void SiteInterface::showMenu()
 				else if(current.getType()==2)
 				{
 					int action;
+					FundOwner currentFundOwner(current);
 					do
 					{
 						cout<<"View the results of the examination of the application and accept grant(0)\nLog out(1): ";
 						cin>>action;
 						if(action==0)
 						{
-							
-							int numberOfApplication=-1;
-							do{
-								vector <vector<string>> applicationNames(2);
-								int counter=0;
-								for (const auto & entry : filesystem::recursive_directory_iterator("Database/Applications"))
-								{
-									if((entry.path().extension()==".txt")&&(entry.path().filename().string().find("[checked]")!=string::npos)&&
-										(entry.path().filename().string().find("[Paid]")==string::npos)&&(entry.path().filename().string().find("[NotPaid]")==string::npos))
-									{
-										applicationNames[0].push_back(entry.path().filename().string());
-										applicationNames[1].push_back(entry.path().string());
-										cout<<applicationNames[0].back()<<"("<<counter<<")"<<endl;
-										counter++;
-									}
-									
-								}
-								cout<<"Choose application or enter -1 to quit"<<endl;
-								cin>>numberOfApplication;
-								if(numberOfApplication!=-1){
-									printFileData(applicationNames[1][numberOfApplication]);
-									createOwnersReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
-								}
-							}while(numberOfApplication!=-1);
+							currentFundOwner.ViewExaminationResultsAndAcceptGrant();	
 						}
 					}while(action!=1);
 					AccountManagement::exitFromProfile(ID);
@@ -285,44 +139,4 @@ void SiteInterface::showMenu()
 		break;
 		}
 	}while(choice!=3);	
-}
-
-
-void createOwnersReview(string path, string name) {
-	cout << "Input your conclusion (1 - yes, 0 - no): " << endl;
-	bool conclusion;
-	cin >> conclusion;
-	string s;
-	if (cin.peek() == '\n') {
-		cin.ignore();
-	}
-	ifstream outFile;
-	if (!outFile) {
-		cout << endl << "Can not open a file with application to write a conclution" << endl;
-	}
-	else {
-		while (getline(outFile, s))
-		{
-			cout << s << endl;
-		}
-	}
-	string newName = "";
-	for (int i = 0; i < path.length(); i++) {
-		if (static_cast<int>(path[i]) == 92) {
-			path[i] = '/';
-		}
-	}
-	newName = path;
-	int ID = stoi(path.substr(22, 5));
-	if (conclusion)
-	{
-		newName.replace(newName.rfind('['), 9, "[Paid]");
-		GrantManagement::transferMoney(ID);
-	}
-	else
-	{
-		newName.replace(newName.rfind('['), 9, "[NotPaid]");
-	}
-	rename(path.data(), newName.data());
-	outFile.close();
 }

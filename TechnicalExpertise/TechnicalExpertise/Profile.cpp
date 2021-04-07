@@ -49,6 +49,11 @@ void Profile::setType(int type)
 	this->typefUser=type;
 }
 
+void Profile::setID(int ID)
+{
+	profileID=ID;
+}
+
 void Profile::setBalance(float money)
 {
 	this->Balance += money;

@@ -17,9 +17,10 @@ public:
 	void setName(const string&);
 	void setEmail(const string&);
 	void setType(int);
+	void setID(int);
 	void setBalance(float);
 	float getBalance();
-private:
+protected:
 	int profileID;
 	string name;
 	string email;
