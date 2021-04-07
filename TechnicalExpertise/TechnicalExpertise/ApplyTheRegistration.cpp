@@ -97,7 +97,7 @@ void ApplyTheRegistration::profileDataCheck()
 	}
 	if (correct)
 	{
-		cout << endl << "Yout registration is correct!" << endl;
+		cout << endl << "Your registration is correct!" << endl;
 		profileManager();
 	}
 	else
