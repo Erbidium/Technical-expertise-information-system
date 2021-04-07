@@ -48,7 +48,8 @@ void SiteInterface::showMenu()
 					case 3:
 						choice=3;
 					}
-				}while(action!=2);			
+				}while(action!=2);
+				system("cls");
 			}
 			else
 			{
@@ -94,7 +95,11 @@ void SiteInterface::showMenu()
 							AccountManagement::editProfile(ID);
 					}while(action!=7);
 					if(!profileIsDeleted)
+					{
+						system("cls");
 						AccountManagement::exitFromProfile(ID);
+					}
+					
 				}
 				else if(current.getType()==1)
 				{
@@ -109,6 +114,7 @@ void SiteInterface::showMenu()
 							currentExpertComission.viewApplicationAndEvaluate();	
 						}
 					}while(action!=1);
+					system("cls");
 					AccountManagement::exitFromProfile(ID);
 				}
 				else if(current.getType()==2)
@@ -124,6 +130,7 @@ void SiteInterface::showMenu()
 							currentFundOwner.ViewExaminationResultsAndAcceptGrant();	
 						}
 					}while(action!=1);
+					system("cls");
 					AccountManagement::exitFromProfile(ID);
 				}
 			}

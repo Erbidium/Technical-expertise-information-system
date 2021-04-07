@@ -71,7 +71,7 @@ void AccountManagement::deleteProfile(int ID, int type)
 
 void AccountManagement::registerProfile(int type)
 {
-	int profileID=rand()%90000+10000;//додати перевірку, чи існує акаунт з такм id
+	int profileID=rand()%90000+10000;
 	ApplyTheRegistration registrationController;
 	string login, password, name, email;
 	cout<<"Enter your login:\n";

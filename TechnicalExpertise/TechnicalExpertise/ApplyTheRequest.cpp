@@ -69,7 +69,8 @@ void ApplyTheRequest::requestDataCheck()
 	}
 	if (correct)
 	{
-		cout << endl << "Yout request is correct!" << endl;
+		system("cls");
+		cout << "Yout request is correct!" << endl;
 		requestManager();
 	}
 	else
@@ -80,6 +81,10 @@ void ApplyTheRequest::requestDataCheck()
 		if(!leave)
 		{
 			setRequest();
+		}
+		else
+		{
+			system("cls");
 		}
 	}
 }

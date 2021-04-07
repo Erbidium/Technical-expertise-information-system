@@ -97,7 +97,8 @@ void ApplyTheRegistration::profileDataCheck()
 	}
 	if (correct)
 	{
-		cout << endl << "Your registration is correct!" << endl;
+		system("cls");
+		cout << "Your registration is correct!" << endl;
 		profileManager();
 	}
 	else
@@ -108,6 +109,10 @@ void ApplyTheRegistration::profileDataCheck()
 		if (!leave)
 		{
 			AccountManagement::registerProfile(0);
+		}
+		else
+		{
+			system("cls");
 		}
 	}
 }
