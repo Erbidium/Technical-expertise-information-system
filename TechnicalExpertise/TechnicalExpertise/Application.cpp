@@ -29,11 +29,11 @@ bool Application::getGrantConfirm()const
 {
 	return grantIsConfirmed;
 }
+
 string Application::getFilePath()const
 {
 	return filePath;
 }
-
 
 void Application::setName(const string & ownerName)
 {
@@ -59,6 +59,7 @@ void Application::setReview(const string& comissionReview)
 {
 	this->comissionReview=comissionReview;
 }
+
 void Application::setFilePath(const string& filePath)
 {
 	this-> filePath= filePath;

@@ -1,0 +1,135 @@
+#include "Validation.h"
+
+bool Validation::EmailCheck(string email)
+{
+	bool correct = true;
+	int count = 0;
+	correct = DataEmptyCheck(email, "email");
+	for (int i = 0; i < email.length(); i++)
+	{
+		if (email[i] == '@')
+		{
+			count++;
+		}
+	}
+	if (count != 1)
+	{
+		cout << endl << "Your email either have too many or no @ symbol at all." << endl;
+		correct = false;
+	}
+	return correct;
+}
+
+bool Validation::NameCheck(string name, string str)
+{
+	bool correct = true;
+	int count = 0;
+	correct = DataEmptyCheck(name, str);
+	for (int i = 0; i < name.length(); i++)
+	{
+		if (!((name[i] >= 65 && name[i] <= 90) || (name[i] >= 97 && name[i] <= 122)))
+		{
+			if (!(name[i] == ' '))
+			{
+				cout << endl << "Your " << str << " has been writen wrong or at different language." << endl;
+				correct = false;
+				i = name.length();
+			}
+			else if (count == 0)
+			{
+				cout << endl << "Your " << str << " has space bar at the begining or double space bar." << endl;
+				correct = false;
+				i = name.length();
+			}
+			else
+			{
+				count = -1;
+			}
+		}
+		count += 1;
+	}
+	return correct;
+}
+
+bool Validation::LoginCheck(string login)
+{
+	bool correct = true;
+	if (login.length() < 3)
+	{
+		cout << endl << "Your login is too short! It must have at least 4 symbols." << endl;
+		correct = false;
+	}
+	ifstream inFile("Database/Accounts.txt");
+	if (!inFile) {
+		cout << endl << "Error! Can't open a file with accounts. Please try again." << endl;
+		correct = false;
+	}
+	else {
+		while (!inFile.eof())
+		{
+			string tempLogin;
+			string buffer;
+			inFile >> buffer;
+			inFile >> tempLogin;
+			inFile >> buffer;
+			if (tempLogin == login) 
+			{
+				cout << endl << "Your login is already taken" << endl;
+				correct = false;
+			}
+		}
+	}
+	inFile.close();
+	return correct;
+}
+
+bool Validation::PasswordCheck(string password)
+{
+	bool correct = true; 
+	int count = 0;
+	int count2 = 0;
+	if (password.length() < 6)
+	{
+		cout << endl << "Your password is too short! It must have at least 6 symbols." << endl;
+		correct = false;
+	}
+	for (int i = 0; i < password.length(); i++)
+	{
+		if (password[i] >= 48 && password[i] <= 57)
+		{
+			count++;
+		}
+		if ((password[i] >= 65 && password[i] <= 90) || (password[i] >= 97 && password[i] <= 122))
+		{
+			count2++;
+		}
+		if (!((password[i] >= 32 && password[i] <= 126)))
+		{
+			cout << endl << "Your password has been writen at different language." << endl;
+			correct = false;
+			i = password.length();
+		}
+	}
+	if (count < 1)
+	{
+		cout << endl << "Your password need to have at least one numeral." << endl;
+		correct = false;
+	}
+	if (count2 < 1)
+	{
+		cout << endl << "Your password need to have at least one letter." << endl;
+		correct = false;
+	}
+	return correct;
+}
+
+bool Validation::DataEmptyCheck(string data, string str)
+{
+	bool correct = true;
+	if (data.empty())
+	{
+		cout << endl << "Your " << str << " is epmty." << endl;
+		correct = false;
+	}
+	return correct;
+}

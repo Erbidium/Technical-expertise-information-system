@@ -1,5 +1,6 @@
 #include "ApplyTheApplication.h"
 #include "View.h"
+#include "Validation.h"
 #include <iomanip>
 #include <iostream>
 #include <fstream>
@@ -38,25 +39,12 @@ void ApplyTheApplication::applicationsManager(int ID) {
 }
 void ApplyTheApplication::applicationDataCheck(int ID) {
 	bool correct = true;
-	string name = applicationData.getName();
-	if (name.empty())
+	if (!Validation::NameCheck(applicationData.getName(), "application`s name"))
 	{
-		cout << endl << "Your application`s name is epmty." << endl;
 		correct = false;
 	}
-	for (int i = 0; i < name.length(); i++)
+	if (!Validation::DataEmptyCheck(applicationData.getContent(), "application"))
 	{
-		if (!((name[i] >= 65 && name[i] <= 90) || (name[i] >= 97 && name[i] <= 122) || name[i] == ' '))
-		{
-			cout << endl << "Your application`s name has been writen wrong or at different language." << endl;
-			correct = false;
-			i = name.length();
-		}
-	}
-	string Content = applicationData.getContent();
-	if (Content.empty())
-	{
-		cout << endl << "Your application is epmty." << endl;
 		correct = false;
 	}
 	if (correct)

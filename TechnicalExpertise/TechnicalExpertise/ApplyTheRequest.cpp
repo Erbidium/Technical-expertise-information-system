@@ -1,4 +1,5 @@
 #include <fstream>
+#include "Validation.h";
 #include "ApplyTheRequest.h"
 #include "View.h"
 using namespace std;
@@ -21,39 +22,16 @@ void ApplyTheRequest::requestManager()
 void ApplyTheRequest::requestDataCheck()
 {
 	bool correct = true;
-	string name = requestData.getName();
-	if (name.empty())
+	if (!Validation::NameCheck(requestData.getName(), "name"))
 	{
-		cout << endl << "Your name is epmty." << endl;
 		correct = false;
 	}
-	for (int i = 0; i < name.length(); i++ )
+	if (!Validation::EmailCheck(requestData.getEmail()))
 	{
-		if(!((name[i]>= 65 && name[i] <= 90)||(name[i]>=97 && name[i]<=122)))
-		{
-			cout << endl << "Your name has been writen wrong or at different language." << endl;
-			correct = false;
-			i = name.length();
-		}
-	}
-	string email = requestData.getEmail();
-	int count = 0;
-	for (int i = 0; i < email.length(); i++ )
-	{
-		if(email[i] == '@')
-		{
-			count++;
-		}
-	}
-	if(count != 1)
-	{
-		cout << endl << "Your email either have too many or no @ symbol at all." << endl;
 		correct = false;
 	}
-	string Content = requestData.getContent();
-	if (Content.empty())
+	if (!Validation::DataEmptyCheck(requestData.getContent(), "request"))
 	{
-		cout << endl << "Your Request is epmty." << endl;
 		correct = false;
 	}
 	if (correct)

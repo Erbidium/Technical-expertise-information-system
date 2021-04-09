@@ -1,5 +1,0 @@
-Name of application: hi
-My age: 22
-Application's data: hello
-Date: 1.4.2021
-Sum up of application: 5/10

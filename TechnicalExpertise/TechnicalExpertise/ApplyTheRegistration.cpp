@@ -1,5 +1,6 @@
 #include "ApplyTheRegistration.h"
 #include "AccountManagement.h"
+#include "Validation.h"
 #include "View.h"
 #include <iostream>
 #include <fstream>
@@ -32,68 +33,20 @@ void ApplyTheRegistration::profileManager()
 void ApplyTheRegistration::profileDataCheck()
 {
 	bool correct = true;
-	string name = profileData.getName();
-	if (name.empty())
+	if (!Validation::NameCheck(profileData.getName(), "name"))
 	{
-		cout << endl << "Your name is epmty." << endl;
 		correct = false;
 	}
-	for (int i = 0; i < name.length(); i++)
+	if (!Validation::EmailCheck(profileData.getEmail()))
 	{
-		if (!((name[i] >= 65 && name[i] <= 90) || (name[i] >= 97 && name[i] <= 122)))
-		{
-			cout << endl << "Your name has been writen wrong or at different language." << endl;
-			correct = false;
-			i = name.length();
-		}
-	}
-	string email = profileData.getEmail();
-	int count = 0;
-	for (int i = 0; i < email.length(); i++)
-	{
-		if (email[i] == '@')
-		{
-			count++;
-		}
-	}
-	if (count != 1)
-	{
-		cout << endl << "Your email either have too many or no @ symbol at all." << endl;
 		correct = false;
 	}
-	int count2 = 0;
-	count = 0;
-	string password = profileData.getPassword();
-	if (password.length() < 6)
+	if (!Validation::PasswordCheck(profileData.getPassword()))
 	{
-		cout << endl << "Your password is too short! It must have at least 6 symbols." << endl;
 		correct = false;
 	}
-	for (int i = 0; i < password.length(); i++)
+	if (!Validation::LoginCheck(profileData.getLogin()))
 	{
-		if (password[i] >= 48 && password[i] <= 57)
-		{
-			count++;
-		}
-		if ((password[i] >= 65 && password[i] <= 90) || (password[i] >= 97 && password[i] <= 122))
-		{
-			count2++;
-		}
-		if (!((password[i] >= 32 && password[i] <= 126)))
-		{
-			cout << endl << "Your password has been writen at different language." << endl;
-			correct = false;
-			i = password.length();
-		}
-	}
-	if (count < 1)
-	{
-		cout << endl << "Your password need to have at least one numeral." << endl;
-		correct = false;
-	}
-	if (count2 < 1)
-	{
-		cout << endl << "Your password need to have at least one letter." << endl;
 		correct = false;
 	}
 	if (correct)

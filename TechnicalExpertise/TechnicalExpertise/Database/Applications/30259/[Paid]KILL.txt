@@ -1,5 +1,0 @@
-Name of application: KILL
-My age: 20
-Application's data: i want to kill
-Date: 1.4.2021
-Sum up of application: 100/100
