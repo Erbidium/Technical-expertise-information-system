@@ -1,6 +1,6 @@
-#include <fstream>
 #include "Validation.h"
 #include "ApplyTheRequest.h"
+#include "FileWriter.h"
 #include "ViewInteraction.h"
 #include "ViewMessages.h"
 
@@ -14,11 +14,7 @@ void ApplyTheRequest::setRequest()
 
 void ApplyTheRequest::requestManager()
 {
-	ofstream outFile("Database/Requests/" + requestData.getName() + ".txt");
-	outFile << "My name: " << requestData.getName() << endl;
-	outFile << "My email: " << requestData.getEmail() << endl;
-	outFile << "Request Content: " << requestData.getContent() << endl;
-	outFile.close();
+	FileWriter::writeRequestToFile(requestData);
 }
 
 void ApplyTheRequest::requestDataCheck()

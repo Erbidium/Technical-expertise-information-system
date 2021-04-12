@@ -148,6 +148,8 @@
     <ClCompile Include="ApplyTheRegistration.cpp" />
     <ClCompile Include="ApplyTheRequest.cpp" />
     <ClCompile Include="ExpertComission.cpp" />
+    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="FileWriter.cpp" />
     <ClCompile Include="FundOwner.cpp" />
     <ClCompile Include="GrantApplicant.cpp" />
     <ClCompile Include="GrantManagement.cpp" />
@@ -168,6 +170,8 @@
     <ClInclude Include="ApplyTheRegistration.h" />
     <ClInclude Include="ApplyTheRequest.h" />
     <ClInclude Include="ExpertComission.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="FileWriter.h" />
     <ClInclude Include="FundOwner.h" />
     <ClInclude Include="GrantApplicant.h" />
     <ClInclude Include="GrantManagement.h" />

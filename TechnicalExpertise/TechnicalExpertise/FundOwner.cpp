@@ -34,14 +34,9 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 	}while(numberOfApplication!=-1);
 }
 
-
-
 void createOwnersReview(string path, string name) {
 	bool conclusion = ViewInteraction::createConclusionOwner();
 	string s;
-	if (cin.peek() == '\n') {
-		cin.ignore();
-	}
 	ifstream outFile;
 	if (!outFile) {
 		ViewMessages::cannotOpenFileToWriteConclusion();

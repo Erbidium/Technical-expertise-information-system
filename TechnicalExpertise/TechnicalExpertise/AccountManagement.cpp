@@ -6,31 +6,14 @@
 #include "WorkWithInterface.h"
 #include <fstream>
 #include <filesystem>
+#include "FileReader.h"
 
 using namespace std;
 namespace fs = filesystem;
 
 int AccountManagement::enterToProfile(string login, string password)
 {
-	int ID = -1;
-	ifstream inFile("Database/Accounts.txt");
-	if (!inFile) {
-		ViewMessages::unsuccessfulFileOpening();
-	}
-	else {
-		while (!inFile.eof()) {
-			string tempPassword;
-			string tempLogin;
-			int tempID;
-			inFile >> tempPassword;
-			inFile >> tempLogin;
-			inFile >> tempID;
-			if (tempPassword == password && tempLogin == login) {
-				ID = tempID;
-			}
-		}
-	}
-	inFile.close();
+	int ID=FileReader::readID(login, password);
 	return ID;
 }
 

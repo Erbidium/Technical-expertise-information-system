@@ -1,16 +1,14 @@
 #include "GrantManagement.h"
+#include "FileReader.h"
+#include "ViewInteraction.h"
 #include <iostream>
 #include <fstream>
-#include "ViewInteraction.h"
 
 using namespace std;
 
 float GrantManagement::getMoney(int ID)
 {
-	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
-	ifstream infile(pathToProfileBalance);
-	float money;
-	infile >> money;
+	float money=FileReader::readMoney(ID);
 	return money;
 }
 
@@ -45,9 +43,9 @@ void GrantManagement::transferMoney(int ID)
 void GrantManagement::transferToBank(int ID)
 {
 	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
+	ifstream inFile2(pathToProfileBalance);
 	string money = "-1";
 	float dif;
-	ifstream inFile2(pathToProfileBalance);
 	inFile2 >> dif;
 	inFile2.close();
 	string card = "-1";

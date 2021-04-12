@@ -22,12 +22,15 @@ ExpertComission::ExpertComission(Profile currentProfile)
 void ExpertComission::viewApplicationAndEvaluate()
 {
 	int numberOfApplication=-1;
-	do{
+	do
+	{
 		vector <vector<string>> applicationNames(2);
 		ViewInteraction::viewApplicationsAndPickComission(applicationNames, numberOfApplication);
-		if(numberOfApplication!=-1){
+		if(numberOfApplication!=-1)
+		{
 			printFileData(applicationNames[1][numberOfApplication]);
 			createReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
 		}
-	}while(numberOfApplication!=-1);
+	}
+	while(numberOfApplication!=-1);
 }
