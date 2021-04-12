@@ -1,7 +1,6 @@
 #include "ApplyTheApplication.h"
 #include "View.h"
 #include "Validation.h"
-#include <iomanip>
 #include <iostream>
 #include <fstream>
 #include <ctime>

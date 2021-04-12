@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "View.h"
+
 using namespace std;
 
 float GrantManagement::getMoney(int ID)

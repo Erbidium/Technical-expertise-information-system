@@ -17,6 +17,7 @@ public:
 	static Request createRequest();
 	static int viewApplicationsAndPickComission(vector <vector<string>>& applicationNames, int& numberOfApplication);
 	static int viewApplicationsAndPickOwner(vector <vector<string>>& applicationNames, int& numberOfApplication);
+	static void showRequests();
 	static bool createConclusionOwner();
 	static void applicationStatusOut(int counter, vector <vector<string>>& applicationNames, int profileID);
 	static void outApplicationAndDelete(int& numberOfApplication, vector <vector<string>>& applicationNames, int profileID);

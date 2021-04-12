@@ -3,7 +3,9 @@
 #include <fstream>
 #include <string>
 #include "Profile.h"
+
 using namespace std;
+
 void printFileData(string name) {
 	ifstream inFile(name);
 	if (!inFile) {

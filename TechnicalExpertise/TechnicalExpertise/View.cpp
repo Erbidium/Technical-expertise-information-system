@@ -1,6 +1,9 @@
 #include "View.h"
 #include <iostream>
+#include "WorkWithInterface.h"
+
 using namespace std;
+
 Profile View::createProfi(int profileID, int type)
 {
 	string login, password, name, email;
@@ -106,6 +109,29 @@ int View::viewApplicationsAndPickOwner(vector <vector<string>>& applicationNames
 	cout << "Choose application or enter -1 to quit" << endl;
 	cin >> numberOfApplication;
 	return numberOfApplication;
+}
+void View::showRequests()
+{
+	cout<<"All requests:"<<endl;
+	vector <string> files;
+	int counter=0;
+	for (const auto & entry : filesystem::directory_iterator("Database/Requests"))
+	{
+		if(entry.path().extension()==".txt")
+		{
+			files.push_back(entry.path().filename().string());
+			cout<<files.back()<<"("<<counter<<")"<<endl;
+		}
+		counter++;
+	}
+	int numberOfRequest=-1;
+	do{
+		cout<<"Choose request or enter -1 to quit"<<endl;
+		cin>>numberOfRequest;
+		if(numberOfRequest!=-1){
+				printFileData("Database/Requests/"+files[numberOfRequest]);		
+		}
+	}while(numberOfRequest!=-1);
 }
 bool View::createConclusionOwner() {
 	cout << "Input your conclusion (1 - yes, 0 - no): " << endl;

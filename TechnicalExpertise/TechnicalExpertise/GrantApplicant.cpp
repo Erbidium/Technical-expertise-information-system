@@ -3,9 +3,7 @@
 #include <vector>
 #include <filesystem>
 #include <fstream>
-#include <iostream>
 #include "View.h"
-#include "GrantManagement.h"
 
 using namespace std;
 
