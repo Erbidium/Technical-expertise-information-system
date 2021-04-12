@@ -1,9 +1,11 @@
 #include "ApplyTheApplication.h"
-#include "View.h"
+#include "ViewInteraction.h"
+#include "ViewMessages.h"
 #include "Validation.h"
 #include <iostream>
 #include <fstream>
 #include <ctime>
+
 using namespace std;
 
 void ApplyTheApplication::applicationsManager(int ID) {
@@ -22,7 +24,7 @@ void ApplyTheApplication::applicationsManager(int ID) {
 	if (applicationData.getFilePath().length()>0) {
 		ifstream inFile(applicationData.getFilePath());
 		if (!inFile) {
-			cout << "But can not open a file to add to application" << endl;
+			ViewMessages::cannotOpenFileToAddToApplication();
 		}
 		else {
 			outFile << endl << "Added file content: " << endl;
@@ -48,12 +50,12 @@ void ApplyTheApplication::applicationDataCheck(int ID) {
 	}
 	if (correct)
 	{
-		cout << endl << "Your application is correct!" << endl;
+		ViewMessages::applicationIsCorrect();
 		applicationsManager(ID);
 	}
 	else
 	{
-		bool leave = View::checkIfYouWannaRewrite("application");
+		bool leave = ViewInteraction::checkIfYouWannaRewrite("application");
 		if (!leave)
 		{
 			setApplication(ID);
@@ -64,7 +66,7 @@ void ApplyTheApplication::setApplication(int ID,string name) {
 	int tempAge;
 	string tempData;
 	string filePath;
-	View::createApplication(tempAge,tempData,name, filePath);
+	ViewInteraction::createApplication(tempAge,tempData,name, filePath);
 	applicationData.setAge(tempAge);
 	applicationData.setContent(tempData);
 	applicationData.setName(name);

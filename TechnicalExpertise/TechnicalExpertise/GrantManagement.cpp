@@ -1,7 +1,7 @@
 #include "GrantManagement.h"
 #include <iostream>
 #include <fstream>
-#include "View.h"
+#include "ViewInteraction.h"
 
 using namespace std;
 
@@ -21,7 +21,7 @@ void GrantManagement::transferMoney(int ID)
 	float sum;
 	while (stof(money) < 0)
 	{
-		View::inputAmountOfMoney(money);
+		ViewInteraction::inputAmountOfMoney(money);
 		for (int i = 0; i < money.length(); i++)
 		{
 			if (!((money[i] >= 48 && money[i] <= 57) || money[i] == '.'))
@@ -53,7 +53,7 @@ void GrantManagement::transferToBank(int ID)
 	string card = "-1";
 	while (stof(card) <= 0)
 	{
-		View::inputCardNumber(card);
+		ViewInteraction::inputCardNumber(card);
 		if (card.length() != 16)
 		{
 			cout << endl << "Card number is too short or too long!" << endl;
@@ -71,7 +71,7 @@ void GrantManagement::transferToBank(int ID)
 	}
 	while (stof(money) < 0)
 	{
-		View::inputAmountOfMoney(money);
+		ViewInteraction::inputAmountOfMoney(money);
 		for (int i = 0; i < money.length(); i++)
 		{
 			if (!((money[i] >= 48 && money[i] <= 57) || money[i] == '.'))

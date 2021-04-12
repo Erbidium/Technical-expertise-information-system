@@ -1,5 +1,5 @@
 #include "ExpertComission.h"
-#include "View.h"
+#include "ViewInteraction.h"
 #include <filesystem>
 #include <iostream>
 #include <vector>
@@ -24,7 +24,7 @@ void ExpertComission::viewApplicationAndEvaluate()
 	int numberOfApplication=-1;
 	do{
 		vector <vector<string>> applicationNames(2);
-		View::viewApplicationsAndPickComission(applicationNames, numberOfApplication);
+		ViewInteraction::viewApplicationsAndPickComission(applicationNames, numberOfApplication);
 		if(numberOfApplication!=-1){
 			printFileData(applicationNames[1][numberOfApplication]);
 			createReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);

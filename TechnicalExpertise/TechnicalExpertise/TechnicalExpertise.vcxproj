@@ -156,7 +156,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SiteInterface.cpp" />
     <ClCompile Include="Validation.cpp" />
-    <ClCompile Include="View.cpp" />
+    <ClCompile Include="ViewInteraction.cpp" />
+    <ClCompile Include="ViewMessages.cpp" />
     <ClCompile Include="WorkWithInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,10 +172,11 @@
     <ClInclude Include="GrantApplicant.h" />
     <ClInclude Include="GrantManagement.h" />
     <ClInclude Include="Validation.h" />
-    <ClInclude Include="View.h" />
+    <ClInclude Include="ViewInteraction.h" />
     <ClInclude Include="Profile.h" />
     <ClInclude Include="Request.h" />
     <ClInclude Include="SiteInterface.h" />
+    <ClInclude Include="ViewMessages.h" />
     <ClInclude Include="WorkWithInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,14 +4,14 @@
 #include <filesystem>
 #include "Profile.h"
 #include "Request.h"
-#include "GrantManagement.h"
 
 
-class View {
+class ViewInteraction {
 public:
 	static Profile createProfi(int profileID, int type);
 	static void inputNameEmail(std::string& name, std::string& email);
 	static int inputAccTypeForRegistration();
+	static string inputApplicationRating();
 	static bool checkIfYouWannaRewrite(string word);
 	static void createApplication(int& tempAge, string& tempData, string& name, string& filePath);
 	static Request createRequest();

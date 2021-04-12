@@ -1,7 +1,8 @@
 #include "ApplyTheRegistration.h"
 #include "AccountManagement.h"
 #include "Validation.h"
-#include "View.h"
+#include "ViewInteraction.h"
+#include "ViewMessages.h"
 #include <iostream>
 #include <fstream>
 #include <filesystem>
@@ -52,12 +53,12 @@ void ApplyTheRegistration::profileDataCheck()
 	if (correct)
 	{
 		system("cls");
-		cout << "Your registration is correct!" << endl;
+		ViewMessages::registrationIsCorrect();
 		profileManager();
 	}
 	else
 	{
-		bool leave = View::checkIfYouWannaRewrite("registration");
+		bool leave = ViewInteraction::checkIfYouWannaRewrite("registration");
 		if (!leave)
 		{
 			AccountManagement::registerProfile(0);

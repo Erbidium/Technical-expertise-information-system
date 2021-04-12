@@ -3,7 +3,7 @@
 #include <vector>
 #include <filesystem>
 #include <fstream>
-#include "View.h"
+#include "ViewInteraction.h"
 
 using namespace std;
 
@@ -28,7 +28,7 @@ void GrantApplicant::checkStatusOfApplication()
 {
 	int counter=0;
 	vector <vector<string>> applicationNames(2);
-	View::applicationStatusOut(counter, applicationNames, profileID);
+	ViewInteraction::applicationStatusOut(counter, applicationNames, profileID);
 }
 
 void GrantApplicant::deleteApplication()
@@ -36,7 +36,7 @@ void GrantApplicant::deleteApplication()
 	int numberOfApplication=-1;
 	do{
 		vector <vector<string>> applicationNames(2);
-		View::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
+		ViewInteraction::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
 		if(numberOfApplication!=-1){
 			remove(applicationNames[1][numberOfApplication].data());
 		}
@@ -48,7 +48,7 @@ void GrantApplicant::editApplication()
 	int numberOfApplication = -1;
 	do {
 		vector <vector<string>> applicationNames(2);
-		View::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
+		ViewInteraction::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
 		if (numberOfApplication != -1) {
 			ofstream outFile(applicationNames[1][numberOfApplication], ios::trunc);
 			ApplyTheApplication tempApplication;
@@ -62,5 +62,5 @@ void GrantApplicant::editApplication()
 
 void GrantApplicant::checkBalance()
 {
-	View::outBalance(profileID);
+	ViewInteraction::outBalance(profileID);
 }
