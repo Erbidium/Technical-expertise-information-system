@@ -20,7 +20,7 @@ void GrantManagement::transferMoney(int ID)
 	float sum;
 	do
 	{
-		ViewInteraction::inputAmountOfMoney(money);
+		ViewInteraction::inputValue("How much money are you transfering?",money);
 	}
 	while (!Validation::MoneyCheck(money));
 	ifstream inFile2(pathToProfileBalance);
@@ -42,12 +42,12 @@ void GrantManagement::transferToBank(int ID)
 	string card;
 	do
 	{
-		ViewInteraction::inputCardNumber(card);
+		ViewInteraction::inputValue("Input your card number:",card);
 	} 
 	while (!Validation::CardCheck(card));
 	do
 	{
-		ViewInteraction::inputAmountOfMoney(money);
+		ViewInteraction::inputValue("How much money are you transfering?", money);
 	} 
 	while (!Validation::AmountOfMoneyCheck(money, dif));
 	ofstream outFile2(pathToProfileBalance);

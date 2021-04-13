@@ -22,7 +22,8 @@ public:
 	static void applicationStatusOut(int counter, vector <vector<string>>& applicationNames, int profileID);
 	static void outApplicationAndDelete(int& numberOfApplication, vector <vector<string>>& applicationNames, int profileID);
 	static void outBalance(int profileID);
-	static void inputAmountOfMoney(string& money);
-	static void inputCardNumber(string& card);
 	static void clearScreen();
+	static int inputEditing();
+	static bool checkIfYouWannaEdit();
+	static void inputValue(string  str, string &value);
 };

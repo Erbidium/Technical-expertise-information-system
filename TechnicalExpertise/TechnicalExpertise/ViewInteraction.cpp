@@ -190,16 +190,27 @@ void ViewInteraction::outBalance(int profileID) {
 		GrantManagement::transferToBank(profileID);
 	}
 }
-void ViewInteraction::inputAmountOfMoney(string& money) {
-	cout << endl << "How much money are you transfering?" << endl;
-	cin >> money;
-}
-void ViewInteraction::inputCardNumber(string& card) {
-	cout << endl << "Input your card number:" << endl;
-	cin >> card;
-}
-
 void ViewInteraction::clearScreen()
 {
 	system("cls");
+}
+int ViewInteraction::inputEditing()
+{
+	cout << "What do you want to edit?\n";
+	cout << "(0)Login\n(1)Password\n(2)Name\n(3)Email" << endl;
+	int typeOfEditing;
+	cin >> typeOfEditing;
+	return typeOfEditing;
+}
+bool ViewInteraction::checkIfYouWannaEdit()
+{
+	cout << endl << "Would you like to edit something else(0) or leave(1)?" << endl;
+	bool leave;
+	cin >> leave;
+	return leave;
+}
+void ViewInteraction::inputValue(string str, string& value)
+{
+	cout << endl << str << endl;
+	cin >> value;
 }

@@ -11,5 +11,7 @@ public:
 	static void applicationIsCorrect();
 	static void registrationIsCorrect();
 	static void requestIsCorrect();
+	static void successfulEdit();
+	static void notconfirmed();
 };
 

@@ -48,3 +48,12 @@ void ViewMessages::requestIsCorrect()
 	cout<<"Yout request is correct!"<<endl;
 }
 
+void ViewMessages::successfulEdit()
+{
+	cout <<"Successfully edited!" << endl;
+}
+
+void ViewMessages::notconfirmed()
+{
+	cout << "verification not confirmed" << endl;
+}
