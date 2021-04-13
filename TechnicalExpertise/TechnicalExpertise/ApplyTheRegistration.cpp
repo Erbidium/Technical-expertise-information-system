@@ -3,10 +3,9 @@
 #include "Validation.h"
 #include "ViewInteraction.h"
 #include "ViewMessages.h"
+#include "FileWriter.h"
 #include <fstream>
 #include <filesystem>
-
-#include "FileWriter.h"
 
 using namespace std;
 namespace fs=std::filesystem;

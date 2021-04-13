@@ -6,6 +6,7 @@
 #include <filesystem>
 #include "Application.h"
 #include "Profile.h"
+#include "ViewInteraction.h"
 #include "ViewMessages.h"
 
 using namespace std;
@@ -130,4 +131,26 @@ void FileWriter::writeDifMoney(string pathToProfileBalance, string money, float 
 	ofstream outFile2(pathToProfileBalance);
 	outFile2 << dif - stof(money);
 	outFile2.close();
+}
+
+void FileWriter::createReview(string path, string name) {
+	string rating=ViewInteraction::inputApplicationRating();
+	ofstream outFile(path, ios::app);
+	if (!outFile) {
+		ViewMessages::cannotOpenFileToWriteSumUp();
+	}
+	else {
+		outFile << "Sum up of application: " << rating << endl;
+		outFile.close();
+	}
+	string newName = "";
+	for (int i = 0; i < path.length(); i++) {
+		if (static_cast<int>(path[i]) == 92) {
+			path[i] = '/';
+		}
+	}
+	newName = path;
+	newName.insert(path.rfind('/') + 1, "[checked]");
+	rename(path.data(), newName.data());
+	outFile.close();
 }

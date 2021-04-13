@@ -1,10 +1,9 @@
 #include "ExpertComission.h"
 #include "ViewInteraction.h"
 #include <filesystem>
-#include <iostream>
 #include <vector>
-
-#include "WorkWithInterface.h"
+#include "FileReader.h"
+#include "FileWriter.h"
 
 using namespace std;
 
@@ -28,8 +27,8 @@ void ExpertComission::viewApplicationAndEvaluate()
 		ViewInteraction::viewApplicationsAndPickComission(applicationNames, numberOfApplication);
 		if(numberOfApplication!=-1)
 		{
-			printFileData(applicationNames[1][numberOfApplication]);
-			createReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
+			FileReader::readAndPrintFileData(applicationNames[1][numberOfApplication]);
+			FileWriter::createReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
 		}
 	}
 	while(numberOfApplication!=-1);

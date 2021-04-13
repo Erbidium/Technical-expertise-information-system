@@ -1,19 +1,16 @@
-#include <iostream>
-#include <string>
-#include <fstream>
 #pragma once
-using namespace std;
+#include <string>
 
 class Validation
 {
 public:
-	static bool EmailCheck(string email);
-	static bool NameCheck(string name, string str);
-	static bool LoginCheck(string login);
-	static bool PasswordCheck(string password);
-	static bool DataEmptyCheck(string data,string str);
-	static bool CardCheck(string card);
-	static bool MoneyCheck(string money);
-	static bool AmountOfMoneyCheck(string money, float dif);
+	static bool EmailCheck(std::string email);
+	static bool NameCheck(std::string name, std::string str);
+	static bool LoginCheck(std::string login);
+	static bool PasswordCheck(std::string password);
+	static bool DataEmptyCheck(std::string data, std::string str);
+	static bool CardCheck(std::string card);
+	static bool MoneyCheck(std::string money);
+	static bool AmountOfMoneyCheck(std::string money, float dif);
 	static bool IDCheck(int ID);
 };

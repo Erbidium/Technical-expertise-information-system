@@ -3,7 +3,6 @@
 #include "Profile.h"
 #include "ViewInteraction.h"
 #include "ViewMessages.h"
-#include "WorkWithInterface.h"
 #include <fstream>
 #include <filesystem>
 #include "FileReader.h"
@@ -49,8 +48,8 @@ void AccountManagement::registerProfile(int type)
 }
 
 void AccountManagement::editProfile(int ID) {
-	Profile tempObject = readProfile(ID);
-	printFileData("Database/Profiles/" + to_string(ID) + ".txt");
+	Profile tempObject = FileReader::readProfile(ID);
+	FileReader::readAndPrintFileData("Database/Profiles/" + to_string(ID) + ".txt");
 	fs::remove("Database/Profiles/" + to_string(ID) + ".txt");
 	ofstream outFile("Database/Profiles/" + to_string(ID) + ".txt");
 	string name, email;

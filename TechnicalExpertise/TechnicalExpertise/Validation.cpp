@@ -1,4 +1,8 @@
 #include "Validation.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 bool Validation::EmailCheck(string email)
 {

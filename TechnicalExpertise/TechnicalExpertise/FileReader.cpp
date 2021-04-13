@@ -1,6 +1,9 @@
 #include "FileReader.h"
 #include "ViewMessages.h"
 #include <fstream>
+#include <iostream>
+
+#include "Profile.h"
 
 using namespace std;
 
@@ -35,4 +38,35 @@ float FileReader::readMoney(int ID)
 	float money;
 	infile >> money;
 	return money;
+}
+
+void FileReader::readAndPrintFileData(string name)
+{
+	//void printFileData(string name)
+	ifstream inFile(name);
+	if (!inFile) {
+		cout << "Can't open a file";
+	}
+	else {
+		while (!inFile.eof()) {
+			string temp;
+			getline(inFile, temp);
+			cout << temp << endl;
+		}
+	}
+	inFile.close();
+}
+
+Profile FileReader::readProfile(int ID)
+{
+	ifstream fileProfile("Database/Profiles/" + to_string(ID) + ".txt");
+	string name, email;
+	int type;
+	fileProfile >> name >> email >> type;
+	Profile currentProfile;
+	currentProfile.setEmail(email);
+	currentProfile.setName(name);
+	currentProfile.setType(type);
+	currentProfile.setID(ID);
+	return currentProfile;
 }

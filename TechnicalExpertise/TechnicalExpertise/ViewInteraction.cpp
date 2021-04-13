@@ -1,7 +1,7 @@
 #include "ViewInteraction.h"
-#include <iostream>
+#include "FileReader.h"
 #include "GrantManagement.h"
-#include "WorkWithInterface.h"
+#include <iostream>
 
 using namespace std;
 
@@ -153,7 +153,7 @@ void ViewInteraction::showRequests()
 		cout<<"Choose request or enter -1 to quit"<<endl;
 		cin>>numberOfRequest;
 		if(numberOfRequest!=-1){
-				printFileData("Database/Requests/"+files[numberOfRequest]);		
+			FileReader::readAndPrintFileData("Database/Requests/"+files[numberOfRequest]);	
 		}
 	}while(numberOfRequest!=-1);
 }

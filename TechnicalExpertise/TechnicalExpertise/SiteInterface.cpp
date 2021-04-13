@@ -1,7 +1,6 @@
 #include "SiteInterface.h"
 #include "AccountManagement.h"
 #include "ApplyTheRequest.h"
-#include "WorkWithInterface.h"
 #include "Profile.h"
 #include "GrantApplicant.h"
 #include "Admin.h"
@@ -9,11 +8,9 @@
 #include "FundOwner.h"
 #include "ViewInteraction.h"
 #include "ViewMessages.h"
-#include <fstream>
-#include <iostream>
 #include <filesystem>
 #include <ctime>
-
+#include "FileReader.h"
 #include "FileWriter.h"
 
 using namespace std;
@@ -77,7 +74,7 @@ void SiteInterface::showMenu()
 					continue;
 				}
 				ViewMessages::succsessfulLogIn();
-				Profile current=readProfile(ID);
+				Profile current=FileReader::readProfile(ID);
 				if(current.getType()==0)
 				{
 					int action;
