@@ -15,4 +15,5 @@ public:
 	static bool CardCheck(string card);
 	static bool MoneyCheck(string money);
 	static bool AmountOfMoneyCheck(string money, float dif);
+	static bool IdCheck(int ID);
 };
