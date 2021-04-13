@@ -26,6 +26,8 @@ void SiteInterface::createDefaultFiles()
 			fs::create_directory(fileNames[i]);
 		}
 	}
+	ofstream accounts("Database/Accounts.txt");
+	accounts.close();
 }
 
 void SiteInterface::showMenu()
@@ -119,34 +121,66 @@ void SiteInterface::showMenu()
 				else if(current.getType()==1)
 				{
 					int action;
+					bool profileIsDeleted=false;
 					ExpertComission currentExpertComission(current);
 					do
 					{
-						cout<<"(0)View the application and evaluate it\n(1)Log out:"<<endl;
+						cout<<"(0)View the application and evaluate it\n(1)Delete profile\n(2)Log out:"<<endl;
 						cin>>action;
 						if(action==0)
 						{
 							currentExpertComission.viewApplicationAndEvaluate();	
 						}
-					}while(action!=1);
-					system("cls");
-					AccountManagement::exitFromProfile(ID);
+						else if(action==1)
+						{
+							cout<<"Are you sure?\n(0)Confirm\n(Any key)No\n";
+							string confirmation;
+							cin>>confirmation;
+							if(confirmation=="0")
+							{
+								AccountManagement::deleteProfile(ID, currentExpertComission.getType());
+								action=2;
+								profileIsDeleted=true;
+							}
+						}
+					}while(action!=2);
+					if(!profileIsDeleted)
+					{
+						system("cls");
+						AccountManagement::exitFromProfile(ID);
+					}
 				}
 				else if(current.getType()==2)
 				{
 					int action;
+					bool profileIsDeleted=false;
 					FundOwner currentFundOwner(current);
 					do
 					{
-						cout<<"(0)View the results of the examination of the application and accept grant\n(1)Log out: ";
+						cout<<"(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
 						cin>>action;
 						if(action==0)
 						{
 							currentFundOwner.ViewExaminationResultsAndAcceptGrant();	
 						}
-					}while(action!=1);
-					system("cls");
-					AccountManagement::exitFromProfile(ID);
+						else if(action==1)
+						{
+							cout<<"Are you sure?\n(0)Confirm\n(Any key)No\n";
+							string confirmation;
+							cin>>confirmation;
+							if(confirmation=="0")
+							{
+								AccountManagement::deleteProfile(ID, currentFundOwner.getType());
+								action=2;
+								profileIsDeleted=true;
+							}
+						}
+					}while(action!=2);
+					if(!profileIsDeleted)
+					{
+						system("cls");
+						AccountManagement::exitFromProfile(ID);
+					}
 				}
 			}
 		}
