@@ -12,4 +12,7 @@ public:
 	static bool LoginCheck(string login);
 	static bool PasswordCheck(string password);
 	static bool DataEmptyCheck(string data,string str);
+	static bool CardCheck(string card);
+	static bool MoneyCheck(string money);
+	static bool AmountOfMoneyCheck(string money, float dif);
 };
