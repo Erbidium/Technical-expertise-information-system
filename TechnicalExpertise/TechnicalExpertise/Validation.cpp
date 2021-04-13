@@ -133,3 +133,63 @@ bool Validation::DataEmptyCheck(string data, string str)
 	}
 	return correct;
 }
+
+bool Validation::CardCheck(string card)
+{
+	bool correct = true;
+	if (card.length() != 16)
+	{
+		cout << endl << "Card number is too short or too long!" << endl;
+		correct = false;
+	}
+	for (int i = 0; i < card.length(); i++)
+	{
+		if (card[i] < 48 || card[i] > 57)
+		{
+			cout << endl << "You entered wrong card number! Please try again!" << endl;
+			correct = false;
+		}
+	}
+	return correct;
+}
+
+bool Validation::MoneyCheck(string money)
+{
+	bool correct = true;
+	int dots = 0;
+	for (int i = 0; i < money.length(); i++)
+	{
+		if (!((money[i] >= 48 && money[i] <= 57) || money[i] == '.'))
+		{
+			correct = false;
+		}
+		if (money[i] == '.')
+		{
+			dots += 1;
+		}
+	}
+	if (!correct || dots > 1)
+	{
+		cout << endl << "You entered wrong amount of money! Please, try again." << endl;
+		correct = false;
+	}
+	return correct;
+}
+
+bool Validation::AmountOfMoneyCheck(string money, float dif)
+{
+	bool correct = true;
+	if (MoneyCheck(money))
+	{
+		if (stof(money) > dif)
+		{
+			cout << endl << "You don't have that much money on your account! Please try again!" << endl;
+			correct = false;
+		}
+	}
+	else
+	{
+		correct = false;
+	}
+	return correct;
+}
