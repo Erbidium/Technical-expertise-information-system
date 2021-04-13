@@ -83,7 +83,7 @@ bool Validation::LoginCheck(string login)
 	return correct;
 }
 
-bool Validation::IdCheck(int ID)
+bool Validation::IDCheck(int ID)
 {
 	bool correct = true;
 	ifstream inFile("Database/Accounts.txt");

@@ -7,6 +7,7 @@
 #include <fstream>
 #include <filesystem>
 #include "FileReader.h"
+#include "Validation.h"
 
 using namespace std;
 namespace fs = filesystem;
@@ -56,6 +57,10 @@ void AccountManagement::deleteProfile(int ID, int type)
 void AccountManagement::registerProfile(int type)
 {
 	int profileID=rand()%90000+10000;
+	while(!Validation::IDCheck(profileID))
+	{
+		profileID=rand()%90000+10000;
+	}
 	ApplyTheRegistration registrationController;
 	Profile newProfile = ViewInteraction::createProfi(profileID, type);
 	registrationController.setProfile(newProfile);
