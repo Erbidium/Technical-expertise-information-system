@@ -34,6 +34,10 @@ string Application::getFilePath()const
 {
 	return filePath;
 }
+string Application::getLink()const
+{
+	return link;
+}
 
 void Application::setName(const string & ownerName)
 {
@@ -63,4 +67,8 @@ void Application::setReview(const string& comissionReview)
 void Application::setFilePath(const string& filePath)
 {
 	this-> filePath= filePath;
+}
+void Application::setLink(const string& link)
+{
+	this->link = link;
 }

@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
-using namespace std;
+#include "Profile.h"
 
 class FileReader
 {
 public:
 	static int readID(std::string login, std::string password);
 	static float readMoney(int ID);
-	static void readLoginAndPassword(int ID, string &login, string &password);
+	static void readLoginAndPassword(int ID, std::string &login, std::string &password);
+	static void readAndPrintFileData(std::string name);
+	static Profile readProfile(int ID);
 };
 

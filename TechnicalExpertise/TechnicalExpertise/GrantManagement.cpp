@@ -3,7 +3,10 @@
 #include "ViewInteraction.h"
 #include <iostream>
 #include <fstream>
+
+#include "FileWriter.h"
 #include "ViewInteraction.h"
+#include "ViewMessages.h"
 #include "Validation.h"
 using namespace std;
 
@@ -26,9 +29,7 @@ void GrantManagement::transferMoney(int ID)
 	ifstream inFile2(pathToProfileBalance);
 	inFile2 >> sum;
 	inFile2.close();
-	ofstream outFile2(pathToProfileBalance);
-	outFile2 << sum + stof(money);
-	outFile2.close();
+	FileWriter::writeMoney(pathToProfileBalance, money, sum);
 }
 
 void GrantManagement::transferToBank(int ID)
@@ -50,8 +51,6 @@ void GrantManagement::transferToBank(int ID)
 		ViewInteraction::inputValue("How much money are you transfering?", money);
 	} 
 	while (!Validation::AmountOfMoneyCheck(money, dif));
-	ofstream outFile2(pathToProfileBalance);
-	outFile2 << dif - stof(money);
-	outFile2.close();
-	cout << endl << "Successfully transfered!" << endl;
+	FileWriter::writeDifMoney(pathToProfileBalance, money, dif);
+	ViewMessages::successfulTransfer();
 }

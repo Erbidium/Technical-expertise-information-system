@@ -1,10 +1,10 @@
-#include "FundOwner.h"
 #include <filesystem>
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include "FundOwner.h"
+#include "FileReader.h"
 #include "GrantManagement.h"
-#include "WorkWithInterface.h"
 #include "ViewInteraction.h"
 #include "ViewMessages.h"
 
@@ -28,7 +28,7 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 		vector <vector<string>> applicationNames(2);
 		ViewInteraction::viewApplicationsAndPickOwner(applicationNames, numberOfApplication);
 		if(numberOfApplication!=-1){
-			printFileData(applicationNames[1][numberOfApplication]);
+			FileReader::readAndPrintFileData(applicationNames[1][numberOfApplication]);
 			createOwnersReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
 		}
 	}while(numberOfApplication!=-1);

@@ -1,7 +1,7 @@
 #include "ViewInteraction.h"
-#include <iostream>
+#include "FileReader.h"
 #include "GrantManagement.h"
-#include "WorkWithInterface.h"
+#include <iostream>
 
 using namespace std;
 
@@ -43,19 +43,19 @@ string ViewInteraction::inputApplicationRating()
 	return rating;
 }
 bool ViewInteraction::checkIfYouWannaRewrite(string word) {
-	cout << endl << "Would you like to rewrite your " << word << "(0) or leave(1)?" << endl;
+	cout << "Would you like to rewrite your " << word << "(0) or leave(1)?" << endl;
 	bool leave;
 	cin >> leave;
 	return leave;
 }
-void ViewInteraction::createApplication(int& tempAge, string& tempData, string& name,string& filePath) {
-	cout << endl << "Input your age:" << endl;
+void ViewInteraction::createApplication(int& tempAge, string& tempData, string& name,string& filePath,string& link) {
+	cout << "Input your age:" << endl;
 	cin >> tempAge;
-	cout << endl << "Input your application's data:" << endl;
+	cout << "Input your application's data:" << endl;
 	cin.ignore();
 	getline(cin, tempData);
 	if (name == "") {
-		cout << endl << "Input your application's name:" << endl;
+		cout << "Input your application's name:" << endl;
 		getline(cin, name);
 	}
 	bool wannaAdd;
@@ -68,15 +68,28 @@ void ViewInteraction::createApplication(int& tempAge, string& tempData, string& 
 		}
 		getline(cin, filePath);
 	}
+	bool wannaAddLink;
+	cout << "Do you want to add sine links to your application? Yes(1) No(0)" << endl;
+	cin >> wannaAddLink;
+	if (wannaAddLink) {
+		cout << "Input the full link. It can be your gitHub repositoy, etc. Example: https://github.com/ErnestoFolting/ArithmeticCalculations";
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin, link);
+	}
+	else {
+		link = "-";
+	}
 }
 Request ViewInteraction::createRequest() {
 	Request requestData;
 	string tempContent;
 	string tempName;
 	string tempEmail;
-	cout << endl << "Input your name: " << endl;
+	cout << "Input your name: " << endl;
 	cin >> tempName;
-	cout << endl << "Input your email: " << endl;
+	cout << "Input your email: " << endl;
 	cin >> tempEmail;
 	cout << endl << "Input your request: " << endl;
 	cin.ignore();
@@ -140,7 +153,7 @@ void ViewInteraction::showRequests()
 		cout<<"Choose request or enter -1 to quit"<<endl;
 		cin>>numberOfRequest;
 		if(numberOfRequest!=-1){
-				printFileData("Database/Requests/"+files[numberOfRequest]);		
+			FileReader::readAndPrintFileData("Database/Requests/"+files[numberOfRequest]);	
 		}
 	}while(numberOfRequest!=-1);
 }
@@ -214,3 +227,36 @@ void ViewInteraction::inputValue(string str, string& value)
 	cout << endl << str << endl;
 	cin >> value;
 }
+void ViewInteraction::logIn(string& login, string& password) {
+	cout << "Enter your login:\n";
+	cin >> login;
+	cout << "Enter your password:\n";
+	cin >> password;
+}
+void ViewInteraction::startPick(int& choice) {
+	cout << "(0)Login\n(1)Register\n(2)Leave request for registration\n(3)Quit:\n";
+	cin >> choice;
+}
+
+void ViewInteraction::adminPick(int& action) {
+	cout << "Choose action!" << endl;
+	cout << "(0)View requests\n(1)Register profile\n(2)Log out:\n";
+	cin >> action;
+}
+void ViewInteraction::grantApplicantPick(int& action) {
+	cout << "(0)Create an application\n(1)Check the status of application\n(2)Delete the application\n(3)EditApplication\n(4)Delete profile\n(5)Check your Balance\n(6)Edit profile\n(7)Log out:" << endl;
+	cin >> action;
+}
+void ViewInteraction::confirmation(string& confirmation) {
+	cout << "Are you sure?\n(0)Confirm\n(Any key)No\n";
+	cin >> confirmation;
+}
+void ViewInteraction::comissionPick(int& action) {
+	cout << "(0)View the application and evaluate it\n(1)Delete profile\n(2)Log out:" << endl;
+	cin >> action;
+}
+void ViewInteraction::founderPick(int& action) {
+	cout << "(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
+	cin >> action;
+}
+

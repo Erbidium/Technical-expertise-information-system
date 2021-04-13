@@ -2,7 +2,7 @@
 #include "ApplyTheApplication.h"
 #include <vector>
 #include <filesystem>
-#include <fstream>
+#include "FileWriter.h"
 #include "ViewInteraction.h"
 
 using namespace std;
@@ -29,6 +29,7 @@ void GrantApplicant::checkStatusOfApplication()
 	int counter=0;
 	vector <vector<string>> applicationNames(2);
 	ViewInteraction::applicationStatusOut(counter, applicationNames, profileID);
+	ViewInteraction::clearScreen();
 }
 
 void GrantApplicant::deleteApplication()
@@ -41,6 +42,7 @@ void GrantApplicant::deleteApplication()
 			remove(applicationNames[1][numberOfApplication].data());
 		}
 	}while(numberOfApplication!=-1);
+	ViewInteraction::clearScreen();
 }
 
 void GrantApplicant::editApplication()
@@ -50,7 +52,7 @@ void GrantApplicant::editApplication()
 		vector <vector<string>> applicationNames(2);
 		ViewInteraction::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
 		if (numberOfApplication != -1) {
-			ofstream outFile(applicationNames[1][numberOfApplication], ios::trunc);
+			FileWriter::clearFileData(applicationNames[1][numberOfApplication]);
 			ApplyTheApplication tempApplication;
 			int position = applicationNames[0][numberOfApplication].find(".txt");
 			string copy = applicationNames[0][numberOfApplication];
@@ -58,6 +60,7 @@ void GrantApplicant::editApplication()
 			tempApplication.setApplication(profileID, copy);
 		}
 	} while (numberOfApplication != -1);
+	ViewInteraction::clearScreen();
 }
 
 void GrantApplicant::checkBalance()

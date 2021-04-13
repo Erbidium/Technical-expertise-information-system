@@ -3,6 +3,7 @@
 #include "Validation.h"
 #include "ViewInteraction.h"
 #include "ViewMessages.h"
+#include "FileWriter.h"
 #include <fstream>
 #include <filesystem>
 
@@ -11,12 +12,9 @@ namespace fs=std::filesystem;
 
 void ApplyTheRegistration::profileManager()
 {
-	ofstream Accounts("Database/Accounts.txt", ios::app);
-	ofstream outProfile("Database/Profiles/"+std::to_string(profileData.getID())+".txt");
-	ofstream outProfileBalance("Database/ProfilesBalance/" + to_string(profileData.getID()) + ".txt");
-	Accounts<<profileData.getPassword()<<" "<<profileData.getLogin()<<" "<<profileData.getID()<<"\n";
-	outProfile << profileData.getName() << " " << profileData.getEmail() << " " << profileData.getType() << "\n";
-	outProfileBalance << profileData.getBalance() << "\n";
+	FileWriter::writeProfileData(profileData);
+	FileWriter::writeProfileBalance(profileData);
+	FileWriter::writeLoginData(profileData);
 	if(profileData.getType()==0)
 	{
 		string path = "Database/Applications/"+to_string(profileData.getID());
@@ -25,9 +23,6 @@ void ApplyTheRegistration::profileManager()
 			fs::create_directory(path);
 		}
 	}
-	outProfile.close();
-	Accounts.close();
-	outProfileBalance.close();
 }
 
 void ApplyTheRegistration::profileDataCheck()

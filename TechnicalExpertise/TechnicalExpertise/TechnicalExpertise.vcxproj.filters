@@ -45,9 +45,6 @@
     <ClCompile Include="ApplyTheRequest.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="WorkWithInterface.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Admin.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -102,9 +99,6 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="ApplyTheRequest.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="WorkWithInterface.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Admin.h">

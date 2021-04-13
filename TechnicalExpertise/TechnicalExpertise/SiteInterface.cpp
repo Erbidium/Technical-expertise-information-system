@@ -1,18 +1,17 @@
 #include "SiteInterface.h"
 #include "AccountManagement.h"
 #include "ApplyTheRequest.h"
-#include "WorkWithInterface.h"
 #include "Profile.h"
 #include "GrantApplicant.h"
 #include "Admin.h"
 #include "ExpertComission.h"
 #include "FundOwner.h"
-#include <fstream>
-#include <iostream>
+#include "ViewInteraction.h"
+#include "ViewMessages.h"
 #include <filesystem>
 #include <ctime>
-
-#include "ViewInteraction.h"
+#include "FileReader.h"
+#include "FileWriter.h"
 
 using namespace std;
 namespace fs = filesystem;
@@ -30,8 +29,7 @@ void SiteInterface::createDefaultFiles()
 	}
 	if(!fs::is_regular_file("Database/Accounts.txt"))
 	{
-		ofstream accounts("Database/Accounts.txt");
-		accounts.close();
+		FileWriter::writeEmptyAccounts();
 	}
 }
 
@@ -40,25 +38,22 @@ void SiteInterface::showMenu()
 	int choice;
 	do
 	{
-		cout<<"(0)Login\n(1)Register\n(2)Leave request for registration\n(3)Quit:\n";
-		cin>>choice;
+		ViewInteraction::startPick(choice);
+		ViewInteraction::clearScreen();
 		switch(choice)
 		{
 		case 0: {
 			string login, password;
-			cout<<"Enter your login:\n";
-			cin>>login;
-			cout<<"Enter your password:\n";
-			cin>>password;
+			ViewInteraction::logIn(login, password);
+			ViewInteraction::clearScreen();
 			if((password=="admin")&&(login=="admin"))
 			{
 				Admin admin;
 				int action;
 				do
 				{
-					cout<<"Choose action!"<<endl;
-					cout<<"(0)View requests\n(1)Register profile\n(2)Log out:\n";
-					cin>>action;
+					ViewInteraction::adminPick(action);
+					ViewInteraction::clearScreen();
 					switch(action)
 					{
 					case 0:
@@ -67,8 +62,6 @@ void SiteInterface::showMenu()
 					case 1:
 						admin.registerProfile();
 					break;
-					case 3:
-						choice=3;
 					}
 				}while(action!=2);
 				ViewInteraction::clearScreen();
@@ -77,11 +70,11 @@ void SiteInterface::showMenu()
 			{
 				int ID=AccountManagement::enterToProfile(login, password);
 				if (ID == -1) {
-					cout << "Entered incorrect login or password\n";
+					ViewMessages::unsuccsessfulLogIn();
 					continue;
 				}
-				cout<<"Succesfully logined!"<<endl;
-				Profile current=readProfile(ID);
+				ViewMessages::succsessfulLogIn();
+				Profile current=FileReader::readProfile(ID);
 				if(current.getType()==0)
 				{
 					int action;
@@ -89,8 +82,8 @@ void SiteInterface::showMenu()
 					GrantApplicant currentGrantApplicant(current);
 					do
 					{
-						cout<<"(0)Create an application\n(1)Check the status of application\n(2)Delete the application\n(3)EditApplication\n(4)Delete profile\n(5)Check your Balance\n(6)Edit profile\n(7)Log out:"<<endl;
-						cin>>action;
+						ViewInteraction::grantApplicantPick(action);
+						ViewInteraction::clearScreen();
 						if(action==0)
 							currentGrantApplicant.createApplication();
 						else if(action==1)
@@ -101,9 +94,8 @@ void SiteInterface::showMenu()
 							currentGrantApplicant.editApplication();
 						else if(action==4)
 						{
-							cout<<"Are you sure?\n(0)Confirm\n(Any key)No\n";
 							string confirmation;
-							cin>>confirmation;
+							ViewInteraction::confirmation(confirmation);
 							if(confirmation=="0")
 							{
 								AccountManagement::deleteProfile(ID, currentGrantApplicant.getType());
@@ -130,17 +122,16 @@ void SiteInterface::showMenu()
 					ExpertComission currentExpertComission(current);
 					do
 					{
-						cout<<"(0)View the application and evaluate it\n(1)Delete profile\n(2)Log out:"<<endl;
-						cin>>action;
+						ViewInteraction::comissionPick(action);
+						ViewInteraction::clearScreen();
 						if(action==0)
 						{
 							currentExpertComission.viewApplicationAndEvaluate();	
 						}
 						else if(action==1)
 						{
-							cout<<"Are you sure?\n(0)Confirm\n(Any key)No\n";
 							string confirmation;
-							cin>>confirmation;
+							ViewInteraction::confirmation(confirmation);
 							if(confirmation=="0")
 							{
 								AccountManagement::deleteProfile(ID, currentExpertComission.getType());
@@ -162,17 +153,16 @@ void SiteInterface::showMenu()
 					FundOwner currentFundOwner(current);
 					do
 					{
-						cout<<"(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
-						cin>>action;
+						ViewInteraction::founderPick(action);
+						ViewInteraction::clearScreen();
 						if(action==0)
 						{
 							currentFundOwner.ViewExaminationResultsAndAcceptGrant();	
 						}
 						else if(action==1)
 						{
-							cout<<"Are you sure?\n(0)Confirm\n(Any key)No\n";
 							string confirmation;
-							cin>>confirmation;
+							ViewInteraction::confirmation(confirmation);
 							if(confirmation=="0")
 							{
 								AccountManagement::deleteProfile(ID, currentFundOwner.getType());

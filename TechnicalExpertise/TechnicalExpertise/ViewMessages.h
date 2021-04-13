@@ -13,5 +13,8 @@ public:
 	static void requestIsCorrect();
 	static void successfulEdit();
 	static void notconfirmed();
+	static void successfulTransfer();
+	static void unsuccsessfulLogIn();
+	static void succsessfulLogIn();
 };
 
