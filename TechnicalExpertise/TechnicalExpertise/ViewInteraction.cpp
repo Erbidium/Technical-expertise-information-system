@@ -48,7 +48,7 @@ bool ViewInteraction::checkIfYouWannaRewrite(string word) {
 	cin >> leave;
 	return leave;
 }
-void ViewInteraction::createApplication(int& tempAge, string& tempData, string& name,string& filePath) {
+void ViewInteraction::createApplication(int& tempAge, string& tempData, string& name,string& filePath,string& link) {
 	cout << "Input your age:" << endl;
 	cin >> tempAge;
 	cout << "Input your application's data:" << endl;
@@ -67,6 +67,19 @@ void ViewInteraction::createApplication(int& tempAge, string& tempData, string& 
 			cin.ignore();
 		}
 		getline(cin, filePath);
+	}
+	bool wannaAddLink;
+	cout << "Do you want to add sine links to your application? Yes(1) No(0)" << endl;
+	cin >> wannaAddLink;
+	if (wannaAddLink) {
+		cout << "Input the full link. It can be your gitHub repositoy, etc. Example: https://github.com/ErnestoFolting/ArithmeticCalculations";
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin, link);
+	}
+	else {
+		link = "-";
 	}
 }
 Request ViewInteraction::createRequest() {

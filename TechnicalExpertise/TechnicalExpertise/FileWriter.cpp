@@ -2,6 +2,7 @@
 #include "Request.h"
 #include <fstream>
 #include <iostream>
+#include <ctime>
 #include <filesystem>
 #include "Application.h"
 #include "Profile.h"
@@ -28,10 +29,12 @@ void FileWriter::writeApplication(int ID, Application applicationData)
 	int tempAge = applicationData.getAge();
 	string tempData = applicationData.getContent();
 	string tempName = applicationData.getName();
+	string tempLink = applicationData.getLink();
 	ofstream outFile("Database/Applications/" + to_string(ID) + "/" + tempName + ".txt");
 	outFile << "Name of application: " << tempName << endl;
 	outFile << "My age: " << tempAge << endl;
 	outFile << "Application's data: " << applicationData.getContent() << endl;
+	outFile << "My link: " << tempLink << endl;
 	outFile << "Date: " << tempDate << endl;
 	outFile.close();
 }

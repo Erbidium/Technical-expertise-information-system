@@ -39,10 +39,12 @@ void ApplyTheApplication::setApplication(int ID,string name) {
 	int tempAge;
 	string tempData;
 	string filePath;
-	ViewInteraction::createApplication(tempAge,tempData,name, filePath);
+	string link;
+	ViewInteraction::createApplication(tempAge,tempData,name, filePath, link);
 	applicationData.setAge(tempAge);
 	applicationData.setContent(tempData);
 	applicationData.setName(name);
 	applicationData.setFilePath(filePath);
+	applicationData.setLink(link);
 	applicationDataCheck(ID);
 }
