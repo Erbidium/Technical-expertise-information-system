@@ -43,7 +43,7 @@ void FileWriter::writeApplication(int ID, Application applicationData)
 void FileWriter::writeAddedFileToApplication(int ID, Application applicationData)
 {
 	if (applicationData.getFilePath().length()>0) {
-		ofstream outFile("Database/Applications/" + to_string(ID) + "/" + applicationData.getName() + ".txt");
+		ofstream outFile("Database/Applications/" + to_string(ID) + "/" + applicationData.getName() + ".txt", ios::app);
 		ifstream inFile(applicationData.getFilePath());
 		if (!inFile) {
 			ViewMessages::cannotOpenFileToAddToApplication();
