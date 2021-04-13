@@ -83,6 +83,32 @@ bool Validation::LoginCheck(string login)
 	return correct;
 }
 
+bool Validation::IdCheck(int ID)
+{
+	bool correct = true;
+	ifstream inFile("Database/Accounts.txt");
+	if (!inFile) {
+		cout << endl << "Error! Can't open a file with accounts. Please try again." << endl;
+		correct = false;
+	}
+	else {
+		while (!inFile.eof())
+		{
+			int tempID;
+			string buffer;
+			inFile >> buffer;
+			inFile >> buffer;
+			inFile >> tempID;
+			if (tempID == ID)
+			{
+				correct = false;
+			}
+		}
+	}
+	inFile.close();
+	return correct;
+}
+
 bool Validation::PasswordCheck(string password)
 {
 	bool correct = true; 
