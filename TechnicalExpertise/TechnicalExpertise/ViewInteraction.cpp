@@ -199,3 +199,8 @@ void ViewInteraction::inputCardNumber(string& card) {
 	cout << endl << "Input your card number:" << endl;
 	cin >> card;
 }
+
+void ViewInteraction::clearScreen()
+{
+	system("cls");
+}

@@ -24,4 +24,5 @@ public:
 	static void outBalance(int profileID);
 	static void inputAmountOfMoney(string& money);
 	static void inputCardNumber(string& card);
+	static void clearScreen();
 };
