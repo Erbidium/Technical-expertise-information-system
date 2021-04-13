@@ -37,7 +37,7 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 void createOwnersReview(string path, string name) {
 	bool conclusion = ViewInteraction::createConclusionOwner();
 	string s;
-	ifstream outFile;
+	ifstream outFile(path);
 	if (!outFile) {
 		ViewMessages::cannotOpenFileToWriteConclusion();
 	}

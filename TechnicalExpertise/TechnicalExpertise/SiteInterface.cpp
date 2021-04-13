@@ -26,8 +26,11 @@ void SiteInterface::createDefaultFiles()
 			fs::create_directory(fileNames[i]);
 		}
 	}
-	ofstream accounts("Database/Accounts.txt");
-	accounts.close();
+	if(!fs::is_regular_file("Database/Accounts.txt"))
+	{
+		ofstream accounts("Database/Accounts.txt");
+		accounts.close();
+	}
 }
 
 void SiteInterface::showMenu()
