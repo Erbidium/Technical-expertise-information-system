@@ -63,7 +63,7 @@ void ViewMessages::successfulEdit()
 	cout <<"Successfully edited!" << endl;
 }
 
-void ViewMessages::notconfirmed()
+void ViewMessages::notConfirmed()
 {
 	cout << "verification not confirmed" << endl;
 }

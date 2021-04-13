@@ -115,7 +115,7 @@ void AccountManagement::editLogin(int ID)
 	}
 	else
 	{
-		ViewMessages::notconfirmed();
+		ViewMessages::notConfirmed();
 	}
 }
 
@@ -152,7 +152,7 @@ void AccountManagement::editPassword(int ID)
 	}
 	else
 	{
-		ViewMessages::notconfirmed();
+		ViewMessages::notConfirmed();
 	}
 }
 
@@ -184,7 +184,7 @@ void AccountManagement::editName(int ID)
 	}
 	else
 	{
-		ViewMessages::notconfirmed();
+		ViewMessages::notConfirmed();
 	}
 }
 
@@ -216,6 +216,6 @@ void AccountManagement::editEmail(int ID)
 	}
 	else
 	{
-		ViewMessages::notconfirmed();
+		ViewMessages::notConfirmed();
 	}
 }

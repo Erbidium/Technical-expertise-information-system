@@ -12,7 +12,7 @@ public:
 	static void registrationIsCorrect();
 	static void requestIsCorrect();
 	static void successfulEdit();
-	static void notconfirmed();
+	static void notConfirmed();
 	static void successfulTransfer();
 	static void unsuccsessfulLogIn();
 	static void succsessfulLogIn();
