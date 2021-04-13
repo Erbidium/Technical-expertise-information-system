@@ -7,12 +7,11 @@
 #include "Admin.h"
 #include "ExpertComission.h"
 #include "FundOwner.h"
+#include "ViewInteraction.h"
 #include <fstream>
 #include <iostream>
 #include <filesystem>
 #include <ctime>
-
-#include "ViewInteraction.h"
 
 using namespace std;
 namespace fs = filesystem;
@@ -42,6 +41,7 @@ void SiteInterface::showMenu()
 	{
 		cout<<"(0)Login\n(1)Register\n(2)Leave request for registration\n(3)Quit:\n";
 		cin>>choice;
+		ViewInteraction::clearScreen();
 		switch(choice)
 		{
 		case 0: {
@@ -50,6 +50,7 @@ void SiteInterface::showMenu()
 			cin>>login;
 			cout<<"Enter your password:\n";
 			cin>>password;
+			ViewInteraction::clearScreen();
 			if((password=="admin")&&(login=="admin"))
 			{
 				Admin admin;
@@ -59,6 +60,7 @@ void SiteInterface::showMenu()
 					cout<<"Choose action!"<<endl;
 					cout<<"(0)View requests\n(1)Register profile\n(2)Log out:\n";
 					cin>>action;
+					ViewInteraction::clearScreen();
 					switch(action)
 					{
 					case 0:
@@ -67,8 +69,6 @@ void SiteInterface::showMenu()
 					case 1:
 						admin.registerProfile();
 					break;
-					case 3:
-						choice=3;
 					}
 				}while(action!=2);
 				ViewInteraction::clearScreen();
@@ -91,6 +91,7 @@ void SiteInterface::showMenu()
 					{
 						cout<<"(0)Create an application\n(1)Check the status of application\n(2)Delete the application\n(3)EditApplication\n(4)Delete profile\n(5)Check your Balance\n(6)Edit profile\n(7)Log out:"<<endl;
 						cin>>action;
+						ViewInteraction::clearScreen();
 						if(action==0)
 							currentGrantApplicant.createApplication();
 						else if(action==1)
@@ -132,6 +133,7 @@ void SiteInterface::showMenu()
 					{
 						cout<<"(0)View the application and evaluate it\n(1)Delete profile\n(2)Log out:"<<endl;
 						cin>>action;
+						ViewInteraction::clearScreen();
 						if(action==0)
 						{
 							currentExpertComission.viewApplicationAndEvaluate();	
@@ -164,6 +166,7 @@ void SiteInterface::showMenu()
 					{
 						cout<<"(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
 						cin>>action;
+						ViewInteraction::clearScreen();
 						if(action==0)
 						{
 							currentFundOwner.ViewExaminationResultsAndAcceptGrant();	

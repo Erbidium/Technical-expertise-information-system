@@ -50,6 +50,7 @@ void ApplyTheApplication::applicationDataCheck(int ID) {
 	}
 	if (correct)
 	{
+		ViewInteraction::clearScreen();
 		ViewMessages::applicationIsCorrect();
 		applicationsManager(ID);
 	}

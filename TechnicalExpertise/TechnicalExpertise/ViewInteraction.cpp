@@ -43,19 +43,19 @@ string ViewInteraction::inputApplicationRating()
 	return rating;
 }
 bool ViewInteraction::checkIfYouWannaRewrite(string word) {
-	cout << endl << "Would you like to rewrite your " << word << "(0) or leave(1)?" << endl;
+	cout << "Would you like to rewrite your " << word << "(0) or leave(1)?" << endl;
 	bool leave;
 	cin >> leave;
 	return leave;
 }
 void ViewInteraction::createApplication(int& tempAge, string& tempData, string& name,string& filePath) {
-	cout << endl << "Input your age:" << endl;
+	cout << "Input your age:" << endl;
 	cin >> tempAge;
-	cout << endl << "Input your application's data:" << endl;
+	cout << "Input your application's data:" << endl;
 	cin.ignore();
 	getline(cin, tempData);
 	if (name == "") {
-		cout << endl << "Input your application's name:" << endl;
+		cout << "Input your application's name:" << endl;
 		getline(cin, name);
 	}
 	bool wannaAdd;
@@ -74,9 +74,9 @@ Request ViewInteraction::createRequest() {
 	string tempContent;
 	string tempName;
 	string tempEmail;
-	cout << endl << "Input your name: " << endl;
+	cout << "Input your name: " << endl;
 	cin >> tempName;
-	cout << endl << "Input your email: " << endl;
+	cout << "Input your email: " << endl;
 	cin >> tempEmail;
 	cout << endl << "Input your request: " << endl;
 	cin.ignore();
