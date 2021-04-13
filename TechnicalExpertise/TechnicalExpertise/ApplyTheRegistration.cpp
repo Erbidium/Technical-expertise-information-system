@@ -3,7 +3,6 @@
 #include "Validation.h"
 #include "ViewInteraction.h"
 #include "ViewMessages.h"
-#include <iostream>
 #include <fstream>
 #include <filesystem>
 
@@ -52,7 +51,7 @@ void ApplyTheRegistration::profileDataCheck()
 	}
 	if (correct)
 	{
-		system("cls");
+		ViewInteraction::clearScreen();
 		ViewMessages::registrationIsCorrect();
 		profileManager();
 	}
@@ -65,7 +64,7 @@ void ApplyTheRegistration::profileDataCheck()
 		}
 		else
 		{
-			system("cls");
+			ViewInteraction::clearScreen();
 		}
 	}
 }

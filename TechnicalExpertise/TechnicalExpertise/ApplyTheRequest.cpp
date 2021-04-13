@@ -34,7 +34,7 @@ void ApplyTheRequest::requestDataCheck()
 	}
 	if (correct)
 	{
-		system("cls");
+		ViewInteraction::clearScreen();
 		ViewMessages::requestIsCorrect();
 		requestManager();
 	}
@@ -47,7 +47,7 @@ void ApplyTheRequest::requestDataCheck()
 		}
 		else
 		{
-			system("cls");
+			ViewInteraction::clearScreen();
 		}
 	}
 }

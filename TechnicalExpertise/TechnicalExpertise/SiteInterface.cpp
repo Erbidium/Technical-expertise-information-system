@@ -12,6 +12,8 @@
 #include <filesystem>
 #include <ctime>
 
+#include "ViewInteraction.h"
+
 using namespace std;
 namespace fs = filesystem;
 
@@ -69,7 +71,7 @@ void SiteInterface::showMenu()
 						choice=3;
 					}
 				}while(action!=2);
-				system("cls");
+				ViewInteraction::clearScreen();
 			}
 			else
 			{
@@ -116,7 +118,7 @@ void SiteInterface::showMenu()
 					}while(action!=7);
 					if(!profileIsDeleted)
 					{
-						system("cls");
+						ViewInteraction::clearScreen();
 						AccountManagement::exitFromProfile(ID);
 					}
 					
@@ -149,7 +151,7 @@ void SiteInterface::showMenu()
 					}while(action!=2);
 					if(!profileIsDeleted)
 					{
-						system("cls");
+						ViewInteraction::clearScreen();
 						AccountManagement::exitFromProfile(ID);
 					}
 				}
@@ -181,7 +183,7 @@ void SiteInterface::showMenu()
 					}while(action!=2);
 					if(!profileIsDeleted)
 					{
-						system("cls");
+						ViewInteraction::clearScreen();
 						AccountManagement::exitFromProfile(ID);
 					}
 				}

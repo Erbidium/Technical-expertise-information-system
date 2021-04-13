@@ -1,6 +1,5 @@
 #include "ViewInteraction.h"
 #include <iostream>
-
 #include "GrantManagement.h"
 #include "WorkWithInterface.h"
 
