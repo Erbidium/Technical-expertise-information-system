@@ -13,7 +13,7 @@ public:
 	static int inputAccTypeForRegistration();
 	static string inputApplicationRating();
 	static bool checkIfYouWannaRewrite(string word);
-	static void createApplication(int& tempAge, string& tempData, string& name, string& filePath);
+	static void createApplication(int& tempAge, string& tempData, string& name, string& filePath, string& link);
 	static Request createRequest();
 	static int viewApplicationsAndPickComission(vector <vector<string>>& applicationNames, int& numberOfApplication);
 	static int viewApplicationsAndPickOwner(vector <vector<string>>& applicationNames, int& numberOfApplication);
