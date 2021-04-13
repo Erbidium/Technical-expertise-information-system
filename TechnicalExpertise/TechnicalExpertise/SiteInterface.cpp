@@ -14,6 +14,8 @@
 #include <filesystem>
 #include <ctime>
 
+#include "FileWriter.h"
+
 using namespace std;
 namespace fs = filesystem;
 
@@ -30,8 +32,7 @@ void SiteInterface::createDefaultFiles()
 	}
 	if(!fs::is_regular_file("Database/Accounts.txt"))
 	{
-		ofstream accounts("Database/Accounts.txt");
-		accounts.close();
+		FileWriter::writeEmptyAccounts();
 	}
 }
 

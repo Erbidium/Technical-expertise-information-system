@@ -3,6 +3,8 @@
 #include <vector>
 #include <filesystem>
 #include <fstream>
+
+#include "FileWriter.h"
 #include "ViewInteraction.h"
 
 using namespace std;
@@ -52,7 +54,7 @@ void GrantApplicant::editApplication()
 		vector <vector<string>> applicationNames(2);
 		ViewInteraction::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
 		if (numberOfApplication != -1) {
-			ofstream outFile(applicationNames[1][numberOfApplication], ios::trunc);
+			FileWriter::clearFileData(applicationNames[1][numberOfApplication]);
 			ApplyTheApplication tempApplication;
 			int position = applicationNames[0][numberOfApplication].find(".txt");
 			string copy = applicationNames[0][numberOfApplication];
