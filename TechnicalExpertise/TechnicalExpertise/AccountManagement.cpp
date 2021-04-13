@@ -1,42 +1,25 @@
 #include "AccountManagement.h"
 #include "ApplyTheRegistration.h"
 #include "Profile.h"
-#include "View.h"
+#include "ViewInteraction.h"
+#include "ViewMessages.h"
 #include "WorkWithInterface.h"
-#include <iostream>
 #include <fstream>
 #include <filesystem>
+#include "FileReader.h"
 
 using namespace std;
 namespace fs = filesystem;
 
 int AccountManagement::enterToProfile(string login, string password)
 {
-	int ID = -1;
-	ifstream inFile("Database/Accounts.txt");
-	if (!inFile) {
-		cout << "Can't open a file :-(";
-	}
-	else {
-		while (!inFile.eof()) {
-			string tempPassword;
-			string tempLogin;
-			int tempID;
-			inFile >> tempPassword;
-			inFile >> tempLogin;
-			inFile >> tempID;
-			if (tempPassword == password && tempLogin == login) {
-				ID = tempID;
-			}
-		}
-	}
-	inFile.close();
+	int ID=FileReader::readID(login, password);
 	return ID;
 }
 
 void AccountManagement::exitFromProfile(int ID)
 {
-	cout<<"You are logged out!"<<endl;
+	ViewMessages::successfulLogOut();
 }
 
 void AccountManagement::deleteProfile(int ID, int type)
@@ -65,7 +48,7 @@ void AccountManagement::deleteProfile(int ID, int type)
 		newAccounts.close();
 		fs::remove("Database/Accounts.txt");
 		rename("Database/NewAccounts.txt", "Database/Accounts.txt");
-		cout<<"Your profile is deleted!"<<endl;
+		ViewMessages::successfulProfileDelete();
 	}
 	
 }
@@ -74,7 +57,7 @@ void AccountManagement::registerProfile(int type)
 {
 	int profileID=rand()%90000+10000;
 	ApplyTheRegistration registrationController;
-	Profile newProfile = View::createProfi(profileID, type);
+	Profile newProfile = ViewInteraction::createProfi(profileID, type);
 	registrationController.setProfile(newProfile);
 	registrationController.profileDataCheck();
 }
@@ -85,6 +68,6 @@ void AccountManagement::editProfile(int ID) {
 	fs::remove("Database/Profiles/" + to_string(ID) + ".txt");
 	ofstream outFile("Database/Profiles/" + to_string(ID) + ".txt");
 	string name, email;
-	View::inputNameEmail(name,email);
+	ViewInteraction::inputNameEmail(name,email);
 	outFile << name << " " << email << " " << tempObject.getType() << "\n";
 }

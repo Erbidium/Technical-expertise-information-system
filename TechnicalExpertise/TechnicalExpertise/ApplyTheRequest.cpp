@@ -1,22 +1,20 @@
-#include <fstream>
-#include "Validation.h";
+#include "Validation.h"
 #include "ApplyTheRequest.h"
-#include "View.h"
+#include "FileWriter.h"
+#include "ViewInteraction.h"
+#include "ViewMessages.h"
+
 using namespace std;
 
 void ApplyTheRequest::setRequest()
 {
-	requestData = View::createRequest();
+	requestData = ViewInteraction::createRequest();
 	requestDataCheck();
 }
 
 void ApplyTheRequest::requestManager()
 {
-	ofstream outFile("Database/Requests/" + requestData.getName() + ".txt");
-	outFile << "My name: " << requestData.getName() << endl;
-	outFile << "My email: " << requestData.getEmail() << endl;
-	outFile << "Request Content: " << requestData.getContent() << endl;
-	outFile.close();
+	FileWriter::writeRequestToFile(requestData);
 }
 
 void ApplyTheRequest::requestDataCheck()
@@ -37,12 +35,12 @@ void ApplyTheRequest::requestDataCheck()
 	if (correct)
 	{
 		system("cls");
-		cout << "Yout request is correct!" << endl;
+		ViewMessages::requestIsCorrect();
 		requestManager();
 	}
 	else
 	{
-		bool leave = View::checkIfYouWannaRewrite("request");
+		bool leave = ViewInteraction::checkIfYouWannaRewrite("request");
 		if(!leave)
 		{
 			setRequest();

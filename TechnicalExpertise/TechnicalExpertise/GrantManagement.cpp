@@ -1,16 +1,15 @@
 #include "GrantManagement.h"
+#include "FileReader.h"
+#include "ViewInteraction.h"
 #include <iostream>
 #include <fstream>
-#include "View.h"
+#include "ViewInteraction.h"
 #include "Validation.h"
 using namespace std;
 
 float GrantManagement::getMoney(int ID)
 {
-	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
-	ifstream infile(pathToProfileBalance);
-	float money;
-	infile >> money;
+	float money=FileReader::readMoney(ID);
 	return money;
 }
 
@@ -21,9 +20,9 @@ void GrantManagement::transferMoney(int ID)
 	float sum;
 	do
 	{
-		View::inputAmountOfMoney(money);
+		ViewInteraction::inputAmountOfMoney(money);
 	}
-	while (Validation::MoneyCheck(money));
+	while (!Validation::MoneyCheck(money));
 	ifstream inFile2(pathToProfileBalance);
 	inFile2 >> sum;
 	inFile2.close();
@@ -43,12 +42,12 @@ void GrantManagement::transferToBank(int ID)
 	string card;
 	do
 	{
-		View::inputCardNumber(card);
+		ViewInteraction::inputCardNumber(card);
 	} 
 	while (!Validation::CardCheck(card));
 	do
 	{
-		View::inputAmountOfMoney(money);
+		ViewInteraction::inputAmountOfMoney(money);
 	} 
 	while (!Validation::AmountOfMoneyCheck(money, dif));
 	ofstream outFile2(pathToProfileBalance);

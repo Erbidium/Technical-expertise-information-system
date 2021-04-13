@@ -5,7 +5,8 @@
 #include <fstream>
 #include "GrantManagement.h"
 #include "WorkWithInterface.h"
-#include "View.h"
+#include "ViewInteraction.h"
+#include "ViewMessages.h"
 
 void createOwnersReview(string path, string name);
 
@@ -25,7 +26,7 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 	int numberOfApplication=-1;
 	do{
 		vector <vector<string>> applicationNames(2);
-		View::viewApplicationsAndPickOwner(applicationNames, numberOfApplication);
+		ViewInteraction::viewApplicationsAndPickOwner(applicationNames, numberOfApplication);
 		if(numberOfApplication!=-1){
 			printFileData(applicationNames[1][numberOfApplication]);
 			createOwnersReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
@@ -33,17 +34,12 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 	}while(numberOfApplication!=-1);
 }
 
-
-
 void createOwnersReview(string path, string name) {
-	bool conclusion = View::createConclusionOwner();
+	bool conclusion = ViewInteraction::createConclusionOwner();
 	string s;
-	if (cin.peek() == '\n') {
-		cin.ignore();
-	}
 	ifstream outFile;
 	if (!outFile) {
-		cout << endl << "Can not open a file with application to write a conclusion" << endl;
+		ViewMessages::cannotOpenFileToWriteConclusion();
 	}
 	else {
 		while (getline(outFile, s))

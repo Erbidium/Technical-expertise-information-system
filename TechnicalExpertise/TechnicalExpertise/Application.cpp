@@ -27,7 +27,7 @@ string Application::getReview() const
 
 bool Application::getGrantConfirm()const
 {
-	return grantIsConfirmed;
+	return this->grantIsConfirmed;
 }
 
 string Application::getFilePath()const

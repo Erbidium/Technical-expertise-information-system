@@ -1,9 +1,13 @@
 #include "WorkWithInterface.h"
+#include "ViewMessages.h"
+#include "ViewInteraction.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "Profile.h"
+
 using namespace std;
+
 void printFileData(string name) {
 	ifstream inFile(name);
 	if (!inFile) {
@@ -20,22 +24,16 @@ void printFileData(string name) {
 }
 
 void createReview(string path, string name) {
-	cout << "Input your rating for this application: " << endl;
-	string rating;
-	if (cin.peek() == '\n') {
-		cin.ignore();
-	}
-	getline(cin, rating);
+	string rating=ViewInteraction::inputApplicationRating();
 	ofstream outFile(path, ios::app);
 	if (!outFile) {
-		cout << "Can not open a file with application to write a sum up";
+		ViewMessages::cannotOpenFileToWriteSumUp();
 	}
 	else {
 		outFile << "Sum up of application: " << rating << endl;
 		outFile.close();
 	}
 	string newName = "";
-
 	for (int i = 0; i < path.length(); i++) {
 		if (static_cast<int>(path[i]) == 92) {
 			path[i] = '/';
