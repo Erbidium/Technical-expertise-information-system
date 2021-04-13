@@ -25,4 +25,11 @@ public:
 	static void inputAmountOfMoney(string& money);
 	static void inputCardNumber(string& card);
 	static void clearScreen();
+	static void logIn(string& login, string& password);
+	static void startPick(int& choice);
+	static void adminPick(int& action);
+	static void grantApplicantPick(int& action);
+	static void confirmation(string& confirmation);
+	static void comissionPick(int& action);
+	static void founderPick(int& action);
 };

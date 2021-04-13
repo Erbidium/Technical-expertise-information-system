@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include "ViewInteraction.h"
+#include "ViewMessages.h"
 #include "Validation.h"
 using namespace std;
 
@@ -53,5 +54,5 @@ void GrantManagement::transferToBank(int ID)
 	ofstream outFile2(pathToProfileBalance);
 	outFile2 << dif - stof(money);
 	outFile2.close();
-	cout << endl << "Successfully transfered!" << endl;
+	ViewMessages::successfulTransfer();
 }
