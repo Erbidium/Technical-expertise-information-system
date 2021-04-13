@@ -203,3 +203,36 @@ void ViewInteraction::clearScreen()
 {
 	system("cls");
 }
+void ViewInteraction::logIn(string& login, string& password) {
+	cout << "Enter your login:\n";
+	cin >> login;
+	cout << "Enter your password:\n";
+	cin >> password;
+}
+void ViewInteraction::startPick(int& choice) {
+	cout << "(0)Login\n(1)Register\n(2)Leave request for registration\n(3)Quit:\n";
+	cin >> choice;
+}
+
+void ViewInteraction::adminPick(int& action) {
+	cout << "Choose action!" << endl;
+	cout << "(0)View requests\n(1)Register profile\n(2)Log out:\n";
+	cin >> action;
+}
+void ViewInteraction::grantApplicantPick(int& action) {
+	cout << "(0)Create an application\n(1)Check the status of application\n(2)Delete the application\n(3)EditApplication\n(4)Delete profile\n(5)Check your Balance\n(6)Edit profile\n(7)Log out:" << endl;
+	cin >> action;
+}
+void ViewInteraction::confirmation(string& confirmation) {
+	cout << "Are you sure?\n(0)Confirm\n(Any key)No\n";
+	cin >> confirmation;
+}
+void ViewInteraction::comissionPick(int& action) {
+	cout << "(0)View the application and evaluate it\n(1)Delete profile\n(2)Log out:" << endl;
+	cin >> action;
+}
+void ViewInteraction::founderPick(int& action) {
+	cout << "(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
+	cin >> action;
+}
+

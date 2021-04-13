@@ -11,5 +11,8 @@ public:
 	static void applicationIsCorrect();
 	static void registrationIsCorrect();
 	static void requestIsCorrect();
+	static void successfulTransfer();
+	static void unsuccsessfulLogIn();
+	static void succsessfulLogIn();
 };
 
