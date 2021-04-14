@@ -1,9 +1,8 @@
 #include "FileReader.h"
 #include "ViewMessages.h"
+#include "Profile.h"
 #include <fstream>
 #include <iostream>
-
-#include "Profile.h"
 
 using namespace std;
 
@@ -65,7 +64,6 @@ void FileReader::readLoginAndPassword(int ID, string& login, string& password)
 
 void FileReader::readAndPrintFileData(string name)
 {
-	//void printFileData(string name)
 	ifstream inFile(name);
 	if (!inFile) {
 		cout << "Can't open a file";

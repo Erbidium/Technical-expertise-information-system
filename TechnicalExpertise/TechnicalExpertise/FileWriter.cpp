@@ -1,13 +1,12 @@
 #include "FileWriter.h"
 #include "Request.h"
-#include <fstream>
-#include <iostream>
-#include <ctime>
-#include <filesystem>
 #include "Application.h"
 #include "Profile.h"
 #include "ViewInteraction.h"
 #include "ViewMessages.h"
+#include <fstream>
+#include <ctime>
+#include <filesystem>
 
 using namespace std;
 namespace fs = filesystem;

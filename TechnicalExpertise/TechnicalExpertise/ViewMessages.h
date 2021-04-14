@@ -6,7 +6,6 @@ public:
 	static void unsuccessfulFileOpening();
 	static void successfulProfileDelete();
 	static void cannotOpenFileToAddToApplication();
-	static void cannotOpenFileToWriteConclusion();
 	static void cannotOpenFileToWriteSumUp();
 	static void applicationIsCorrect();
 	static void registrationIsCorrect();

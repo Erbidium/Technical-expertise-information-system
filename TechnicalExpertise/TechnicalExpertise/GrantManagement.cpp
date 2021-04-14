@@ -1,13 +1,12 @@
 #include "GrantManagement.h"
 #include "FileReader.h"
 #include "ViewInteraction.h"
+#include "FileWriter.h"
+#include "ViewMessages.h"
+#include "Validation.h"
 #include <iostream>
 #include <fstream>
 
-#include "FileWriter.h"
-#include "ViewInteraction.h"
-#include "ViewMessages.h"
-#include "Validation.h"
 using namespace std;
 
 float GrantManagement::getMoney(int ID)

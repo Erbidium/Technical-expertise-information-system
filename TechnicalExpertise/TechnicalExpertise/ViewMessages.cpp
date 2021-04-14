@@ -23,11 +23,6 @@ void ViewMessages::cannotOpenFileToAddToApplication()
 	cout<<"But can not open a file to add to application"<<endl;
 }
 
-void ViewMessages::cannotOpenFileToWriteConclusion()
-{
-	cout<<"Can not open a file with application to write a conclusion"<<endl;
-}
-
 void ViewMessages::cannotOpenFileToWriteSumUp()
 {
 	cout<<"Can not open a file with application to write a sum up";

@@ -1,14 +1,9 @@
 #include <filesystem>
-#include <iostream>
 #include <vector>
-#include <fstream>
 #include "FundOwner.h"
 #include "FileReader.h"
 #include "GrantManagement.h"
 #include "ViewInteraction.h"
-#include "ViewMessages.h"
-
-void createOwnersReview(string path, string name);
 
 FundOwner::FundOwner(Profile currentProfile)
 {
@@ -29,41 +24,28 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 		ViewInteraction::viewApplicationsAndPickOwner(applicationNames, numberOfApplication);
 		if(numberOfApplication!=-1){
 			FileReader::readAndPrintFileData(applicationNames[1][numberOfApplication]);
-			createOwnersReview(applicationNames[1][numberOfApplication], applicationNames[0][numberOfApplication]);
+			string path=applicationNames[1][numberOfApplication];
+			string name=applicationNames[0][numberOfApplication];
+			bool conclusion = ViewInteraction::createConclusionOwner();
+			FileReader::readAndPrintFileData(path);
+			string newName = "";
+			for (int i = 0; i < path.length(); i++) {
+				if (static_cast<int>(path[i]) == 92) {
+					path[i] = '/';
+				}
+			}
+			newName = path;
+			int ID = stoi(path.substr(22, 5));
+			if (conclusion)
+			{
+				newName.replace(newName.rfind('['), 9, "[Paid]");
+				GrantManagement::transferMoney(ID);
+			}
+			else
+			{
+				newName.replace(newName.rfind('['), 9, "[NotPaid]");
+			}
+			rename(path.data(), newName.data());
 		}
 	}while(numberOfApplication!=-1);
-}
-
-void createOwnersReview(string path, string name) {
-	bool conclusion = ViewInteraction::createConclusionOwner();
-	string s;
-	ifstream outFile(path);
-	if (!outFile) {
-		ViewMessages::cannotOpenFileToWriteConclusion();
-	}
-	else {
-		while (getline(outFile, s))
-		{
-			cout << s << endl;
-		}
-	}
-	string newName = "";
-	for (int i = 0; i < path.length(); i++) {
-		if (static_cast<int>(path[i]) == 92) {
-			path[i] = '/';
-		}
-	}
-	newName = path;
-	int ID = stoi(path.substr(22, 5));
-	if (conclusion)
-	{
-		newName.replace(newName.rfind('['), 9, "[Paid]");
-		GrantManagement::transferMoney(ID);
-	}
-	else
-	{
-		newName.replace(newName.rfind('['), 9, "[NotPaid]");
-	}
-	rename(path.data(), newName.data());
-	outFile.close();
 }
