@@ -13,7 +13,7 @@ public:
 	static int inputAccTypeForRegistration();
 	static std::string inputApplicationRating();
 	static bool checkIfYouWannaRewrite(std::string word);
-	static void createApplication(int& tempAge, std::string& tempData, std::string& name, std::string& filePath, std::string& link);
+	static void createApplication(std::string& tempAge, std::string& tempData, std::string& name, std::string& filePath, std::string& link);
 	static Request createRequest();
 	static int viewApplicationsAndPickComission(std::vector <std::vector<std::string>>& applicationNames, int& numberOfApplication);
 	static int viewApplicationsAndPickOwner(std::vector <std::vector<std::string>>& applicationNames, int& numberOfApplication);
@@ -33,5 +33,5 @@ public:
 	static void confirmation(std::string& confirmation);
 	static void comissionPick(int& action);
 	static void founderPick(int& action);
-	static void editApplication(int& tempAge, std::string& tempData, std::string& name, std::string& filePath, std::string& link);
+	static void editApplication(std::string& tempAge, std::string& tempData, std::string& name, std::string& filePath, std::string& link);
 };

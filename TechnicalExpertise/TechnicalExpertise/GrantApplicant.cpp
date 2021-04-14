@@ -63,7 +63,7 @@ void GrantApplicant::editApplication()
 			tempApplication.applicationData = FileReader::readApplication(profileID, copy);
 			FileWriter::clearFileData(applicationNames[1][numberOfApplication]);
 			filesystem::remove(applicationNames[1][numberOfApplication]);
-			int tempAge = tempApplication.applicationData.getAge();
+			string tempAge = tempApplication.applicationData.getAge();
 			string tempData = tempApplication.applicationData.getContent();
 			string name = tempApplication.applicationData.getName();
 			string filePath = tempApplication.applicationData.getFilePath();

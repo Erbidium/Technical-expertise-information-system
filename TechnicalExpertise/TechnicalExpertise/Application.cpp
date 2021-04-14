@@ -7,7 +7,7 @@ string Application::getName()const
 	return ownerName;
 }
 
-int Application::getAge()const
+string Application::getAge()const
 {
 	return ownerAge;
 }
@@ -46,7 +46,7 @@ void Application::setName(const string & ownerName)
 	this->ownerName=ownerName;
 }
 
-void Application::setAge(const int& ownerAge)
+void Application::setAge(const string& ownerAge)
 {
 	this->ownerAge=ownerAge;
 }

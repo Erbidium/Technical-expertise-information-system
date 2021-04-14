@@ -183,3 +183,28 @@ bool Validation::AmountOfMoneyCheck(string money, float dif)
 	}
 	return correct;
 }
+
+bool Validation::AgeCheck(string age)
+{
+	bool correct = true;
+	if (age[0] == '0')
+	{
+		correct = false;
+	}
+	if (age.size() > 3)
+	{
+		correct = false;
+	}
+	for (int i = 0; i < age.size(); i++)
+	{
+		if (age[i] < 48 || age[i] > 57)
+		{
+			correct = false;
+		}
+	}
+	if (!correct)
+	{
+		cout << "You entered wrong age!" << endl;
+	}
+	return correct;
+}

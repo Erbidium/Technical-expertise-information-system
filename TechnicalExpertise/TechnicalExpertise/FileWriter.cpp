@@ -26,7 +26,7 @@ void FileWriter::writeApplication(int ID, Application applicationData)
 	time_t now = time(0);
 	localtime_s(&newtime, &now);
 	string tempDate = to_string(newtime.tm_mday) + '.' + to_string(newtime.tm_mon + 1) + '.' + to_string(newtime.tm_year + 1900);
-	int tempAge = applicationData.getAge();
+	string tempAge = applicationData.getAge();
 	string tempData = applicationData.getContent();
 	string tempName = applicationData.getName();
 	string tempLink = applicationData.getLink();

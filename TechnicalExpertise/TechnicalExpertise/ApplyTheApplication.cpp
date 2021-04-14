@@ -12,6 +12,10 @@ void ApplyTheApplication::applicationsManager(int ID) {
 }
 void ApplyTheApplication::applicationDataCheck(int ID) {
 	bool correct = true;
+	if (!Validation::AgeCheck(applicationData.getAge()))
+	{
+		correct = false;
+	}
 	if (!Validation::NameCheck(applicationData.getName(), "application`s name"))
 	{
 		correct = false;
@@ -36,7 +40,7 @@ void ApplyTheApplication::applicationDataCheck(int ID) {
 	}
 }
 void ApplyTheApplication::setApplication(int ID,string name) {
-	int tempAge;
+	string tempAge;
 	string tempData;
 	string filePath;
 	string link;
