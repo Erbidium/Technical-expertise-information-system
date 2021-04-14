@@ -16,5 +16,6 @@ public:
 	static void unsuccsessfulLogIn();
 	static void succsessfulLogIn();
 	static void LoginTaken();
+	static void verificationConfirmed();
 };
 

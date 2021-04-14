@@ -59,7 +59,7 @@ bool Validation::NameCheck(string name, string str)
 bool Validation::LoginCheck(string login)
 {
 	bool correct = FileReader::readCheckLogin(login);
-	if (login.length() < 3)
+	if (login.length() < 4)
 	{
 		cout << endl << "Your login is too short! It must have at least 4 symbols." << endl;
 		correct = false;
