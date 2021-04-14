@@ -59,7 +59,7 @@ bool Validation::NameCheck(string name, string str)
 bool Validation::LoginCheck(string login)
 {
 	bool correct = FileReader::readCheckLogin(login);
-	if (login.length() < 3)
+	if (login.length() < 4)
 	{
 		cout << endl << "Your login is too short! It must have at least 4 symbols." << endl;
 		correct = false;
@@ -180,6 +180,31 @@ bool Validation::AmountOfMoneyCheck(string money, float dif)
 	else
 	{
 		correct = false;
+	}
+	return correct;
+}
+
+bool Validation::AgeCheck(string age)
+{
+	bool correct = true;
+	if (age[0] == '0')
+	{
+		correct = false;
+	}
+	if (age.size() > 3)
+	{
+		correct = false;
+	}
+	for (int i = 0; i < age.size(); i++)
+	{
+		if (age[i] < 48 || age[i] > 57)
+		{
+			correct = false;
+		}
+	}
+	if (!correct)
+	{
+		cout << "You entered wrong age!" << endl;
 	}
 	return correct;
 }

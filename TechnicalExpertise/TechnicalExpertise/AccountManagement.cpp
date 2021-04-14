@@ -90,7 +90,11 @@ void AccountManagement::editLogin(int ID)
 	FileReader::readLoginAndPassword(ID, oldLogin, oldPassword);
 	if (confirmation(ID, oldLogin, oldPassword))
 	{
-		ViewInteraction::inputValue("Verification confirmed!\nEnter your new login:", newLogin);
+		ViewMessages::verificationConfirmed();
+		do
+		{
+			ViewInteraction::inputValue("Enter your new login:", newLogin);
+		} while (!Validation::LoginCheck(newLogin));
 		FileWriter::editFileLogin(ID, oldPassword, newLogin);
 	}
 	else
@@ -107,7 +111,11 @@ void AccountManagement::editPassword(int ID)
 	FileReader::readLoginAndPassword(ID, oldLogin, oldPassword);
 	if (confirmation(ID, oldLogin, oldPassword))
 	{
-		ViewInteraction::inputValue("Verification confirmed!\nEnter your new password:", newPassword);
+		ViewMessages::verificationConfirmed();
+		do
+		{
+			ViewInteraction::inputValue("Enter your new password:", newPassword);
+		} while (!Validation::PasswordCheck(newPassword));
 		FileWriter::editFilePassword(ID, oldLogin, newPassword);
 	}
 	else
@@ -126,7 +134,11 @@ void AccountManagement::editName(int ID)
 	FileReader::readLoginAndPassword(ID, oldLogin, oldPassword);
 	if (confirmation(ID, oldLogin, oldPassword))
 	{
-		ViewInteraction::inputValue("Verification confirmed!\nEnter your new name:", newName);
+		ViewMessages::verificationConfirmed();
+		do
+		{
+			ViewInteraction::inputValue("Enter your new name:", newName);
+		} while (!Validation::NameCheck(newName, "name"));
 		FileWriter::editFileName(OldPath, NewPath, newName);
 	}
 	else
@@ -145,7 +157,11 @@ void AccountManagement::editEmail(int ID)
 	FileReader::readLoginAndPassword(ID, oldLogin, oldPassword);
 	if (confirmation(ID, oldLogin, oldPassword))
 	{
-		ViewInteraction::inputValue("Verification confirmed!\nEnter your new email:", newEmail);
+		ViewMessages::verificationConfirmed();
+		do
+		{
+			ViewInteraction::inputValue("Enter your new email:", newEmail);
+		} while (!Validation::EmailCheck(newEmail));
 		FileWriter::editFileEmail(OldPath, NewPath, newEmail);
 	}
 	else

@@ -67,3 +67,8 @@ void ViewMessages::LoginTaken()
 {
 	cout << "This login is already taken." << endl;
 }
+
+void ViewMessages::verificationConfirmed()
+{
+	cout << "verification confirmed!" << endl;
+}

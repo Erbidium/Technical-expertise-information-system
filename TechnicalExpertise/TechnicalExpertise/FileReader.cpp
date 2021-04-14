@@ -101,7 +101,7 @@ Application FileReader::readApplication(int ID, string name) {
 	tempApplication.setName(str);
 	getline(inFile, str);
 	str.erase(0, 8);
-	tempApplication.setAge(stoi(str));
+	tempApplication.setAge(str);
 	getline(inFile, str);
 	str.erase(0, 20);
 	tempApplication.setContent(str);
