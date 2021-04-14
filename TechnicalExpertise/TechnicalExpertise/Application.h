@@ -31,5 +31,6 @@ private:
 	string comissionReview;
 	string filePath;
 	string link;
+	string date;
 };
 

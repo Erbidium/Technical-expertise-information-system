@@ -4,10 +4,10 @@ class ApplyTheApplication
 {
 public:
 	void setApplication(int ID, string name = "");
-private:
 	Application applicationData;
+	void applicationDataCheck(int ID);
+private:
 	bool ApplicationConfirmation;
 	void applicationsManager(int ID);
-	void applicationDataCheck(int ID);
 };
 

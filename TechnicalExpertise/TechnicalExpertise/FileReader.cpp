@@ -83,7 +83,7 @@ Application FileReader::readApplication(int ID, string name) {
 	tempApplication.setAge(stoi(str));
 	getline(inFile, str);
 	str.erase(0, 20);
-	tempApplication.setDate(str);
+	tempApplication.setContent(str);
 	getline(inFile, str);
 	str.erase(0, 9);
 	tempApplication.setLink(str);
@@ -91,15 +91,17 @@ Application FileReader::readApplication(int ID, string name) {
 	str.erase(0, 6);
 	tempApplication.setDate(str);
 	getline(inFile, str);
-	getline(inFile, str);
-	ofstream outFile("TempFile.txt");
-	string tempStr;
-	while (!inFile.eof()) {
-		getline(inFile, tempStr);
-		outFile << tempStr << endl;
+	if (!inFile.eof()) {
+		getline(inFile, str);
+		ofstream outFile("TempFile.txt");
+		string tempStr;
+		while (!inFile.eof()) {
+			getline(inFile, tempStr);
+			outFile << tempStr << endl;
+		}
+		tempApplication.setFilePath("TempFile.txt");
+		outFile.close();
+		inFile.close();
 	}
-	tempApplication.setFilePath("TempFile.txt");
-	outFile.close();
-	inFile.close();
 	return tempApplication;
 }
