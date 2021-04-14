@@ -50,7 +50,10 @@ void Application::setAge(const int& ownerAge)
 {
 	this->ownerAge=ownerAge;
 }
-
+void Application::setDate(const string& data)
+{
+	this->date = data;
+}
 void Application::setContent(const string& applicationContent)
 {
 	this->applicationContent=applicationContent;

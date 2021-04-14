@@ -1,6 +1,7 @@
 #include "FileReader.h"
 #include "ViewMessages.h"
 #include "Profile.h"
+#include "Application.h"
 #include <fstream>
 #include <iostream>
 
@@ -90,6 +91,40 @@ Profile FileReader::readProfile(int ID)
 	currentProfile.setType(type);
 	currentProfile.setID(ID);
 	return currentProfile;
+}
+Application FileReader::readApplication(int ID, string name) {
+	ifstream inFile("Database/Applications/" + to_string(ID) + "/" + name + ".txt");
+	string str;
+	getline(inFile, str);
+	str.erase(0, 21);
+	Application tempApplication;
+	tempApplication.setName(str);
+	getline(inFile, str);
+	str.erase(0, 8);
+	tempApplication.setAge(stoi(str));
+	getline(inFile, str);
+	str.erase(0, 20);
+	tempApplication.setContent(str);
+	getline(inFile, str);
+	str.erase(0, 9);
+	tempApplication.setLink(str);
+	getline(inFile, str);
+	str.erase(0, 6);
+	tempApplication.setDate(str);
+	getline(inFile, str);
+	if (!inFile.eof()) {
+		getline(inFile, str);
+		ofstream outFile("TempFile.txt");
+		string tempStr;
+		while (!inFile.eof()) {
+			getline(inFile, tempStr);
+			outFile << tempStr << endl;
+		}
+		tempApplication.setFilePath("TempFile.txt");
+		outFile.close();
+		inFile.close();
+	}
+	return tempApplication;
 }
 
 bool FileReader::readCheckID(int ID)

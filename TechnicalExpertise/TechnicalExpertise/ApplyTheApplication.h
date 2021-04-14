@@ -4,10 +4,10 @@ class ApplyTheApplication
 {
 public:
 	void setApplication(int ID, std::string name = "");
-private:
 	Application applicationData;
+private:
+	void applicationDataCheck(int ID);
 	bool ApplicationConfirmation;
 	void applicationsManager(int ID);
-	void applicationDataCheck(int ID);
 };
 

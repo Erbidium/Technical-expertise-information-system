@@ -26,6 +26,7 @@ private:
 	std::string applicationContent;
 	std::string applicationDate;
 	bool grantIsConfirmed;
+	std::string date;
 	std::string comissionReview;
 	std::string filePath;
 	std::string link;

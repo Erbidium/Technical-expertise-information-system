@@ -1,6 +1,10 @@
 ﻿#include "GrantApplicant.h"
 #include "ApplyTheApplication.h"
+#include <vector>
+#include <string>
+#include <filesystem>
 #include "FileWriter.h"
+#include "FileReader.h"
 #include "ViewInteraction.h"
 #include <vector>
 #include <filesystem>
@@ -52,12 +56,26 @@ void GrantApplicant::editApplication()
 		vector <vector<string>> applicationNames(2);
 		ViewInteraction::outApplicationAndDelete(numberOfApplication, applicationNames, profileID);
 		if (numberOfApplication != -1) {
-			FileWriter::clearFileData(applicationNames[1][numberOfApplication]);
 			ApplyTheApplication tempApplication;
 			int position = applicationNames[0][numberOfApplication].find(".txt");
 			string copy = applicationNames[0][numberOfApplication];
 			copy.erase(position, 4);
-			tempApplication.setApplication(profileID, copy);
+			tempApplication.applicationData = FileReader::readApplication(profileID, copy);
+			FileWriter::clearFileData(applicationNames[1][numberOfApplication]);
+			filesystem::remove(applicationNames[1][numberOfApplication]);
+			int tempAge = tempApplication.applicationData.getAge();
+			string tempData = tempApplication.applicationData.getContent();
+			string name = tempApplication.applicationData.getName();
+			string filePath = tempApplication.applicationData.getFilePath();
+			string link = tempApplication.applicationData.getLink();
+			ViewInteraction::editApplication(tempAge, tempData, name, filePath, link);
+			tempApplication.applicationData.setAge(tempAge);
+			tempApplication.applicationData.setName(name);
+			tempApplication.applicationData.setContent(tempData);
+			tempApplication.applicationData.setFilePath(filePath);
+			tempApplication.applicationData.setLink(link);
+			FileWriter::writeApplication(profileID, tempApplication.applicationData);
+			FileWriter::writeAddedFileToApplication(profileID, tempApplication.applicationData);
 		}
 	} while (numberOfApplication != -1);
 	ViewInteraction::clearScreen();

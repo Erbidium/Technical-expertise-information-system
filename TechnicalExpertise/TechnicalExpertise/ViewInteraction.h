@@ -33,4 +33,5 @@ public:
 	static void confirmation(std::string& confirmation);
 	static void comissionPick(int& action);
 	static void founderPick(int& action);
+	static void editApplication(int& tempAge, std::string& tempData, std::string& name, std::string& filePath, std::string& link);
 };

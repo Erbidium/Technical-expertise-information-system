@@ -282,4 +282,50 @@ void ViewInteraction::founderPick(int& action) {
 	cout << "(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
 	cin >> action;
 }
-
+void ViewInteraction::editApplication(int& tempAge, string& tempData, string& name, string& filePath, string& link) {
+	cout << "If you don not want to change the field, input '-' on it" << endl;
+	cout << "Input your age:" << endl;
+	string age;
+	cin >> age;
+	if (age != "-") {
+		tempAge = stoi(age);
+	}
+	cout << "Input your application's data:" << endl;
+	string data;
+	if (cin.peek() == '\n') {
+		cin.ignore();
+	}
+	getline(cin, data);
+	if (data != "-") {
+		tempData = data;
+	}
+	string tempName;
+	cout << "Input your application's name:" << endl;
+	if (cin.peek() == '\n') {
+		cin.ignore();
+	}
+	getline(cin, tempName);
+	if (tempName != "-") {
+		name = tempName;
+	}
+	bool wannaAdd;
+	cout << "Do you want to change the file that you added to application? Yes(1) No(0)" << endl;
+	cin >> wannaAdd;
+	if (wannaAdd) {
+		cout << "Input the path to your file on your PC. Example: Database / Applications / " << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin, filePath);
+	}
+	bool wannaAddLink;
+	cout << "Do you want to change the link, you added to your application? Yes(1) No(0)" << endl; 
+	cin >> wannaAddLink;
+	if (wannaAddLink) {
+		cout << "Input the full link. It can be your gitHub repositoy, etc. Example: https://github.com/ErnestoFolting/ArithmeticCalculations";
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin, link);
+	}
+}

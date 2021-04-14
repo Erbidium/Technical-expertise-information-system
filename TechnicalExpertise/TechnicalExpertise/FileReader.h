@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Profile.h"
+#include "Application.h"
 
 class FileReader
 {
@@ -12,5 +13,6 @@ public:
 	static Profile readProfile(int ID);
 	static bool readCheckID(int ID);
 	static bool readCheckLogin(std::string login);
+	static Application readApplication(int ID, std::string name);
 };
 
