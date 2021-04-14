@@ -30,9 +30,17 @@ void ViewInteraction::inputNameEmail(string& name, string& email) {
 
 int ViewInteraction::inputAccTypeForRegistration() {
 	cout << "Which account do you want to register?\n";
-	cout << "(0)Expert comission\n(1)Fund owner\n";
 	int accountType;
-	cin >> accountType;
+	string accountType1;
+	do
+	{
+		cout << "(0)Expert comission\n(1)Fund owner\n";
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,accountType1);
+	} while (!Validation::PickCheck(accountType1, 1));
+	accountType = stoi(accountType1);
 	return accountType;
 }
 
@@ -48,9 +56,17 @@ string ViewInteraction::inputApplicationRating()
 }
 
 bool ViewInteraction::checkIfYouWannaRewrite(string word) {
-	cout << "Would you like to rewrite your " << word << "(0) or leave(1)?" << endl;
 	bool leave;
-	cin >> leave;
+	string leave1;
+	do
+	{
+		cout << "Would you like to rewrite your " << word << "(0) or leave(1)?" << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,leave1);
+	} while (!Validation::PickCheck(leave1, 1));
+	leave = stoi(leave1);
 	return leave;
 }
 
@@ -65,8 +81,16 @@ void ViewInteraction::createApplication(string& tempAge, string& tempData, strin
 		getline(cin, name);
 	}
 	bool wannaAdd;
-	cout << "Do you want to add some files to your application? Yes(1) No(0)" << endl;
-	cin >> wannaAdd;
+	string wannaAdd1;
+	do
+	{
+		cout << "Do you want to add some files to your application? Yes(1) No(0)" << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,wannaAdd1);
+	} while (!Validation::PickCheck(wannaAdd1, 1));
+	wannaAdd = stoi(wannaAdd1);
 	if (wannaAdd) {
 		cout << "Input the path to your file on your PC. Example: Database / Applications / " << endl;
 		if (cin.peek() == '\n') {
@@ -75,8 +99,16 @@ void ViewInteraction::createApplication(string& tempAge, string& tempData, strin
 		getline(cin, filePath);
 	}
 	bool wannaAddLink;
-	cout << "Do you want to add sine links to your application? Yes(1) No(0)" << endl;
-	cin >> wannaAddLink;
+	string wannaAddLink1;
+	do
+	{
+		cout << "Do you want to add sine links to your application? Yes(1) No(0)" << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,wannaAddLink1);
+	} while (!Validation::PickCheck(wannaAddLink1, 1));
+	wannaAddLink = stoi(wannaAddLink1);
 	if (wannaAddLink) {
 		cout << "Input the full link. It can be your gitHub repositoy, etc. Example: https://github.com/ErnestoFolting/ArithmeticCalculations";
 		if (cin.peek() == '\n') {
@@ -169,9 +201,17 @@ void ViewInteraction::showRequests()
 }
 
 bool ViewInteraction::createConclusionOwner() {
-	cout << "Input your conclusion (1 - yes, 0 - no): " << endl;
 	bool conclusion;
-	cin >> conclusion;
+	string conclusion1;
+	do
+	{
+		cout << "Input your conclusion (1 - yes, 0 - no): " << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,conclusion1);
+	} while (!Validation::PickCheck(conclusion1, 1));
+	conclusion = stoi(conclusion1);
 	return conclusion;
 }
 
@@ -210,8 +250,16 @@ void ViewInteraction::outApplicationAndDelete(int& numberOfApplication, vector <
 void ViewInteraction::outBalance(int profileID) {
 	cout << endl << "Your current balance is: " << fixed << setprecision(2) << GrantManagement::getMoney(profileID) << endl;
 	bool bank;
-	cout << endl << "Would you like to withdraw money to your bank account? (1 - yes, 0 - no): " << endl;
-	cin >> bank;
+	string bank1;
+	do
+	{
+		cout << endl << "Would you like to withdraw money to your bank account? (1 - yes, 0 - no): " << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,bank1);
+	} while (!Validation::PickCheck(bank1, 1));
+	bank = stoi(bank1);
 	if (bank)
 	{
 		GrantManagement::transferToBank(profileID);
@@ -226,17 +274,33 @@ void ViewInteraction::clearScreen()
 int ViewInteraction::inputEditing()
 {
 	cout << "What do you want to edit?\n";
-	cout << "(0)Login\n(1)Password\n(2)Name\n(3)Email" << endl;
+	string typeOfEditing1;
 	int typeOfEditing;
-	cin >> typeOfEditing;
+	do
+	{
+		cout << "(0)Login\n(1)Password\n(2)Name\n(3)Email" << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,typeOfEditing1);
+	} while (!Validation::PickCheck(typeOfEditing1, 3));
+	typeOfEditing = stoi(typeOfEditing1);
 	return typeOfEditing;
 }
 
 bool ViewInteraction::checkIfYouWannaEdit()
 {
-	cout << endl << "Would you like to edit something else(0) or leave(1)?" << endl;
+	string leave1;
 	bool leave;
-	cin >> leave;
+	do
+	{
+		cout << endl << "Would you like to edit something else(0) or leave(1)?" << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,leave1);
+	} while (!Validation::PickCheck(leave1, 1));
+	leave = stoi(leave1);
 	return leave;
 }
 
@@ -254,19 +318,43 @@ void ViewInteraction::logIn(string& login, string& password) {
 }
 
 void ViewInteraction::startPick(int& choice) {
-	cout << "(0)Login\n(1)Register\n(2)Leave request for registration\n(3)Quit:\n";
-	cin >> choice;
+	string choice1;
+	do
+	{
+		cout << "(0)Login\n(1)Register\n(2)Leave request for registration\n(3)Quit:\n";
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,choice1);
+	} while (!Validation::PickCheck(choice1, 3));
+	choice = stoi(choice1);
 }
 
 void ViewInteraction::adminPick(int& action) {
 	cout << "Choose action!" << endl;
-	cout << "(0)View requests\n(1)Register profile\n(2)Log out:\n";
-	cin >> action;
+	string action1;
+	do
+	{
+		cout << "(0)View requests\n(1)Register profile\n(2)Log out:\n";
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,action1);
+	} while (!Validation::PickCheck(action1, 2));
+	action = stoi(action1);
 }
 
 void ViewInteraction::grantApplicantPick(int& action) {
-	cout << "(0)Create an application\n(1)Check the status of application\n(2)Delete the application\n(3)EditApplication\n(4)Delete profile\n(5)Check your Balance\n(6)Edit profile\n(7)Log out:" << endl;
-	cin >> action;
+	string action1;
+	do
+	{
+		cout << "(0)Create an application\n(1)Check the status of application\n(2)Delete the application\n(3)EditApplication\n(4)Delete profile\n(5)Check your Balance\n(6)Edit profile\n(7)Log out:" << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,action1);
+	} while (!Validation::PickCheck(action1, 7));
+	action = stoi(action1);
 }
 
 void ViewInteraction::confirmation(string& confirmation) {
@@ -275,12 +363,29 @@ void ViewInteraction::confirmation(string& confirmation) {
 }
 
 void ViewInteraction::comissionPick(int& action) {
-	cout << "(0)View the application and evaluate it\n(1)Delete profile\n(2)Log out:" << endl;
-	cin >> action;
+	string action1;
+	do
+	{
+		cout << "(0)View the application and evaluate it\n(1)Delete profile\n(2)Log out:" << endl;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,action1);
+	} while (!Validation::PickCheck(action1, 2));
+	action = stoi(action1);
 }
 
 void ViewInteraction::founderPick(int& action) {
-	cout << "(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
+	string action1;
+	do
+	{
+		cout << "(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin,action1);
+	} while (!Validation::PickCheck(action1, 2));
+	action = stoi(action1);
 	cin >> action;
 }
 void ViewInteraction::editApplication(string& tempAge, string& tempData, string& name, string& filePath, string& link) {
@@ -305,8 +410,16 @@ void ViewInteraction::editApplication(string& tempAge, string& tempData, string&
 		}
 		getline(cin, tempName);
 		bool wannaAdd;
-		cout << "Do you want to change the file that you added to application? Yes(1) No(0)" << endl;
-		cin >> wannaAdd;
+		string wannaAdd1;
+		do
+		{
+			cout << "Do you want to change the file that you added to application? Yes(1) No(0)" << endl;
+			if (cin.peek() == '\n') {
+				cin.ignore();
+			}
+			getline(cin,wannaAdd1);
+		} while (Validation::PickCheck(wannaAdd1, 1));
+		wannaAdd = stoi(wannaAdd1);
 		if (wannaAdd) {
 			cout << "Input the path to your file on your PC. Example: Database / Applications / " << endl;
 			if (cin.peek() == '\n') {
@@ -315,8 +428,16 @@ void ViewInteraction::editApplication(string& tempAge, string& tempData, string&
 			getline(cin, filePath);
 		}
 		bool wannaAddLink;
-		cout << "Do you want to change the link, you added to your application? Yes(1) No(0)" << endl;
-		cin >> wannaAddLink;
+		string wannaAddLink1;
+		do
+		{
+			cout << "Do you want to change the link, you added to your application? Yes(1) No(0)" << endl;
+			if (cin.peek() == '\n') {
+				cin.ignore();
+			}
+			getline(cin,wannaAddLink1);
+		} while (!Validation::PickCheck(wannaAddLink1, 1));
+		wannaAddLink = stoi(wannaAddLink1);
 		if (wannaAddLink) {
 			cout << "Input the full link. It can be your gitHub repositoy, etc. Example: https://github.com/ErnestoFolting/ArithmeticCalculations";
 			if (cin.peek() == '\n') {

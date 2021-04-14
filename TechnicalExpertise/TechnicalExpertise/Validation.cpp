@@ -208,3 +208,29 @@ bool Validation::AgeCheck(string age)
 	}
 	return correct;
 }
+
+bool Validation::PickCheck(string &choice, int max)
+{
+	bool correct = true;
+	if (choice.size() > 1)
+	{
+		correct = false;
+	}
+	if (choice[0] < 48 || choice[0] > 57)
+	{
+		correct = false;
+	}
+	else
+	{
+		for (int i = 0; i <= max; i++)
+		{
+			if (stoi(choice) == i)
+			{
+				return correct;
+			}
+		}
+		correct = false;
+	}
+	cout << endl << "You entered wrong value! Please try again:" << endl;
+	return correct;
+}
