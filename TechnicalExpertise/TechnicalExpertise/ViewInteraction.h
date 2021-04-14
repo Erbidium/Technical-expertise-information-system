@@ -25,7 +25,7 @@ public:
 	static void clearScreen();
 	static int inputEditing();
 	static bool checkIfYouWannaEdit();
-	static void inputValue(string  str, string &value);
+	static void inputValue(std::string  str, std::string &value);
 	static void logIn(std::string& login, std::string& password);
 	static void startPick(int& choice);
 	static void adminPick(int& action);

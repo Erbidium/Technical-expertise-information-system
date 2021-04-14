@@ -1,20 +1,18 @@
 #pragma once
 #include <string>
 
-using namespace std;
-
 class Request
 {
 public:
-	string getName()const;
-	string getEmail()const;
-	string getContent()const;
-	void setName(const string&);
-	void setEmail(const string&);
-	void setContent(const string&);
+	std::string getName()const;
+	std::string getEmail()const;
+	std::string getContent()const;
+	void setName(const std::string&);
+	void setEmail(const std::string&);
+	void setContent(const std::string&);
 private:
-	string name;
-	string email;
-	string requestContent;
+	std::string name;
+	std::string email;
+	std::string requestContent;
 };
 

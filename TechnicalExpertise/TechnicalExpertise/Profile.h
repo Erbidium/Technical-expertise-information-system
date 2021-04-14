@@ -1,31 +1,29 @@
 ﻿#pragma once
 #include <string>
 
-using namespace std;
-
 class Profile
 {
 public:
 	Profile(){}
-	Profile(string, string, string, string, int, int, float);
-	string getName()const;
-	string getEmail()const;
-	string getPassword()const;
-	string getLogin()const;
+	Profile(std::string, std::string, std::string, std::string, int, int, float);
+	std::string getName()const;
+	std::string getEmail()const;
+	std::string getPassword()const;
+	std::string getLogin()const;
 	int getType();
 	int getID();
-	void setName(const string&);
-	void setEmail(const string&);
+	void setName(const std::string&);
+	void setEmail(const std::string&);
 	void setType(int);
 	void setID(int);
 	void setBalance(float);
 	float getBalance();
 protected:
 	int profileID;
-	string name;
-	string email;
-	string password;
-	string login;
+	std::string name;
+	std::string email;
+	std::string password;
+	std::string login;
 	int typefUser;
 	float Balance;
 };

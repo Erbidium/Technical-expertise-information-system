@@ -1,5 +1,7 @@
 #include "Application.h"
 
+using namespace std;
+
 string Application::getName()const
 {
 	return ownerName;

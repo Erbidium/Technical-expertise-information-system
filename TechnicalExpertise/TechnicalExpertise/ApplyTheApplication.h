@@ -3,7 +3,7 @@
 class ApplyTheApplication
 {
 public:
-	void setApplication(int ID, string name = "");
+	void setApplication(int ID, std::string name = "");
 private:
 	Application applicationData;
 	bool ApplicationConfirmation;

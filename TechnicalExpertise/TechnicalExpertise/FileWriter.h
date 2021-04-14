@@ -14,9 +14,9 @@ public:
 	static void writeProfileData(Profile profileData);
 	static void writeProfileBalance(Profile profileData);
 	static void writeLoginData(Profile profileData);
-	static void clearFileData(string path);
-	static void writeMoney(string pathToProfileBalance, string money, float sum);
-	static void writeDifMoney(string pathToProfileBalance, string money, float dif);
-	static void createReview(string path, string name);
+	static void clearFileData(std::string path);
+	static void writeMoney(std::string pathToProfileBalance, std::string money, float sum);
+	static void writeDifMoney(std::string pathToProfileBalance, std::string money, float dif);
+	static void createReview(std::string path, std::string name);
 };
 

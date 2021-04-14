@@ -1,5 +1,7 @@
 #include "Request.h"
 
+using namespace std;
+
 string Request::getName() const
 {
 	return name;
