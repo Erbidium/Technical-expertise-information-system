@@ -17,27 +17,20 @@ float GrantManagement::getMoney(int ID)
 
 void GrantManagement::transferMoney(int ID)
 {
-	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
 	string money;
-	float sum;
 	do
 	{
 		ViewInteraction::inputValue("How much money are you transfering?",money);
 	}
 	while (!Validation::MoneyCheck(money));
-	ifstream inFile2(pathToProfileBalance);
-	inFile2 >> sum;
-	inFile2.close();
+	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
+	float sum=FileReader::readMoney(ID);
 	FileWriter::writeMoney(pathToProfileBalance, money, sum);
 }
 
 void GrantManagement::transferToBank(int ID)
 {
-	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
-	float dif;
-	ifstream inFile2(pathToProfileBalance);
-	inFile2 >> dif;
-	inFile2.close();
+	float currentMoney=FileReader::readMoney(ID);
 	string money;
 	string card;
 	do
@@ -49,7 +42,8 @@ void GrantManagement::transferToBank(int ID)
 	{
 		ViewInteraction::inputValue("How much money are you transfering?", money);
 	} 
-	while (!Validation::AmountOfMoneyCheck(money, dif));
-	FileWriter::writeDifMoney(pathToProfileBalance, money, dif);
+	while (!Validation::AmountOfMoneyCheck(money, currentMoney));
+	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
+	FileWriter::writeDifMoney(pathToProfileBalance, money, currentMoney);
 	ViewMessages::successfulTransfer();
 }

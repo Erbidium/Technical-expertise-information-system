@@ -1,4 +1,5 @@
 #include "Validation.h"
+#include "FileReader.h"
 #include <iostream>
 #include <fstream>
 
@@ -57,59 +58,13 @@ bool Validation::NameCheck(string name, string str)
 
 bool Validation::LoginCheck(string login)
 {
-	bool correct = true;
-	if (login.length() < 3)
-	{
-		cout << endl << "Your login is too short! It must have at least 4 symbols." << endl;
-		correct = false;
-	}
-	ifstream inFile("Database/Accounts.txt");
-	if (!inFile) {
-		cout << endl << "Error! Can't open a file with accounts. Please try again." << endl;
-		correct = false;
-	}
-	else {
-		while (!inFile.eof())
-		{
-			string tempLogin;
-			string buffer;
-			inFile >> buffer;
-			inFile >> tempLogin;
-			inFile >> buffer;
-			if (tempLogin == login) 
-			{
-				cout << endl << "Your login is already taken" << endl;
-				correct = false;
-			}
-		}
-	}
-	inFile.close();
+	bool correct=FileReader::readCheckLogin(login);
 	return correct;
 }
 
 bool Validation::IDCheck(int ID)
 {
-	bool correct = true;
-	ifstream inFile("Database/Accounts.txt");
-	if (!inFile) {
-		cout << endl << "Error! Can't open a file with accounts. Please try again." << endl;
-		correct = false;
-	}
-	else {
-		while (!inFile.eof())
-		{
-			int tempID;
-			string buffer;
-			inFile >> buffer;
-			inFile >> buffer;
-			inFile >> tempID;
-			if (tempID == ID)
-			{
-				correct = false;
-			}
-		}
-	}
-	inFile.close();
+	bool correct=FileReader::readCheckID(ID);
 	return correct;
 }
 

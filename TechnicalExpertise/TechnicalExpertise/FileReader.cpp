@@ -33,9 +33,9 @@ int FileReader::readID(string login, string password)
 float FileReader::readMoney(int ID)
 {
 	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
-	ifstream infile(pathToProfileBalance);
+	ifstream inFile(pathToProfileBalance);
 	float money;
-	infile >> money;
+	inFile >> money;
 	return money;
 }
 
@@ -90,4 +90,62 @@ Profile FileReader::readProfile(int ID)
 	currentProfile.setType(type);
 	currentProfile.setID(ID);
 	return currentProfile;
+}
+
+bool FileReader::readCheckID(int ID)
+{
+	bool correct = true;
+	ifstream inFile("Database/Accounts.txt");
+	if (!inFile) {
+		cout << endl << "Error! Can't open a file with accounts. Please try again." << endl;
+		correct = false;
+	}
+	else {
+		while (!inFile.eof())
+		{
+			int tempID;
+			string buffer;
+			inFile >> buffer;
+			inFile >> buffer;
+			inFile >> tempID;
+			if (tempID == ID)
+			{
+				correct = false;
+			}
+		}
+	}
+	inFile.close();
+	return correct;
+}
+
+bool FileReader::readCheckLogin(string login)
+{
+	bool correct = true;
+	if (login.length() < 3)
+	{
+		cout << endl << "Your login is too short! It must have at least 4 symbols." << endl;
+		correct = false;
+	}
+	ifstream inFile("Database/Accounts.txt");
+	if (!inFile) {
+		cout << endl << "Error! Can't open a file with accounts. Please try again." << endl;
+		correct = false;
+	}
+	else {
+		while (!inFile.eof())
+		{
+			string tempLogin;
+			string buffer;
+			inFile >> buffer;
+			inFile >> tempLogin;
+			inFile >> buffer;
+			if (tempLogin == login) 
+			{
+				cout << endl << "Your login is already taken" << endl;
+				correct = false;
+			}
+		}
+	}
+	inFile.close();
+	return correct;
 }
