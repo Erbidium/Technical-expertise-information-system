@@ -60,5 +60,10 @@ void ViewMessages::successfulEdit()
 
 void ViewMessages::notConfirmed()
 {
-	cout << "verification not confirmed" << endl;
+	cout << "verification not confirmed." << endl;
+}
+
+void ViewMessages::LoginTaken()
+{
+	cout << "This login is already taken." << endl;
 }

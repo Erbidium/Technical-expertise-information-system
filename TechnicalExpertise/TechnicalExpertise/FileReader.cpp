@@ -132,7 +132,7 @@ bool FileReader::readCheckID(int ID)
 	bool correct = true;
 	ifstream inFile("Database/Accounts.txt");
 	if (!inFile) {
-		cout << endl << "Error! Can't open a file with accounts. Please try again." << endl;
+		ViewMessages::unsuccessfulFileOpening();
 		correct = false;
 	}
 	else {
@@ -156,14 +156,9 @@ bool FileReader::readCheckID(int ID)
 bool FileReader::readCheckLogin(string login)
 {
 	bool correct = true;
-	if (login.length() < 3)
-	{
-		cout << endl << "Your login is too short! It must have at least 4 symbols." << endl;
-		correct = false;
-	}
 	ifstream inFile("Database/Accounts.txt");
 	if (!inFile) {
-		cout << endl << "Error! Can't open a file with accounts. Please try again." << endl;
+		ViewMessages::unsuccessfulFileOpening();
 		correct = false;
 	}
 	else {
@@ -176,7 +171,7 @@ bool FileReader::readCheckLogin(string login)
 			inFile >> buffer;
 			if (tempLogin == login) 
 			{
-				cout << endl << "Your login is already taken" << endl;
+				ViewMessages::LoginTaken();
 				correct = false;
 			}
 		}

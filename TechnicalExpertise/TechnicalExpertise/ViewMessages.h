@@ -15,5 +15,6 @@ public:
 	static void successfulTransfer();
 	static void unsuccsessfulLogIn();
 	static void succsessfulLogIn();
+	static void LoginTaken();
 };
 
