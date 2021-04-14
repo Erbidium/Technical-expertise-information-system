@@ -91,27 +91,7 @@ void AccountManagement::editLogin(int ID)
 	if (confirmation(ID, oldLogin, oldPassword))
 	{
 		ViewInteraction::inputValue("Verification confirmed!\nEnter your new login:", newLogin);
-		ifstream oldAccounts("Database/Accounts.txt");
-		ofstream newAccounts("Database/NewAccounts.txt");
-		if ((oldAccounts.is_open()) && (newAccounts.is_open()))
-		{
-			while (!oldAccounts.eof())
-			{
-				string password, login;
-				int currentID;
-				oldAccounts >> password >> login >> currentID;
-				if (currentID != ID)
-				{
-					newAccounts << password << " " << login << " " << currentID << endl;
-				}
-			}
-			newAccounts << oldPassword << " " << newLogin << " " << ID << endl;
-			oldAccounts.close();
-			newAccounts.close();
-			fs::remove("Database/Accounts.txt");
-			rename("Database/NewAccounts.txt", "Database/Accounts.txt");
-			ViewMessages::successfulEdit();
-		}
+		FileWriter::editFileLogin(ID, oldPassword, newLogin);
 	}
 	else
 	{
@@ -128,27 +108,7 @@ void AccountManagement::editPassword(int ID)
 	if (confirmation(ID, oldLogin, oldPassword))
 	{
 		ViewInteraction::inputValue("Verification confirmed!\nEnter your new password:", newPassword);
-		ifstream oldAccounts("Database/Accounts.txt");
-		ofstream newAccounts("Database/NewAccounts.txt");
-		if ((oldAccounts.is_open()) && (newAccounts.is_open()))
-		{
-			while (!oldAccounts.eof())
-			{
-				string password, login;
-				int currentID;
-				oldAccounts >> password >> login >> currentID;
-				if (currentID != ID)
-				{
-					newAccounts << password << " " << login << " " << currentID << endl;
-				}
-			}
-			newAccounts << newPassword << " " << oldLogin << " " << ID << endl;
-			oldAccounts.close();
-			newAccounts.close();
-			fs::remove("Database/Accounts.txt");
-			rename("Database/NewAccounts.txt", "Database/Accounts.txt");
-			ViewMessages::successfulEdit();
-		}
+		FileWriter::editFilePassword(ID, oldLogin, newPassword);
 	}
 	else
 	{
@@ -167,20 +127,7 @@ void AccountManagement::editName(int ID)
 	if (confirmation(ID, oldLogin, oldPassword))
 	{
 		ViewInteraction::inputValue("Verification confirmed!\nEnter your new name:", newName);
-		ifstream oldProfile(OldPath);
-		ofstream newProfile(NewPath);
-		if ((oldProfile.is_open()) && (newProfile.is_open()))
-		{
-				string name, email;
-				int type;
-				oldProfile >> name >> email >> type;
-				newProfile << newName << " " << email << " " << type << endl;
-			oldProfile.close();
-			newProfile.close();
-			fs::remove(OldPath);
-			rename(NewPath.data(), OldPath.data());
-			ViewMessages::successfulEdit();
-		}
+		FileWriter::editFileName(OldPath, NewPath, newName);
 	}
 	else
 	{
@@ -199,20 +146,7 @@ void AccountManagement::editEmail(int ID)
 	if (confirmation(ID, oldLogin, oldPassword))
 	{
 		ViewInteraction::inputValue("Verification confirmed!\nEnter your new email:", newEmail);
-		ifstream oldProfile(OldPath);
-		ofstream newProfile(NewPath);
-		if ((oldProfile.is_open()) && (newProfile.is_open()))
-		{
-			string name, email;
-			int type;
-			oldProfile >> name >> email >> type;
-			newProfile << name << " " << newEmail << " " << type << endl;
-			oldProfile.close();
-			newProfile.close();
-			fs::remove("Database/Profiles/" + to_string(ID) + ".txt");
-			rename(NewPath.data(), OldPath.data());
-			ViewMessages::successfulEdit();
-		}
+		FileWriter::editFileEmail(OldPath, NewPath, newEmail);
 	}
 	else
 	{

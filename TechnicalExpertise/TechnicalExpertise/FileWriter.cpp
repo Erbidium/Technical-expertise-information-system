@@ -153,3 +153,89 @@ void FileWriter::createReview(string path, string name) {
 	rename(path.data(), newName.data());
 	outFile.close();
 }
+
+void FileWriter::editFileLogin(int ID, string oldPassword, string newLogin)
+{
+	ifstream oldAccounts("Database/Accounts.txt");
+	ofstream newAccounts("Database/NewAccounts.txt");
+	if ((oldAccounts.is_open()) && (newAccounts.is_open()))
+	{
+		while (!oldAccounts.eof())
+		{
+			string password, login;
+			int currentID;
+			oldAccounts >> password >> login >> currentID;
+			if (currentID != ID)
+			{
+				newAccounts << password << " " << login << " " << currentID << endl;
+			}
+		}
+		newAccounts << oldPassword << " " << newLogin << " " << ID << endl;
+		oldAccounts.close();
+		newAccounts.close();
+		fs::remove("Database/Accounts.txt");
+		rename("Database/NewAccounts.txt", "Database/Accounts.txt");
+		ViewMessages::successfulEdit();
+	}
+}
+
+void FileWriter::editFilePassword(int ID, string oldLogin, string newPassword)
+{
+	ifstream oldAccounts("Database/Accounts.txt");
+	ofstream newAccounts("Database/NewAccounts.txt");
+	if ((oldAccounts.is_open()) && (newAccounts.is_open()))
+	{
+		while (!oldAccounts.eof())
+		{
+			string password, login;
+			int currentID;
+			oldAccounts >> password >> login >> currentID;
+			if (currentID != ID)
+			{
+				newAccounts << password << " " << login << " " << currentID << endl;
+			}
+		}
+		newAccounts << newPassword << " " << oldLogin << " " << ID << endl;
+		oldAccounts.close();
+		newAccounts.close();
+		fs::remove("Database/Accounts.txt");
+		rename("Database/NewAccounts.txt", "Database/Accounts.txt");
+		ViewMessages::successfulEdit();
+	}
+}
+
+void FileWriter::editFileName(string OldPath, string NewPath, string newName)
+{
+	ifstream oldProfile(OldPath);
+	ofstream newProfile(NewPath);
+	if ((oldProfile.is_open()) && (newProfile.is_open()))
+	{
+		string name, email;
+		int type;
+		oldProfile >> name >> email >> type;
+		newProfile << newName << " " << email << " " << type << endl;
+		oldProfile.close();
+		newProfile.close();
+		fs::remove(OldPath);
+		rename(NewPath.data(), OldPath.data());
+		ViewMessages::successfulEdit();
+	}
+}
+
+void FileWriter::editFileEmail(string OldPath, string NewPath, string newEmail)
+{
+	ifstream oldProfile(OldPath);
+	ofstream newProfile(NewPath);
+	if ((oldProfile.is_open()) && (newProfile.is_open()))
+	{
+		string name, email;
+		int type;
+		oldProfile >> name >> email >> type;
+		newProfile << name << " " << newEmail << " " << type << endl;
+		oldProfile.close();
+		newProfile.close();
+		fs::remove(OldPath);
+		rename(NewPath.data(), OldPath.data());
+		ViewMessages::successfulEdit();
+	}
+}
