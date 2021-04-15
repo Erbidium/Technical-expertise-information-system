@@ -40,11 +40,11 @@ void ViewMessages::registrationIsCorrect()
 
 void ViewMessages::requestIsCorrect()
 {
-	cout<<"Yout request is correct!"<<endl;
+	cout << "Your request is correct!" << endl;
 }
 void ViewMessages::successfulTransfer()
 {
-	cout << endl << "Successfully transfered!" << endl;
+	cout << "Successfully transfered!" << endl;
 }
 void ViewMessages::unsuccsessfulLogIn() {
 	cout << "Entered incorrect login or password\n";
@@ -60,7 +60,7 @@ void ViewMessages::successfulEdit()
 
 void ViewMessages::notConfirmed()
 {
-	cout << "verification not confirmed." << endl;
+	cout << "Verification not confirmed." << endl;
 }
 
 void ViewMessages::LoginTaken()
@@ -70,5 +70,5 @@ void ViewMessages::LoginTaken()
 
 void ViewMessages::verificationConfirmed()
 {
-	cout << "verification confirmed!" << endl;
+	cout << "Verification confirmed!" << endl;
 }

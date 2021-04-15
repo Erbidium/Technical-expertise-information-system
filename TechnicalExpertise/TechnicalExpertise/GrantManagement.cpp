@@ -45,5 +45,6 @@ void GrantManagement::transferToBank(int ID)
 	while (!Validation::AmountOfMoneyCheck(money, currentMoney));
 	string pathToProfileBalance = "Database/ProfilesBalance/" + to_string(ID) + ".txt";
 	FileWriter::writeDifMoney(pathToProfileBalance, money, currentMoney);
+	ViewInteraction::clearScreen();
 	ViewMessages::successfulTransfer();
 }

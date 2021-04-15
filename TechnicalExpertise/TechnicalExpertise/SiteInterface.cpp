@@ -103,6 +103,10 @@ void SiteInterface::showMenu()
 								action=7;
 								profileIsDeleted=true;
 							}
+							else
+							{
+								ViewInteraction::clearScreen();
+							}
 						}
 						else if(action==5)
 							currentGrantApplicant.checkBalance();

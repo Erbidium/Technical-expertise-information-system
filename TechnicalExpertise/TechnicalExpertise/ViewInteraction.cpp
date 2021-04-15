@@ -260,6 +260,10 @@ void ViewInteraction::outBalance(int profileID) {
 	{
 		GrantManagement::transferToBank(profileID);
 	}
+	else
+	{
+		clearScreen();
+	}
 }
 
 void ViewInteraction::clearScreen()
@@ -388,7 +392,7 @@ void ViewInteraction::editApplication(string& tempAge, string& tempData, string&
 	do
 	{
 		correct = true;
-		cout << "If you don not want to change the field, input '-' on it" << endl;
+		cout << "If you do not want to change the field, input '-' on it" << endl;
 		cout << "Input your age:" << endl;
 		string age;
 		cin >> age;
