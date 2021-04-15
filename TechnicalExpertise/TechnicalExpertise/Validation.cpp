@@ -138,9 +138,12 @@ bool Validation::CardCheck(string card)
 	{
 		if (card[i] < 48 || card[i] > 57)
 		{
-			cout << endl << "You entered wrong card number! Please try again!" << endl;
 			correct = false;
 		}
+	}
+	if (!correct)
+	{
+		cout << endl << "You entered wrong card number! Please try again!" << endl;
 	}
 	return correct;
 }
