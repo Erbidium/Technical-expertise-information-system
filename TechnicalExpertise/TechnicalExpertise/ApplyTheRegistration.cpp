@@ -54,6 +54,7 @@ void ApplyTheRegistration::profileDataCheck()
 		bool leave = ViewInteraction::checkIfYouWannaRewrite("registration");
 		if (!leave)
 		{
+			ViewInteraction::clearScreen();
 			AccountManagement::registerProfile(0);
 		}
 		else

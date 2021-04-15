@@ -58,6 +58,7 @@ void SiteInterface::showMenu()
 					{
 					case 0:
 						admin.viewRequests();
+						ViewInteraction::clearScreen();
 					break;
 					case 1:
 						admin.registerProfile();
@@ -174,6 +175,10 @@ void SiteInterface::showMenu()
 								AccountManagement::deleteProfile(ID, currentFundOwner.getType());
 								action=2;
 								profileIsDeleted=true;
+							}
+							else
+							{
+								ViewInteraction::clearScreen();
 							}
 						}
 					}while(action!=2);
