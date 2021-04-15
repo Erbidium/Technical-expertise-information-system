@@ -273,6 +273,7 @@ void ViewInteraction::clearScreen()
 
 int ViewInteraction::inputEditing()
 {
+	clearScreen();
 	cout << "What do you want to edit?\n";
 	string typeOfEditing1;
 	int typeOfEditing;
@@ -294,6 +295,7 @@ bool ViewInteraction::checkIfYouWannaEdit()
 	bool leave;
 	do
 	{
+		clearScreen();
 		cout << endl << "Would you like to edit something else(0) or leave(1)?" << endl;
 		if (cin.peek() == '\n') {
 			cin.ignore();
@@ -379,7 +381,7 @@ void ViewInteraction::founderPick(int& action) {
 	string action1;
 	do
 	{
-		cout << "(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out: ";
+		cout << "(0)View the results of the examination of the application and accept grant\n(1)Delete profile\n(2)Log out:\n";
 		if (cin.peek() == '\n') {
 			cin.ignore();
 		}
