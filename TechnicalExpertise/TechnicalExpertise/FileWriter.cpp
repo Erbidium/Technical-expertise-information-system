@@ -176,6 +176,7 @@ void FileWriter::editFileLogin(int ID, string oldPassword, string newLogin)
 		newAccounts.close();
 		fs::remove("Database/Accounts.txt");
 		rename("Database/NewAccounts.txt", "Database/Accounts.txt");
+		ViewInteraction::clearScreen();
 		ViewMessages::successfulEdit();
 	}
 }
@@ -201,6 +202,7 @@ void FileWriter::editFilePassword(int ID, string oldLogin, string newPassword)
 		newAccounts.close();
 		fs::remove("Database/Accounts.txt");
 		rename("Database/NewAccounts.txt", "Database/Accounts.txt");
+		ViewInteraction::clearScreen();
 		ViewMessages::successfulEdit();
 	}
 }
@@ -219,6 +221,7 @@ void FileWriter::editFileName(string OldPath, string NewPath, string newName)
 		newProfile.close();
 		fs::remove(OldPath);
 		rename(NewPath.data(), OldPath.data());
+		ViewInteraction::clearScreen();
 		ViewMessages::successfulEdit();
 	}
 }
@@ -237,6 +240,7 @@ void FileWriter::editFileEmail(string OldPath, string NewPath, string newEmail)
 		newProfile.close();
 		fs::remove(OldPath);
 		rename(NewPath.data(), OldPath.data());
+		ViewInteraction::clearScreen();
 		ViewMessages::successfulEdit();
 	}
 }
