@@ -13,120 +13,162 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Interface">
+      <UniqueIdentifier>{5e260393-d320-4101-a87a-30dcdee75b29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Work with files">
+      <UniqueIdentifier>{77e902c6-ce9a-4ef1-a90f-9600db90d4c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Profiles">
+      <UniqueIdentifier>{b88cd333-38e0-4ac8-8be6-6cdb6ccc3d49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Management">
+      <UniqueIdentifier>{bcceb0c7-4568-4d6c-ac10-f5cb48440e46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Applications">
+      <UniqueIdentifier>{833afefd-d174-4ece-ae03-15bc5579dfcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Requests">
+      <UniqueIdentifier>{7433e253-f28e-4176-9331-b8d84de5e8ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Validation">
+      <UniqueIdentifier>{71c44954-d8c7-4969-9cce-d519f11c9657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Interface">
+      <UniqueIdentifier>{9d286d65-601d-4c9d-ab4d-f118a1c45463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Management">
+      <UniqueIdentifier>{343e0f40-77cf-417c-9912-ad890e3ddb77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Applications">
+      <UniqueIdentifier>{aaf0d9a2-1f55-4710-9128-8561f691ff0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Validation">
+      <UniqueIdentifier>{85307457-37d6-45cd-8e59-b8e78ce9536d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Requests">
+      <UniqueIdentifier>{f5be48eb-cb63-4bb6-bc50-b7c9eb897fca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Profiles">
+      <UniqueIdentifier>{ad00c13c-37db-450f-a033-025f3a58b654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Work with files">
+      <UniqueIdentifier>{54e811c7-9b5d-45cf-af9e-111e1655907b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Request.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Profile.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="AccountManagement.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="GrantManagement.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ApplyTheRegistration.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ApplyTheApplication.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="SiteInterface.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ApplyTheRequest.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Admin.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="GrantApplicant.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ExpertComission.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="FundOwner.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="ViewInteraction.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Interface</Filter>
     </ClCompile>
     <ClCompile Include="ViewMessages.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Interface</Filter>
     </ClCompile>
-    <ClCompile Include="Validation.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="SiteInterface.cpp">
+      <Filter>Исходные файлы\Interface</Filter>
     </ClCompile>
     <ClCompile Include="FileReader.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Work with files</Filter>
     </ClCompile>
     <ClCompile Include="FileWriter.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Work with files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpertComission.cpp">
+      <Filter>Исходные файлы\Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="FundOwner.cpp">
+      <Filter>Исходные файлы\Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="GrantApplicant.cpp">
+      <Filter>Исходные файлы\Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Profile.cpp">
+      <Filter>Исходные файлы\Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Исходные файлы\Profiles</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountManagement.cpp">
+      <Filter>Исходные файлы\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="GrantManagement.cpp">
+      <Filter>Исходные файлы\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Исходные файлы\Applications</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplyTheApplication.cpp">
+      <Filter>Исходные файлы\Applications</Filter>
+    </ClCompile>
+    <ClCompile Include="Request.cpp">
+      <Filter>Исходные файлы\Requests</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplyTheRequest.cpp">
+      <Filter>Исходные файлы\Requests</Filter>
+    </ClCompile>
+    <ClCompile Include="Validation.cpp">
+      <Filter>Исходные файлы\Validation</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplyTheRegistration.cpp">
+      <Filter>Исходные файлы\Validation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Request.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Profile.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="AccountManagement.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="GrantManagement.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplyTheRegistration.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplyTheApplication.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="SiteInterface.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="ApplyTheRequest.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Admin.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="GrantApplicant.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="ExpertComission.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="FundOwner.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Interface</Filter>
     </ClInclude>
     <ClInclude Include="ViewInteraction.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Interface</Filter>
     </ClInclude>
     <ClInclude Include="ViewMessages.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountManagement.h">
+      <Filter>Файлы заголовков\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="GrantManagement.h">
+      <Filter>Файлы заголовков\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Файлы заголовков\Applications</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplyTheApplication.h">
+      <Filter>Файлы заголовков\Applications</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplyTheRegistration.h">
+      <Filter>Файлы заголовков\Validation</Filter>
     </ClInclude>
     <ClInclude Include="Validation.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Validation</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplyTheRequest.h">
+      <Filter>Файлы заголовков\Requests</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>Файлы заголовков\Requests</Filter>
+    </ClInclude>
+    <ClInclude Include="Admin.h">
+      <Filter>Файлы заголовков\Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpertComission.h">
+      <Filter>Файлы заголовков\Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="FundOwner.h">
+      <Filter>Файлы заголовков\Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="GrantApplicant.h">
+      <Filter>Файлы заголовков\Profiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Profile.h">
+      <Filter>Файлы заголовков\Profiles</Filter>
     </ClInclude>
     <ClInclude Include="FileReader.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Work with files</Filter>
     </ClInclude>
     <ClInclude Include="FileWriter.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Work with files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
