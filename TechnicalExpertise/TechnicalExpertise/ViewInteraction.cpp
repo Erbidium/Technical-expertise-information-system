@@ -382,7 +382,6 @@ void ViewInteraction::founderPick(int& action) {
 		getline(cin,action1);
 	} while (!Validation::PickCheck(action1, 2));
 	action = stoi(action1);
-	cin >> action;
 }
 void ViewInteraction::editApplication(string& tempAge, string& tempData, string& name, string& filePath, string& link) {
 	bool correct;
