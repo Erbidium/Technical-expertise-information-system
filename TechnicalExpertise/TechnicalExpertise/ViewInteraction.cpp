@@ -295,13 +295,13 @@ bool ViewInteraction::checkIfYouWannaEdit()
 	bool leave;
 	do
 	{
-		clearScreen();
 		cout << endl << "Would you like to edit something else(0) or leave(1)?" << endl;
 		if (cin.peek() == '\n') {
 			cin.ignore();
 		}
 		getline(cin,leave1);
 	} while (!Validation::PickCheck(leave1, 1));
+	clearScreen();
 	leave = stoi(leave1);
 	return leave;
 }
