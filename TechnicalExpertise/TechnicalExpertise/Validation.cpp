@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "ViewInteraction.h"
+
 using namespace std;
 
 bool Validation::EmailCheck(string email)
@@ -231,6 +233,7 @@ bool Validation::PickCheck(string &choice, int max)
 		}
 		correct = false;
 	}
-	cout << endl << "You entered wrong value! Please try again:" << endl;
+	ViewInteraction::clearScreen();
+	cout << "You entered wrong value! Please try again:" << endl;
 	return correct;
 }
