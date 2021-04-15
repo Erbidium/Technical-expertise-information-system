@@ -14,4 +14,5 @@ public:
 	static bool AmountOfMoneyCheck(std::string money, float dif);
 	static bool IDCheck(int ID);
 	static bool AgeCheck(std::string age);
+	static bool PickCheck(std::string &choice, int max);
 };
