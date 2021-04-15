@@ -162,7 +162,8 @@ void SiteInterface::showMenu()
 						ViewInteraction::clearScreen();
 						if(action==0)
 						{
-							currentFundOwner.ViewExaminationResultsAndAcceptGrant();	
+							currentFundOwner.ViewExaminationResultsAndAcceptGrant();
+							ViewInteraction::clearScreen();
 						}
 						else if(action==1)
 						{

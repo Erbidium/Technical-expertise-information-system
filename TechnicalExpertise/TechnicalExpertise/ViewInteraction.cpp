@@ -479,13 +479,16 @@ void ViewInteraction::checkAndGetNumberOfApplication(int& numberOfApplication, v
 	{
 		string strNumberApplication;
 		cout << "Choose application or enter -1 to quit" << endl;
-		cin >> strNumberApplication;
+		if (cin.peek() == '\n') {
+			cin.ignore();
+		}
+		getline(cin, strNumberApplication);
 		bool isNumber=true;
 		if(strNumberApplication!="-1")
 		{
 			for(int i=0;i<strNumberApplication.size();i++)
 			{
-				if(isdigit(strNumberApplication[i])==false)
+				if((strNumberApplication[i]<48)||(strNumberApplication[i]>57))
 					isNumber=false;
 			}
 		}
