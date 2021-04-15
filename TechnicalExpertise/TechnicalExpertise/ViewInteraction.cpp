@@ -102,7 +102,7 @@ void ViewInteraction::createApplication(string& tempAge, string& tempData, strin
 	string wannaAddLink1;
 	do
 	{
-		cout << "Do you want to add sine links to your application? Yes(1) No(0)" << endl;
+		cout << "Do you want to add some links to your application? Yes(1) No(0)" << endl;
 		if (cin.peek() == '\n') {
 			cin.ignore();
 		}
@@ -419,7 +419,7 @@ void ViewInteraction::editApplication(string& tempAge, string& tempData, string&
 				cin.ignore();
 			}
 			getline(cin,wannaAdd1);
-		} while (Validation::PickCheck(wannaAdd1, 1));
+		} while (!Validation::PickCheck(wannaAdd1, 1));
 		wannaAdd = stoi(wannaAdd1);
 		if (wannaAdd) {
 			cout << "Input the path to your file on your PC. Example: Database / Applications / " << endl;

@@ -219,9 +219,11 @@ bool Validation::PickCheck(string &choice, int max)
 	bool correct = true;
 	if (choice.size() > 1)
 	{
-		correct = false;
+		for (int k = 0; k < choice.length()-1; k++) {
+			if (choice[k] != '0')correct = false;
+		}
 	}
-	if (choice[0] < 48 || choice[0] > 57)
+	if (choice[choice.length()-1] < 48 || choice[choice.length() - 1] > 57)
 	{
 		correct = false;
 	}
