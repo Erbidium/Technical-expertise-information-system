@@ -166,7 +166,7 @@ void FileWriter::editFileLogin(int ID, string oldPassword, string newLogin)
 			string password, login;
 			int currentID;
 			oldAccounts >> password >> login >> currentID;
-			if (currentID != ID)
+			if (currentID != ID && login != "")
 			{
 				newAccounts << password << " " << login << " " << currentID << endl;
 			}
@@ -191,7 +191,7 @@ void FileWriter::editFilePassword(int ID, string oldLogin, string newPassword)
 			string password, login;
 			int currentID;
 			oldAccounts >> password >> login >> currentID;
-			if (currentID != ID)
+			if (currentID != ID && login != "")
 			{
 				newAccounts << password << " " << login << " " << currentID << endl;
 			}
