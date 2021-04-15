@@ -34,4 +34,5 @@ public:
 	static void comissionPick(int& action);
 	static void founderPick(int& action);
 	static void editApplication(std::string& tempAge, std::string& tempData, std::string& name, std::string& filePath, std::string& link);
+	static void checkAndGetNumberOfApplication(int& numberOfApplication, std::vector <std::string> applicationNames);
 };

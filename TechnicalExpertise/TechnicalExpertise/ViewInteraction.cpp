@@ -120,8 +120,7 @@ int ViewInteraction::viewApplicationsAndPickComission(vector <vector<string>>& a
 			counter++;
 		}
 	}
-	cout << "Choose application or enter -1 to quit" << endl;
-	cin >> numberOfApplication;
+	checkAndGetNumberOfApplication(numberOfApplication, applicationNames[0]);
 	return numberOfApplication;
 }
 
@@ -139,8 +138,7 @@ int ViewInteraction::viewApplicationsAndPickOwner(vector <vector<string>>& appli
 		}
 
 	}
-	cout << "Choose application or enter -1 to quit" << endl;
-	cin >> numberOfApplication;
+	checkAndGetNumberOfApplication(numberOfApplication, applicationNames[0]);
 	return numberOfApplication;
 }
 
@@ -160,8 +158,7 @@ void ViewInteraction::showRequests()
 	}
 	int numberOfRequest=-1;
 	do{
-		cout<<"Choose request or enter -1 to quit"<<endl;
-		cin>>numberOfRequest;
+		checkAndGetNumberOfApplication(numberOfRequest, files);
 		if(numberOfRequest!=-1){
 			FileReader::readAndPrintFileData("Database/Requests/"+files[numberOfRequest]);	
 		}
@@ -203,8 +200,7 @@ void ViewInteraction::outApplicationAndDelete(int& numberOfApplication, vector <
 			counter++;
 		}
 	}
-	cout << "Choose application or enter -1 to quit" << endl;
-	cin >> numberOfApplication;
+	checkAndGetNumberOfApplication(numberOfApplication, applicationNames[0]);
 }
 
 void ViewInteraction::outBalance(int profileID) {
@@ -354,4 +350,29 @@ void ViewInteraction::editApplication(string& tempAge, string& tempData, string&
 			cout << "Everything is correct! Would you like to edit something else?" << endl;
 		}
 	} while (!correct);
+}
+
+void ViewInteraction::checkAndGetNumberOfApplication(int& numberOfApplication, vector <string> applicationNames)
+{
+	while(true)
+	{
+		string strNumberApplication;
+		cout << "Choose application or enter -1 to quit" << endl;
+		cin >> strNumberApplication;
+		bool isNumber=true;
+		if(strNumberApplication!="-1")
+		{
+			for(int i=0;i<strNumberApplication.size();i++)
+			{
+				if(isdigit(strNumberApplication[i])==false)
+					isNumber=false;
+			}
+		}
+		if(isNumber==true)
+		{
+			numberOfApplication=stoi(strNumberApplication);
+			if(((numberOfApplication>=0)&&(numberOfApplication<applicationNames.size()))||(numberOfApplication==-1))
+				break;
+		}
+	}
 }
