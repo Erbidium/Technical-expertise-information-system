@@ -86,6 +86,7 @@ void FileWriter::rewriteAccounts(int ID)
 		newAccounts.close();
 		fs::remove("Database/Accounts.txt");
 		rename("Database/NewAccounts.txt", "Database/Accounts.txt");
+		ViewInteraction::clearScreen();
 		ViewMessages::successfulProfileDelete();
 	}
 }

@@ -126,7 +126,8 @@ void SiteInterface::showMenu()
 						ViewInteraction::clearScreen();
 						if(action==0)
 						{
-							currentExpertComission.viewApplicationAndEvaluate();	
+							currentExpertComission.viewApplicationAndEvaluate();
+							ViewInteraction::clearScreen();
 						}
 						else if(action==1)
 						{
@@ -137,6 +138,10 @@ void SiteInterface::showMenu()
 								AccountManagement::deleteProfile(ID, currentExpertComission.getType());
 								action=2;
 								profileIsDeleted=true;
+							}
+							else
+							{
+								ViewInteraction::clearScreen();
 							}
 						}
 					}while(action!=2);
