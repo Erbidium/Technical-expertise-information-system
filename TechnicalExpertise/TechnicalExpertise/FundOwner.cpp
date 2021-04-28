@@ -27,7 +27,6 @@ void FundOwner::ViewExaminationResultsAndAcceptGrant()
 			string path=applicationNames[1][numberOfApplication];
 			string name=applicationNames[0][numberOfApplication];
 			bool conclusion = ViewInteraction::createConclusionOwner();
-			FileReader::readAndPrintFileData(path);
 			string newName = "";
 			for (int i = 0; i < path.length(); i++) {
 				if (static_cast<int>(path[i]) == 92) {
